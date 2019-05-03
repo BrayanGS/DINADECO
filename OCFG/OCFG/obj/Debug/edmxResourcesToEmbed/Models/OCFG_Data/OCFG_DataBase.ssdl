@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OCFG_DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Association">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="resgistry_code" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="region" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="canton" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="ConcreteLiquidation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="date_received" Type="date" Nullable="false" />
+    <Property Name="year" Type="date" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EconomicReport">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="date_received" Type="date" Nullable="false" />
+    <Property Name="year" Type="date" Nullable="false" />
+    <Property Name="balance" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name_employee" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="id_card" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_number" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="date_in" Type="date" Nullable="false" />
+    <Property Name="date_out" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="id_manager" />
+    </Key>
+    <Property Name="id_manager" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password_manager" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="id_employee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Officer">
+    <Key>
+      <PropertyRef Name="id_officer" />
+    </Key>
+    <Property Name="id_officer" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password_officer" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="id_employee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settlement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="date_received" Type="date" Nullable="false" />
+    <Property Name="year" Type="date" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="assembly_date" Type="date" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Manager__id_empl__3F466844">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Officer__id_empl__3C69FB99">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Officer" Type="Self.Officer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Officer">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Association" Type="Self.Association" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Association">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_association_c">
+    <End Role="Association" Type="Self.Association" Multiplicity="1" />
+    <End Role="ConcreteLiquidation" Type="Self.ConcreteLiquidation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Association">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConcreteLiquidation">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_association_e">
+    <End Role="Association" Type="Self.Association" Multiplicity="1" />
+    <End Role="EconomicReport" Type="Self.EconomicReport" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Association">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EconomicReport">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_association_s">
+    <End Role="Association" Type="Self.Association" Multiplicity="1" />
+    <End Role="Settlement" Type="Self.Settlement" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Association">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Settlement">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_association_w">
+    <End Role="Association" Type="Self.Association" Multiplicity="1" />
+    <End Role="WorkPlan" Type="Self.WorkPlan" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Association">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="WorkPlan">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OCFG_DataBaseModelStoreContainer">
+    <EntitySet Name="Association" EntityType="Self.Association" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConcreteLiquidation" EntityType="Self.ConcreteLiquidation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EconomicReport" EntityType="Self.EconomicReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Officer" EntityType="Self.Officer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settlement" EntityType="Self.Settlement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkPlan" EntityType="Self.WorkPlan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Manager__id_empl__3F466844" Association="Self.FK__Manager__id_empl__3F466844">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Officer__id_empl__3C69FB99" Association="Self.FK__Officer__id_empl__3C69FB99">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Officer" EntitySet="Officer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_employee" Association="Self.FK_id_employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Association" EntitySet="Association" />
+    </AssociationSet>
+    <AssociationSet Name="id_association_c" Association="Self.id_association_c">
+      <End Role="Association" EntitySet="Association" />
+      <End Role="ConcreteLiquidation" EntitySet="ConcreteLiquidation" />
+    </AssociationSet>
+    <AssociationSet Name="id_association_e" Association="Self.id_association_e">
+      <End Role="Association" EntitySet="Association" />
+      <End Role="EconomicReport" EntitySet="EconomicReport" />
+    </AssociationSet>
+    <AssociationSet Name="id_association_s" Association="Self.id_association_s">
+      <End Role="Association" EntitySet="Association" />
+      <End Role="Settlement" EntitySet="Settlement" />
+    </AssociationSet>
+    <AssociationSet Name="id_association_w" Association="Self.id_association_w">
+      <End Role="Association" EntitySet="Association" />
+      <End Role="WorkPlan" EntitySet="WorkPlan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

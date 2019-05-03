@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OCFG_DataBaseModelStoreContainer" CdmEntityContainer="OCFG_DataBaseEntities">
+    <EntitySetMapping Name="Association">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.Association">
+        <MappingFragment StoreEntitySet="Association">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resgistry_code" ColumnName="resgistry_code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="canton" ColumnName="canton" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConcreteLiquidation">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.ConcreteLiquidation">
+        <MappingFragment StoreEntitySet="ConcreteLiquidation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date_received" ColumnName="date_received" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EconomicReport">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.EconomicReport">
+        <MappingFragment StoreEntitySet="EconomicReport">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date_received" ColumnName="date_received" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_employee" ColumnName="name_employee" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="id_card" ColumnName="id_card" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="date_in" ColumnName="date_in" />
+          <ScalarProperty Name="date_out" ColumnName="date_out" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manager">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="id_manager" ColumnName="id_manager" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password_manager" ColumnName="password_manager" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Officer">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.Officer">
+        <MappingFragment StoreEntitySet="Officer">
+          <ScalarProperty Name="id_officer" ColumnName="id_officer" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password_officer" ColumnName="password_officer" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settlement">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.Settlement">
+        <MappingFragment StoreEntitySet="Settlement">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date_received" ColumnName="date_received" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkPlan">
+      <EntityTypeMapping TypeName="OCFG_DataBaseModel.WorkPlan">
+        <MappingFragment StoreEntitySet="WorkPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="assembly_date" ColumnName="assembly_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
