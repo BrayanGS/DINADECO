@@ -39,11 +39,11 @@ namespace OCFG.Controllers
         // GET: Associations/Create
         public ActionResult Create()
         {
-            ViewBag.id = new SelectList(db.Employee, "id", "name_employee");
-            ViewBag.id = new SelectList(db.ConcreteLiquidation, "id", "status");
-            ViewBag.id = new SelectList(db.EconomicReport, "id", "balance");
-            ViewBag.id = new SelectList(db.Settlement, "id", "status");
-            ViewBag.id = new SelectList(db.WorkPlan, "id", "status");
+            ViewBag.id = new SelectList(db.Association, "id", "id");
+            ViewBag.id = new SelectList(db.Association, "registry", "registry_code");
+            ViewBag.id = new SelectList(db.Association, "name", "name");
+            ViewBag.id = new SelectList(db.Association, "region", "region");
+            ViewBag.id = new SelectList(db.Association, "canton", "canton");
             return View();
         }
 
@@ -61,11 +61,11 @@ namespace OCFG.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id = new SelectList(db.Employee, "id", "name_employee", association.id);
-            ViewBag.id = new SelectList(db.ConcreteLiquidation, "id", "status", association.id);
-            ViewBag.id = new SelectList(db.EconomicReport, "id", "balance", association.id);
-            ViewBag.id = new SelectList(db.Settlement, "id", "status", association.id);
-            ViewBag.id = new SelectList(db.WorkPlan, "id", "status", association.id);
+            ViewBag.id = new SelectList(db.Association, "id", "id");
+            ViewBag.id = new SelectList(db.Association, "registry", "registry_code");
+            ViewBag.id = new SelectList(db.Association, "name", "name");
+            ViewBag.id = new SelectList(db.Association, "region", "region");
+            ViewBag.id = new SelectList(db.Association, "canton", "canton");
             return View(association);
         }
 
