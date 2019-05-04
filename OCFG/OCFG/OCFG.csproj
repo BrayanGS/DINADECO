@@ -138,6 +138,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Assotiation.cs" />
+    <Compile Include="Models\ConcreteLiquidation.cs" />
+    <Compile Include="Models\EconomicReport.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Manager.cs" />
+    <Compile Include="Models\Officer.cs" />
+    <Compile Include="Models\Sttlement.cs" />
+    <Compile Include="Models\WorkPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
