@@ -134,50 +134,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AssociationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PDFController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\Association.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\ConcreteLiquidation.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\EconomicReport.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\Employee.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\Manager.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\OCFG_DataBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OCFG_DataBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\OCFG_DataBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\OCFG_DataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OCFG_DataBase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\Officer.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\Settlement.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OCFG_Data\WorkPlan.cs">
-      <DependentUpon>OCFG_DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -190,25 +149,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\OCFG_Data\OCFG_DataBase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OCFG_DataBase.edmx</DependentUpon>
-      <LastGenOutput>OCFG_DataBase.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\OCFG_Data\OCFG_DataBase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OCFG_DataBase.edmx</DependentUpon>
-      <LastGenOutput>OCFG_DataBase.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\OCFG_Data\OCFG_DataBase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OCFG_DataBase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\OCFG_Data\OCFG_DataBase.edmx.diagram">
-      <DependentUpon>OCFG_DataBase.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -234,11 +176,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Associations\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PDF\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
