@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OCFG.Data;
+using OCFG.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,9 @@ namespace OCFG.Controllers
 {
     public class AssociationController : Controller
     {
+        AssociationData associationData = new AssociationData();
+        static Association association = new Association();
+
         // GET: Association
         public ActionResult Index()
         {
@@ -50,13 +55,22 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Association assoUpdate)
         {
             try
             {
-                // TODO: Add update logic here
+                association.EconomicReport.DateReceived = assoUpdate.EconomicReport.DateReceived;
+                association.EconomicReport.Balance = assoUpdate.EconomicReport.Balance;
+                association.Settlement.DateReceived = assoUpdate.Settlement.DateReceived;
+                association.Settlement.Year = assoUpdate.Settlement.Year;
+                association.WorkPlan.AssemblyDate = assoUpdate.WorkPlan.AssemblyDate;
+                association.ConcreteLiquidation.DateReceived = assoUpdate.ConcreteLiquidation.DateReceived;
+                association.ConcreteLiquidation.Year = assoUpdate.ConcreteLiquidation.Year;
+
+                associationData.updateAssociation(association);
 
                 return RedirectToAction("Index");
+
             }
             catch
             {

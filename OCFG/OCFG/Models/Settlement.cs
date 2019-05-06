@@ -2,14 +2,14 @@
 
 namespace OCFG.Models
 {
-    public class Sttlement
+    public class Settlement
     {
         private int id;
         private DateTime dateReceived;
         private DateTime year;
         private char status;
 
-        public Sttlement(int id, DateTime dateReceived, DateTime year, char status)
+        public Settlement(int id, DateTime dateReceived, DateTime year, char status)
         {
             this.id = id;
             this.dateReceived = dateReceived;

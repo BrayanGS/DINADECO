@@ -13,10 +13,10 @@ namespace OCFG.Models
         private string phoneNumber;
         private DateTime dateIn;
         private DateTime dateOut;
-        private List<Assotiation> assotiations;
+        private List<Association> assotiations;
 
         public Employee(int id, string name, string lastName, string idCard, string address, 
-            string phoneNumber, DateTime dateIn, DateTime dateOut, List<Assotiation> assotiations)
+            string phoneNumber, DateTime dateIn, DateTime dateOut, List<Association> assotiations)
         {
             this.id = id;
             this.name = name;
@@ -37,6 +37,6 @@ namespace OCFG.Models
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public DateTime DateIn { get => dateIn; set => dateIn = value; }
         public DateTime DateOut { get => dateOut; set => dateOut = value; }
-        public List<Assotiation> Assotiations { get => assotiations; set => assotiations = value; }
+        public List<Association> Assotiations { get => assotiations; set => assotiations = value; }
     }
 }

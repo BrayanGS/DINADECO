@@ -4,6 +4,23 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+/*!
+    *classes
+*/
+
+.right-text {
+    margin-right: 10px;
+}
+
+.left-text {
+    margin-left: 30px;
+}
+
+.top{
+    margin-top: 10px;
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -1083,7 +1100,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -4264,7 +4281,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-fixed-top {
   top: 0;
-  border-width: 0 0 2px;
+  border-width: 0 0 5px;
 }
 .navbar-fixed-bottom {
   bottom: 0;

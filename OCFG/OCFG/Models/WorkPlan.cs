@@ -7,6 +7,11 @@
         private string assemblyDate;
         private string status;
 
+        public WorkPlan()
+        {
+
+        }
+
         public WorkPlan(int id, string assemblyDate, string status)
         {
             this.id = id;

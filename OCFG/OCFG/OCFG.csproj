@@ -136,16 +136,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AssociationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Assotiation.cs" />
+    <Compile Include="Models\Association.cs" />
     <Compile Include="Models\ConcreteLiquidation.cs" />
     <Compile Include="Models\EconomicReport.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\Officer.cs" />
-    <Compile Include="Models\Sttlement.cs" />
+    <Compile Include="Models\Settlement.cs" />
     <Compile Include="Models\WorkPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -154,6 +155,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\icoLog.png" />
+    <Content Include="Content\image\icoFA.png" />
+    <Content Include="Content\image\icoLogIn.png" />
+    <Content Include="Content\image\icoTw.png" />
+    <Content Include="Content\image\icoYt.png" />
+    <Content Include="Content\image\logDinadeco.png" />
+    <Content Include="Content\image\search here.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -185,12 +193,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Association\UpdateAssociation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\image\" />
-    <Folder Include="Data\" />
-    <Folder Include="Views\Association\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
