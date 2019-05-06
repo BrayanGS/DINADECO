@@ -19,13 +19,12 @@ namespace OCFG.Models
         private EconomicReport economicReport;
         private ConcreteLiquidation concreteLiquidation;
 
-        public Association()
+        public Assotiation()
         {
-
         }
 
-        public Association(int id, int registryCode, string name, string region, string canton, string status, 
-            Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, 
+        public Assotiation(int id, int registryCode, string name, string region, string canton, string status, 
+            Employee employee, WorkPlan workPlan, Sttlement sttlement, EconomicReport economicReport, 
             ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
