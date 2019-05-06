@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OCFG.Models
 {
-    public class Assotiation
+    public class Association
     {
         private int id;
         private int registryCode;
@@ -15,9 +15,13 @@ namespace OCFG.Models
         private string status;
         private Employee employee;
         private WorkPlan workPlan;
-        private Sttlement sttlement;
+        private Settlement settlement;
         private EconomicReport economicReport;
         private ConcreteLiquidation concreteLiquidation;
+
+        public Assotiation()
+        {
+        }
 
         public Assotiation(int id, int registryCode, string name, string region, string canton, string status, 
             Employee employee, WorkPlan workPlan, Sttlement sttlement, EconomicReport economicReport, 
@@ -31,7 +35,7 @@ namespace OCFG.Models
             this.status = status;
             this.employee = employee;
             this.workPlan = workPlan;
-            this.sttlement = sttlement;
+            this.settlement = settlement;
             this.economicReport = economicReport;
             this.concreteLiquidation = concreteLiquidation;
         }
@@ -44,8 +48,9 @@ namespace OCFG.Models
         public string Status { get => status; set => status = value; }
         public Employee Employee { get => employee; set => employee = value; }
         public WorkPlan WorkPlan { get => workPlan; set => workPlan = value; }
-        public Sttlement Sttlement { get => sttlement; set => sttlement = value; }
+        public Settlement Settlement { get => settlement; set => settlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
+        public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
     }
 
 }

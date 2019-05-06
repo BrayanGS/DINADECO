@@ -9,13 +9,12 @@ namespace OCFG.Models
         private DateTime year;
         private char status;
 
-        public ConcreteLiquidation(int id, DateTime dateReceived, DateTime year, char status, int id)
+        public ConcreteLiquidation(int id, DateTime dateReceived, DateTime year, char status)
         {
             Id = id;
             this.dateReceived = dateReceived;
             this.year = year;
             this.status = status;
-            Id = id;
         }
 
         public int Id { get => id; set => id = value; }

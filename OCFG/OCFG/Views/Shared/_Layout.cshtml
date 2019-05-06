@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - OCFG</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,14 +17,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("DINADECO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
+            <div class="row">
+                <div class="col-md-5">
+                    <a href="~/Views/Home"><img src="~/Content/image/logDinadeco.png" alt="DINADECO" style="width:65%" /></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Correo", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Transparencia", "About", "Home")</li>
+                            <li>@Html.ActionLink("Temática", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Quienes somos", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Servicios", "Contact", "Home")</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="#"><img src="~/Content/image/icoLog.png" alt="Log In" style="width:25%"/></a>
+                </div>
             </div>
         </div>
     </div>
@@ -32,7 +43,15 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>&copy; @DateTime.Now.Year - DINADECO</p>
+                </div>
+                <div class="col-md-1"><a href="#"><img src="~/Content/image/icoFA.png" alt="Facebook" style="width:60%"/></a></div>
+                <div class="col-md-1"><a href="#"><img src="~/Content/image/icoTw.png" alt="Twitter" style="width:60%"/></a></div>
+                <div class="col-md-1"><a href="#"><img src="~/Content/image/icoYt.png" alt="Youtube" style="width:60%"/></a></div>
+            </div>
+           
         </footer>
     </div>
 
