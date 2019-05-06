@@ -3,6 +3,7 @@ using OCFG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -25,6 +26,29 @@ namespace OCFG.Controllers
             return View();
         }
 
+        // GET: Association/Search
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        // POST: Association/Search
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            List<Association> associations = new List<Association>();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                associations = associationData.getAssociationsByFilter(search);
+            }
+            else
+            {
+                associations = associationData.getAssociations();
+            }
+            return View(associations);
+        }
+
         // GET: Association/Create
         public ActionResult Create()
         {
@@ -33,12 +57,12 @@ namespace OCFG.Controllers
 
         // POST: Association/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, null, null, null, null);
+                associationData.insertarAssociation(associationInsert);
                 return RedirectToAction("Index");
             }
             catch

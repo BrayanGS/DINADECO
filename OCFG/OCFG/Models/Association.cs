@@ -13,19 +13,20 @@ namespace OCFG.Models
         private string region;
         private string canton;
         private string status;
-        private Employee employee;
+        private string active;
+        private string province;
         private WorkPlan workPlan;
         private Settlement settlement;
         private EconomicReport economicReport;
         private ConcreteLiquidation concreteLiquidation;
 
-        public Assotiation()
+        public Association()
         {
+
         }
 
-        public Assotiation(int id, int registryCode, string name, string region, string canton, string status, 
-            Employee employee, WorkPlan workPlan, Sttlement sttlement, EconomicReport economicReport, 
-            ConcreteLiquidation concreteLiquidation)
+        public Association(int id, int registryCode, string name, string region, string canton, string status, string active,string province,
+            WorkPlan workPlan, Settlement sttlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
             this.registryCode = registryCode;
@@ -33,9 +34,10 @@ namespace OCFG.Models
             this.region = region;
             this.canton = canton;
             this.status = status;
-            this.employee = employee;
+            this.active = active;
+            this.province = province;
             this.workPlan = workPlan;
-            this.settlement = settlement;
+            this.settlement = sttlement;
             this.economicReport = economicReport;
             this.concreteLiquidation = concreteLiquidation;
         }
@@ -46,11 +48,13 @@ namespace OCFG.Models
         public string Region { get => region; set => region = value; }
         public string Canton { get => canton; set => canton = value; }
         public string Status { get => status; set => status = value; }
-        public Employee Employee { get => employee; set => employee = value; }
+        public string Active { get => active; set => active = value; }
+        public string Province { get => province; set => province = value; }
         public WorkPlan WorkPlan { get => workPlan; set => workPlan = value; }
         public Settlement Settlement { get => settlement; set => settlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
         public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
+        
     }
 
 }
