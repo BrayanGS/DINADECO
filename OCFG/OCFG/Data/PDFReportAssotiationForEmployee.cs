@@ -23,7 +23,7 @@ namespace OCFG.Data
 
         public void generateReport()
         {
-            List<Assotiation> assotiations = new List<Assotiation>();
+            List<Association> assotiations = new List<Association>();
             using (SqlConnection conn = GetConnection())
             {
                 Document doc = new Document();
@@ -43,19 +43,20 @@ namespace OCFG.Data
 
         }
 
-        public List<Assotiation> getAllAssotiations() {
-            List<Assotiation> assotiations = new List<Assotiation>();
+        public List<Association> getAllAssotiations()
+        {
+            List<Association> assotiations = new List<Association>();
             using (SqlConnection conn = GetConnection())
             {
                 SqlCommand commandGetAssotiation = new SqlCommand("Call getAllAssotiations", conn);
                 commandGetAssotiation.CommandType = CommandType.StoredProcedure;
 
-            using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
-            {
-                Assotiation assotiation = null;
+                using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
+                {
+                    Association assotiation = null;
                     while (reader.Read())
                     {
-                        assotiation = new Assotiation();
+                        assotiation = new Association();
 
                         //Obtengo asociacion
                         assotiation.Id = reader.GetInt32(1);
@@ -71,10 +72,10 @@ namespace OCFG.Data
                         assotiation.WorkPlan.Status = reader.GetString(9);
 
                         //settlement association
-                        assotiation.Sttlement.Id = reader.GetInt32(10);
-                        assotiation.Sttlement.DateReceived = reader.GetDateTime(11);
-                        assotiation.Sttlement.Year = reader.GetDateTime(12);
-                        assotiation.Sttlement.Status = reader.GetChar(13);
+                        assotiation.Settlement.Id = reader.GetInt32(10);
+                        assotiation.Settlement.DateReceived = reader.GetDateTime(11);
+                        assotiation.Settlement.Year = reader.GetDateTime(12);
+                        assotiation.Settlement.Status = reader.GetChar(13);
 
                         //economic report assotiation
                         assotiation.EconomicReport.Id = reader.GetInt32(14);
@@ -90,9 +91,10 @@ namespace OCFG.Data
 
                         assotiations.Add(assotiation);
                     }
-                
+
+                }
+                return assotiations;
             }
-            return assotiations;
         }
     }
 }
