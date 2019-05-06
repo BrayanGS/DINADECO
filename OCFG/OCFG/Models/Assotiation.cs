@@ -19,6 +19,10 @@ namespace OCFG.Models
         private EconomicReport economicReport;
         private ConcreteLiquidation concreteLiquidation;
 
+        public Assotiation()
+        {
+        }
+
         public Assotiation(int id, int registryCode, string name, string region, string canton, string status, 
             Employee employee, WorkPlan workPlan, Sttlement sttlement, EconomicReport economicReport, 
             ConcreteLiquidation concreteLiquidation)
@@ -46,6 +50,7 @@ namespace OCFG.Models
         public WorkPlan WorkPlan { get => workPlan; set => workPlan = value; }
         public Sttlement Sttlement { get => sttlement; set => sttlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
+        public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
     }
 
 }
