@@ -139,6 +139,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AssociationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PDFsController.cs" />
     <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Data\PDFReportAssotiationForEmployee.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,11 +199,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Association\UpdateAssociation.cshtml" />
+    <Content Include="Views\PDFs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\image\" />
-    <Folder Include="Views\Association\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
