@@ -61,34 +61,30 @@ namespace OCFG.Data
 
         public void updateAssociation(Association association)
         {
+            
+        }
+
+        public void updateWorkPlan(WorkPlan workPlan)
+        {
             using (SqlConnection sqlConnection = getConnection())
             {
-
-                SqlConnection tranAssociation = null;
-                SqlConnection tranWork = null;
-                SqlConnection tranConcrete = null;
-                SqlConnection tranEconomic = null;
-                SqlConnection tranSettlement = null;
+                SqlTransaction sqlTransaction = null;
+                string queryWork = "UPDATE WorkPlan SET assembly_date '" + workPlan.AssemblyDate + "'";
 
                 try
                 {
                     sqlConnection.Open();
-
-                    string queryAssociation = "UPDATE Association set ";
-                    string queryWork = "";
-                    string queryConcrete = "";
-                    string queryEconomic = "";
-                    string querySettlement = "";
-
-               //     tranAssociation = sqlConnection.BeginTransaction();
-                    SqlCommand sqlSelectAsso = new SqlCommand();
-
+                    SqlCommand sqlSelect = new SqlCommand(queryWork, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    sqlTransaction.Commit();
 
                 }
                 catch (SqlException ex)
                 {
-                    if (tranAssociation != null)
+                    if (sqlTransaction != null)
                     {
+                        sqlTransaction.Rollback();
                         throw ex;
                     }
                 }
@@ -101,6 +97,116 @@ namespace OCFG.Data
                 }
             }
         }
+
+        public void updateEconomicReport(EconomicReport economicReport)
+        {
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                SqlTransaction sqlTransaction = null;
+                
+                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + economicReport.DateReceived + "', " +
+                                       " year = '" + economicReport.Year + "', " +
+                                       "balance = '" + economicReport.Balance + "'";
+
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(queryEconomic, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    sqlTransaction.Commit();
+
+                }
+                catch (SqlException ex)
+                {
+                    if (sqlTransaction != null)
+                    {
+                        sqlTransaction.Rollback();
+                        throw ex;
+                    }
+                }
+                finally
+                {
+                    if (sqlConnection != null)
+                    {
+                        sqlConnection.Close();
+                    }
+                }
+            }
+        }
+
+
+        public void updateSettlement(Settlement settlement)
+        {
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                SqlTransaction sqlTransaction = null;
+                string querySettlement = "UPDATE Settlement SET date_received = '" + settlement.DateReceived + "', " +
+                                        "year = '" + settlement.Year + "'";
+
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(querySettlement, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    sqlTransaction.Commit();
+
+                }
+                catch (SqlException ex)
+                {
+                    if (sqlTransaction != null)
+                    {
+                        sqlTransaction.Rollback();
+                        throw ex;
+                    }
+                }
+                finally
+                {
+                    if (sqlConnection != null)
+                    {
+                        sqlConnection.Close();
+                    }
+                }
+            }
+        }
+
+
+        public void updateConcreteLiquidation(ConcreteLiquidation concreteLiquidation)
+        {
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                SqlTransaction sqlTransaction = null;
+                string queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + concreteLiquidation.DateReceived + "', " +
+                                       "year = '" + concreteLiquidation.Year + "'";
+
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(queryConcrete, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    sqlTransaction.Commit();
+
+                }
+                catch (SqlException ex)
+                {
+                    if (sqlTransaction != null)
+                    {
+                        sqlTransaction.Rollback();
+                        throw ex;
+                    }
+                }
+                finally
+                {
+                    if (sqlConnection != null)
+                    {
+                        sqlConnection.Close();
+                    }
+                }
+            }
+        }
+
 
         public void insertarAssociation(Association association)
         {

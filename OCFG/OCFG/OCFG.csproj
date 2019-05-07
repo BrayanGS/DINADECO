@@ -198,9 +198,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Association\UpdateAssociation.cshtml" />
     <Content Include="Views\Association\Create.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
+    <Content Include="Views\Association\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

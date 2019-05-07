@@ -273,3 +273,5 @@ C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.dll
 C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.pdb
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.xml
+C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.dll
+C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.xml

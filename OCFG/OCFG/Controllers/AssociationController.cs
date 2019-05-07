@@ -84,6 +84,32 @@ namespace OCFG.Controllers
             try
             {
                 association.EconomicReport.DateReceived = assoUpdate.EconomicReport.DateReceived;
+                association.EconomicReport.Year = association.EconomicReport.Year;
+                association.EconomicReport.Balance = assoUpdate.EconomicReport.Balance;
+                association.Settlement.DateReceived = assoUpdate.Settlement.DateReceived;
+                association.Settlement.Year = assoUpdate.Settlement.Year;
+                association.WorkPlan.AssemblyDate = assoUpdate.WorkPlan.AssemblyDate;
+                association.ConcreteLiquidation.DateReceived = assoUpdate.ConcreteLiquidation.DateReceived;
+                association.ConcreteLiquidation.Year = assoUpdate.ConcreteLiquidation.Year;
+
+                associationData.updateAssociation(association);
+
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditWorkPlan(Association assoUpdate)
+        {
+            try
+            {
+                association.EconomicReport.DateReceived = assoUpdate.EconomicReport.DateReceived;
+                association.EconomicReport.Year = association.EconomicReport.Year;
                 association.EconomicReport.Balance = assoUpdate.EconomicReport.Balance;
                 association.Settlement.DateReceived = assoUpdate.Settlement.DateReceived;
                 association.Settlement.Year = assoUpdate.Settlement.Year;
