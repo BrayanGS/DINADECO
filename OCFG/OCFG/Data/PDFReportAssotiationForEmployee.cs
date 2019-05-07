@@ -23,11 +23,9 @@ namespace OCFG.Data
 
         public void generateReport()
         {
-<<<<<<< HEAD
+
             List<Association> assotiations = getAllAssotiations();
-=======
-            List<Association> assotiations = new List<Association>();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
             using (SqlConnection conn = GetConnection())
             {
                 Document doc = new Document();
@@ -110,7 +108,7 @@ namespace OCFG.Data
                     doc.Add(tblPrueba);
                     doc.Close();
 
-                    SqlCommand command = new SqlCommand("Call insertDocument", conn);
+                    SqlCommand command = new SqlCommand("insertDocument", conn);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@doc", 1);
 
@@ -122,29 +120,23 @@ namespace OCFG.Data
 
         public List<Association> getAllAssotiations()
         {
-<<<<<<< HEAD
-            List<Association> assotiations = new List<Association>();
-=======
-            List<Association> associations = new List<Association>();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
+            List<Association> assotiations;
+
             using (SqlConnection conn = GetConnection())
             {
-                SqlCommand commandGetAssotiation = new SqlCommand("Call getAllAssotiations", conn);
+                SqlCommand commandGetAssotiation = new SqlCommand("getAllAssotiations", conn);
                 commandGetAssotiation.CommandType = CommandType.StoredProcedure;
+                conn.Open();
 
                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
                 {
-<<<<<<< HEAD
-                    Association assotiation = null;
-                    while (reader.Read())
-                    {
-                        assotiation = new Association();
-=======
+                    assotiations = new List<Association>();
                     Association association = null;
                     while (reader.Read())
                     {
                         association = new Association();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
 
                         //Obtengo asociacion
                         association.Id = reader.GetInt32(1);
@@ -160,75 +152,77 @@ namespace OCFG.Data
                         association.WorkPlan.Status = reader.GetString(9);
 
                         //settlement association
-<<<<<<< HEAD
-                        assotiation.Settlement.Id = reader.GetInt32(10);
-                        assotiation.Settlement.DateReceived = reader.GetDateTime(11);
-                        assotiation.Settlement.Year = reader.GetString(12);
-                        assotiation.Settlement.Status = reader.GetChar(13);
 
-                        //economic report assotiation
-                        assotiation.EconomicReport.Id = reader.GetInt32(14);
-                        assotiation.EconomicReport.DateReceived = reader.GetDateTime(15);
-                        assotiation.EconomicReport.Year = reader.GetString(16);
-                        assotiation.EconomicReport.Status = reader.GetChar(17);
-
-                        //concrete
-                        assotiation.ConcreteLiquidation.Id = reader.GetInt32(18);
-                        assotiation.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
-                        assotiation.ConcreteLiquidation.Year = reader.GetString(16);
-                        assotiation.ConcreteLiquidation.Status = reader.GetChar(17);
-=======
                         association.Settlement.Id = reader.GetInt32(10);
                         association.Settlement.DateReceived = reader.GetDateTime(11);
-                        association.Settlement.Year = reader.GetDateTime(12);
+                        association.Settlement.Year = reader.GetString(12);
                         association.Settlement.Status = reader.GetChar(13);
 
                         //economic report assotiation
                         association.EconomicReport.Id = reader.GetInt32(14);
                         association.EconomicReport.DateReceived = reader.GetDateTime(15);
-                        association.EconomicReport.Year = reader.GetDateTime(16);
+                        association.EconomicReport.Year = reader.GetString(16);
                         association.EconomicReport.Status = reader.GetChar(17);
 
                         //concrete
                         association.ConcreteLiquidation.Id = reader.GetInt32(18);
                         association.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
-                        association.ConcreteLiquidation.Year = reader.GetDateTime(16);
+                        association.ConcreteLiquidation.Year = reader.GetString(16);
                         association.ConcreteLiquidation.Status = reader.GetChar(17);
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
 
-                        associations.Add(association);
+                        association.Settlement.Id = reader.GetInt32(10);
+                        association.Settlement.DateReceived = reader.GetDateTime(11);
+                        association.Settlement.Year = reader.GetString(12);
+                        association.Settlement.Status = reader.GetChar(13);
+
+                        //economic report assotiation
+                        association.EconomicReport.Id = reader.GetInt32(14);
+                        association.EconomicReport.DateReceived = reader.GetDateTime(15);
+                        association.EconomicReport.Year = reader.GetString(16);
+                        association.EconomicReport.Status = reader.GetChar(17);
+
+                        //concrete
+                        association.ConcreteLiquidation.Id = reader.GetInt32(18);
+                        association.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
+                        association.ConcreteLiquidation.Year = reader.GetString(16);
+                        association.ConcreteLiquidation.Status = reader.GetChar(17);
+
+
+                        assotiations.Add(association);
                     }
+                    conn.Close();
 
                 }
-<<<<<<< HEAD
+
                 return assotiations;
             }
 
-            
+
         }
 
-        public Document getDocument()
-        {
-            Document document = null;
-            using (SqlConnection conn = GetConnection())
-            {
-                SqlCommand commandGetDocument = new SqlCommand("Call getDocument", conn);
-                commandGetDocument.CommandType = CommandType.StoredProcedure;
-                using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
-                {
-                    Association assotiation = null;
-                    while (reader.Read())
-                    {
-                        
-                    }
+        /** public Document getDocument()
+         {
+             Document document = null;
+             using (SqlConnection conn = GetConnection())
+             {
+                 SqlCommand commandGetDocument = new SqlCommand("Call getDocument", conn);
+                 commandGetDocument.CommandType = CommandType.StoredProcedure;
+                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
+                 {
+                     Association assotiation = null;
+                     while (reader.Read())
+                     {
+                         
+                     }
 
-                }
-            }
+                 }
+             }
 
-=======
-                return associations;
-            }
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
-        }
+
+                 return associations;
+             }
+
+         }**/
+
     }
 }

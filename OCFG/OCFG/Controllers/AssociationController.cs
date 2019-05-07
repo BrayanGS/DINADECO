@@ -29,22 +29,20 @@ namespace OCFG.Controllers
         // GET: Association/Search
         public ActionResult Search()
         {
-            return View();
+            List<Association> associations = new List<Association>();
+
+            return View(associations);
         }
 
         // POST: Association/Search
         [HttpPost]
-        public ActionResult Lista(string search)
+        public ActionResult Search(string search)
         {
             List<Association> associations = new List<Association>();
 
             if (!String.IsNullOrEmpty(search))
             {
                 associations = associationData.getAssociationsByFilter(search);
-            }
-            else
-            {
-                associations = associationData.getAssociations();
             }
             return View(associations);
         }

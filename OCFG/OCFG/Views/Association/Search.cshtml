@@ -1,9 +1,8 @@
-﻿
-@model IEnumerable<OCFG.Models.Association>
+﻿@model IEnumerable<OCFG.Models.Association>
 
-@{
-    ViewBag.Title = "Search";
-}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <h1>Insertar información de asociación</h1>
 
 @using (Html.BeginForm())
@@ -11,7 +10,9 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Búsqueda de Asociaciones</h4>
+        <header>
+            <h4>Búsqueda de Asociaciones</h4>
+        </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
 
@@ -90,7 +91,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Página principal", "Home/Index")
-</div>

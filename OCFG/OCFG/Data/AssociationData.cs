@@ -235,9 +235,9 @@ namespace OCFG.Data
             {
                  SqlTransaction transaction = null;
 
-                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, provincia) " +
+                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, province) " +
                 "values ("+association.RegistryCode + ",'" + association.Name + "','" + association.Region + "','" + association.Canton + "',"
-                + varStatus + ",'"+varActive + ",'" + association.Province + "')";
+                + varStatus + ",'"+varActive + "','" + association.Province + "')";
                
 
                
@@ -281,6 +281,8 @@ namespace OCFG.Data
                                "' or province='" + search +"'";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                String varStatus;
+                string varActive;
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     Association association = null;
@@ -294,6 +296,24 @@ namespace OCFG.Data
                         association.Region = (string)reader[3];
                         association.Status = (string)reader[4];
                         association.Active = (string)reader[5];
+                        if (association.Status.Equals("1"))
+                        {
+                            varStatus = "Al día";
+                        }
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+                        if (association.Active.Equals("Yes"))
+                        {
+                            varActive = "Activa";
+                        }
+                        else
+                        {
+                            varActive = "Inactiva";
+                        }
+                        association.Status = varStatus;
+                        association.Active = varActive;
 
                         associations.Add(association);
                     }
