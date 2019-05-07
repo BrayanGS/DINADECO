@@ -271,3 +271,5 @@ C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.csproj.CoreCompileInputs.cache
 C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.csproj.CopyComplete
 C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.dll
 C:\DINADECO\DINADECO\OCFG\OCFG\obj\Debug\OCFG.pdb
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.xml

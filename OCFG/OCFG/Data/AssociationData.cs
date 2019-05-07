@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,7 @@ namespace OCFG.Data
 
         public AssociationData()
         {
-            
+
         }
 
         private SqlConnection getConnection()
@@ -21,7 +22,7 @@ namespace OCFG.Data
             return new SqlConnection(connectionString);
         }
 
-        List<Association> getAssociations()
+        public List<Association> getAssociations()
         {
             List<Association> listAssociations = new List<Association>();
             using (SqlConnection sqlConnection = getConnection())
@@ -32,7 +33,7 @@ namespace OCFG.Data
                                "WHERE as.id_work = wp.id_work";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                using(SqlDataReader reader = sqlSelect.ExecuteReader())
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     Association association = null;
                     WorkPlan workPlan = null;
@@ -79,12 +80,12 @@ namespace OCFG.Data
                     string queryEconomic = "";
                     string querySettlement = "";
 
-                    tranAssociation = sqlConnection.BeginTransaction();
+               //     tranAssociation = sqlConnection.BeginTransaction();
                     SqlCommand sqlSelectAsso = new SqlCommand();
 
 
                 }
-                catch(SqlException ex)
+                catch (SqlException ex)
                 {
                     if (tranAssociation != null)
                     {
@@ -99,6 +100,101 @@ namespace OCFG.Data
                     }
                 }
             }
+        }
+
+        public void insertarAssociation(Association association)
+        {
+            int varStatus;
+            string varActive;
+            string query1;
+
+            if (association.Status.Equals("toTheDate"))
+            {
+                varStatus = 1;
+            }
+            else
+            {
+                varStatus = 0;
+            }
+            if (association.Active.Equals("active"))
+            {
+                varActive = "Yes";
+            }
+            else
+            {
+                varActive = "No";
+            }
+
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                 SqlTransaction transaction = null;
+
+                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, provincia) " +
+                "values ("+association.RegistryCode + ",'" + association.Name + "','" + association.Region + "','" + association.Canton + "',"
+                + varStatus + ",'"+varActive + ",'" + association.Province + "')";
+               
+
+               
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(query1, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    transaction.Commit();
+                }
+                catch (SqlException ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                    throw ex;
+                }
+                finally
+                {
+                    if (sqlConnection != null)
+                    {
+                        sqlConnection.Close();
+                    }
+                }
+            }
+
+        }
+
+       public List<Association> getAssociationsByFilter(String search)
+        {
+            List<Association> associations = new List<Association>();
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                String query = "SELECT registry_code, name_association, canton, region, " +
+                               "status,active,province FROM Association " +
+                               "WHERE name_association ='"+search+ "' or registry_code=" + search+"or canton='"+search+"' or region='"+search+
+                               "' or province='" + search +"'";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Association association = null;
+                    while (reader.Read())
+                    {
+                        association = new Association();
+                        association.RegistryCode = (int)reader[0];
+                        association.Name = (string)reader[1];
+                        association.Canton = (string)reader[2];
+                        association.Province = (string)reader[6];
+                        association.Region = (string)reader[3];
+                        association.Status = (string)reader[4];
+                        association.Active = (string)reader[5];
+
+                        associations.Add(association);
+                    }
+                    sqlConnection.Close();
+                }
+            }
+            return associations;
         }
     }
 }

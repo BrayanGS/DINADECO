@@ -59,6 +59,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -199,7 +200,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Association\UpdateAssociation.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\PDFs\Index.cshtml" />
+=======
+    <Content Include="Views\Association\Create.cshtml" />
+    <Content Include="Views\Association\Search.cshtml" />
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

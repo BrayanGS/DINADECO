@@ -23,7 +23,11 @@ namespace OCFG.Data
 
         public void generateReport()
         {
+<<<<<<< HEAD
             List<Association> assotiations = getAllAssotiations();
+=======
+            List<Association> assotiations = new List<Association>();
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
             using (SqlConnection conn = GetConnection())
             {
                 Document doc = new Document();
@@ -118,7 +122,11 @@ namespace OCFG.Data
 
         public List<Association> getAllAssotiations()
         {
+<<<<<<< HEAD
             List<Association> assotiations = new List<Association>();
+=======
+            List<Association> associations = new List<Association>();
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
             using (SqlConnection conn = GetConnection())
             {
                 SqlCommand commandGetAssotiation = new SqlCommand("Call getAllAssotiations", conn);
@@ -126,25 +134,33 @@ namespace OCFG.Data
 
                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
                 {
+<<<<<<< HEAD
                     Association assotiation = null;
                     while (reader.Read())
                     {
                         assotiation = new Association();
+=======
+                    Association association = null;
+                    while (reader.Read())
+                    {
+                        association = new Association();
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
 
                         //Obtengo asociacion
-                        assotiation.Id = reader.GetInt32(1);
-                        assotiation.RegistryCode = reader.GetInt32(2);
-                        assotiation.Name = reader.GetString(3);
-                        assotiation.Region = reader.GetString(4);
-                        assotiation.Canton = reader.GetString(5);
-                        assotiation.Status = reader.GetString(6);
+                        association.Id = reader.GetInt32(1);
+                        association.RegistryCode = reader.GetInt32(2);
+                        association.Name = reader.GetString(3);
+                        association.Region = reader.GetString(4);
+                        association.Canton = reader.GetString(5);
+                        association.Status = reader.GetString(6);
 
                         //work plan assotiation
-                        assotiation.WorkPlan.Id = reader.GetInt32(7);
-                        assotiation.WorkPlan.AssemblyDate = reader.GetString(8);// averiguar
-                        assotiation.WorkPlan.Status = reader.GetString(9);
+                        association.WorkPlan.Id = reader.GetInt32(7);
+                        association.WorkPlan.AssemblyDate = reader.GetString(8);// averiguar
+                        association.WorkPlan.Status = reader.GetString(9);
 
                         //settlement association
+<<<<<<< HEAD
                         assotiation.Settlement.Id = reader.GetInt32(10);
                         assotiation.Settlement.DateReceived = reader.GetDateTime(11);
                         assotiation.Settlement.Year = reader.GetString(12);
@@ -161,11 +177,30 @@ namespace OCFG.Data
                         assotiation.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
                         assotiation.ConcreteLiquidation.Year = reader.GetString(16);
                         assotiation.ConcreteLiquidation.Status = reader.GetChar(17);
+=======
+                        association.Settlement.Id = reader.GetInt32(10);
+                        association.Settlement.DateReceived = reader.GetDateTime(11);
+                        association.Settlement.Year = reader.GetDateTime(12);
+                        association.Settlement.Status = reader.GetChar(13);
 
-                        assotiations.Add(assotiation);
+                        //economic report assotiation
+                        association.EconomicReport.Id = reader.GetInt32(14);
+                        association.EconomicReport.DateReceived = reader.GetDateTime(15);
+                        association.EconomicReport.Year = reader.GetDateTime(16);
+                        association.EconomicReport.Status = reader.GetChar(17);
+
+                        //concrete
+                        association.ConcreteLiquidation.Id = reader.GetInt32(18);
+                        association.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
+                        association.ConcreteLiquidation.Year = reader.GetDateTime(16);
+                        association.ConcreteLiquidation.Status = reader.GetChar(17);
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
+                        associations.Add(association);
                     }
 
                 }
+<<<<<<< HEAD
                 return assotiations;
             }
 
@@ -190,6 +225,10 @@ namespace OCFG.Data
                 }
             }
 
+=======
+                return associations;
+            }
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
         }
     }
 }
