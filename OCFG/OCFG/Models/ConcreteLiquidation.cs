@@ -6,10 +6,20 @@ namespace OCFG.Models
     {
         private int id;
         private DateTime dateReceived;
-        private DateTime year;
+        private String year;
         private char status;
 
-        public ConcreteLiquidation(int id, DateTime dateReceived, DateTime year, char status)
+        public ConcreteLiquidation()
+        {
+
+        }
+
+        public ConcreteLiquidation(DateTime dataReceived, String year)
+        {
+
+        }
+
+        public ConcreteLiquidation(int id, DateTime dateReceived, String year, char status)
         {
             Id = id;
             this.dateReceived = dateReceived;
@@ -19,7 +29,7 @@ namespace OCFG.Models
 
         public int Id { get => id; set => id = value; }
         public DateTime DateReceived { get => dateReceived; set => dateReceived = value; }
-        public DateTime Year { get => year; set => year = value; }
+        public String Year { get => year; set => year = value; }
         public char Status { get => status; set => status = value; }
     }
 }

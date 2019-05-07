@@ -25,8 +25,14 @@ namespace OCFG.Models
 
         }
 
+<<<<<<< HEAD
+        public Association(int id, int registryCode, string name, string region, string canton, string status, 
+            Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, 
+            ConcreteLiquidation concreteLiquidation)
+=======
         public Association(int id, int registryCode, string name, string region, string canton, string status, string active,string province,
             WorkPlan workPlan, Settlement sttlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
+>>>>>>> 04944126202b05b381a18b15378533824d6545cc
         {
             this.id = id;
             this.registryCode = registryCode;
