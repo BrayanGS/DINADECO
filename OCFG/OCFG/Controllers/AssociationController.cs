@@ -12,7 +12,7 @@ namespace OCFG.Controllers
     public class AssociationController : Controller
     {
         AssociationData associationData = new AssociationData();
-        static Association association = new Association();
+        Association association;
 
         // GET: Association
         public ActionResult Index()
@@ -34,7 +34,7 @@ namespace OCFG.Controllers
 
         // POST: Association/Search
         [HttpPost]
-        public ActionResult Search(string search)
+        public ActionResult Lista(string search)
         {
             List<Association> associations = new List<Association>();
 
