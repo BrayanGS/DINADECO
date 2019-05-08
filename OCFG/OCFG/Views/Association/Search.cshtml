@@ -84,6 +84,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Province)
                             </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id})
+                            </td>
                         </tr>
                     }
                 </table>

@@ -14,9 +14,10 @@ namespace OCFG.Models
 
         }
 
-        public ConcreteLiquidation(DateTime dataReceived, String year)
+        public ConcreteLiquidation(DateTime dateReceived, String year)
         {
-
+            this.dateReceived = dateReceived;
+            this.year = year;
         }
 
         public ConcreteLiquidation(int id, DateTime dateReceived, String year, char status)

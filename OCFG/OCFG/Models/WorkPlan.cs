@@ -12,6 +12,11 @@
 
         }
 
+        public WorkPlan(string assemblyDate)
+        {
+            this.assemblyDate = assemblyDate;
+        }
+
         public WorkPlan(int id, string assemblyDate, string status)
         {
             this.id = id;
