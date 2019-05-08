@@ -59,6 +59,7 @@ namespace OCFG.Data
         }
 
 
+
         public void updateAssociation(Association association)
         {
             
@@ -206,8 +207,52 @@ namespace OCFG.Data
                 }
             }
         }
+        public Boolean ExistAssociation(int code)
+        {
+            Boolean exist = false;
 
+            string query1;
 
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                SqlTransaction transaction = null;
+
+                query1 = "SELECT COUNT(*) FROM Association WHERE registry_code ="+ code;
+
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(query1, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    SqlDataReader rdr = sqlSelect.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        int numAssociations = (int)rdr["numAssociations"];
+                        if (numAssociations > 0) exist = true;
+                    }
+                    sqlConnection.Close();
+                    transaction.Commit();
+                }
+                catch (SqlException ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                    throw ex;
+                }
+                finally
+                {
+                    if (sqlConnection != null)
+                    {
+                        sqlConnection.Close();
+                    }
+                }
+            }
+
+            return exist;
+        }
         public void insertarAssociation(Association association)
         {
             int varStatus;
@@ -230,7 +275,6 @@ namespace OCFG.Data
             {
                 varActive = "No";
             }
-
             using (SqlConnection sqlConnection = getConnection())
             {
                  SqlTransaction transaction = null;

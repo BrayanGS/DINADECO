@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<OCFG.Models.Association>
+@using System.Linq
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,7 +25,7 @@
                 <option value="region">Región</option>
                 <option value="province">Provincia</option>
             </select>
-            <input type="text"  required name="search" title="En este espacio solo se permite ingresar letras" 
+            <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
                    id="search" tabindex="2" class="form-control" placeholder="">
             <br>
             <div class=" form-group ">
@@ -62,8 +63,15 @@
                     </th>
                     <th></th>
                 </tr>
-                @foreach (var item in Model)
+                @if (!Model.Any())
                 {
+                    <tr><td colspan="4">No hay datos disponibles</td></tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                {
+
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistryCode)
@@ -87,6 +95,7 @@
                             @Html.DisplayFor(modelItem => item.Province)
                         </td>
                     </tr>
+                    }
                 }
             </table>
         </div>
