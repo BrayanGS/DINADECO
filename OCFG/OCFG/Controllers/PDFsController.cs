@@ -1,5 +1,4 @@
-﻿using OCFG.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,30 +6,27 @@ using System.Web.Mvc;
 
 namespace OCFG.Controllers
 {
-    public class PDFsController : Controller
+    public class PdfsController : Controller
     {
-        PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee;
-
-        // GET: PDFs
+        // GET: Pdfs
         public ActionResult Index()
         {
-            //pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
             return View();
         }
 
-        // GET: PDFs/Details/5
+        // GET: Pdfs/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PDFs/Create
+        // GET: Pdfs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PDFs/Create
+        // POST: Pdfs/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -46,13 +42,13 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: PDFs/Edit/5
+        // GET: Pdfs/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PDFs/Edit/5
+        // POST: Pdfs/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -68,13 +64,13 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: PDFs/Delete/5
+        // GET: Pdfs/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PDFs/Delete/5
+        // POST: Pdfs/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

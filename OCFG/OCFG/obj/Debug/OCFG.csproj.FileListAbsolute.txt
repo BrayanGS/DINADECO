@@ -275,3 +275,5 @@ C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\itextsharp.xml
 C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.dll
 C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.xml
+C:\DINADECO\OCFG\OCFG\bin\itextsharp.dll
+C:\DINADECO\OCFG\OCFG\bin\itextsharp.xml
