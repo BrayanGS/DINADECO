@@ -51,14 +51,20 @@ namespace OCFG.Controllers
 
         // GET: Association/Create
         public ActionResult Create()
+
+
         {
-            return View();
+            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
+            pDFReportAssotiationForEmployee.generateReport();
+
+                return View();
         }
 
         // POST: Association/Create
         [HttpPost]
         public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province)
         {
+            
             try
             {
                 Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, null, null, null, null);

@@ -9,6 +9,10 @@ namespace OCFG.Models
         private string year;
         private char status;
 
+        public Settlement()
+        {
+        }
+
         public Settlement(int id, DateTime dateReceived, string year, char status)
         {
             this.id = id;

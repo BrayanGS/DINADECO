@@ -23,11 +23,9 @@ namespace OCFG.Data
 
         public void generateReport()
         {
-<<<<<<< HEAD
+
             List<Association> assotiations = getAllAssotiations();
-=======
-            List<Association> assotiations = new List<Association>();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
             using (SqlConnection conn = GetConnection())
             {
                 Document doc = new Document();
@@ -110,10 +108,10 @@ namespace OCFG.Data
                     doc.Add(tblPrueba);
                     doc.Close();
 
-                    SqlCommand command = new SqlCommand("Call insertDocument", conn);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@doc", 1);
-
+                    String query = "insert into Document values('" + doc + "')";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.ExecuteNonQuery();
+                    conn.Close();
                 }
 
             }
@@ -122,113 +120,108 @@ namespace OCFG.Data
 
         public List<Association> getAllAssotiations()
         {
-<<<<<<< HEAD
-            List<Association> assotiations = new List<Association>();
-=======
-            List<Association> associations = new List<Association>();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
+            List<Association> assotiations;
+
             using (SqlConnection conn = GetConnection())
             {
-                SqlCommand commandGetAssotiation = new SqlCommand("Call getAllAssotiations", conn);
-                commandGetAssotiation.CommandType = CommandType.StoredProcedure;
-
+                conn.Open();
+                SqlCommand commandGetAssotiation = new SqlCommand("getAllAssotiations", conn);
+                
                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
                 {
-<<<<<<< HEAD
-                    Association assotiation = null;
-                    while (reader.Read())
-                    {
-                        assotiation = new Association();
-=======
+                    assotiations = new List<Association>();
                     Association association = null;
-                    while (reader.Read())
-                    {
-                        association = new Association();
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+                    WorkPlan workPlan = null;
+                    Settlement settlement = null;
+                    EconomicReport economicReport = null;
+                    ConcreteLiquidation concreteLiquidation = null;
 
-                        //Obtengo asociacion
-                        association.Id = reader.GetInt32(1);
-                        association.RegistryCode = reader.GetInt32(2);
-                        association.Name = reader.GetString(3);
-                        association.Region = reader.GetString(4);
-                        association.Canton = reader.GetString(5);
-                        association.Status = reader.GetString(6);
+                        while (reader.Read())
+                        {
+                            
+                            //Obtengo asociacion
+                            int id = reader.GetInt32(0);
+                            int registryCode = reader.GetInt32(1);
+                            string name = reader.GetString(2);
+                            string region = reader.GetString(3);
+                            string canton = reader.GetString(4);
+                            string status = reader.GetString(5);
+                            string active = reader.GetString(6);
+                            string province = reader.GetString(7);
 
-                        //work plan assotiation
-                        association.WorkPlan.Id = reader.GetInt32(7);
-                        association.WorkPlan.AssemblyDate = reader.GetString(8);// averiguar
-                        association.WorkPlan.Status = reader.GetString(9);
+                            workPlan = new WorkPlan();
+                            //work plan assotiation
+                            workPlan.Id = reader.GetInt32(8);
+                            workPlan.AssemblyDate = reader.GetString(9);// averiguar
+                            workPlan.Status = reader.GetString(10);
 
-                        //settlement association
-<<<<<<< HEAD
-                        assotiation.Settlement.Id = reader.GetInt32(10);
-                        assotiation.Settlement.DateReceived = reader.GetDateTime(11);
-                        assotiation.Settlement.Year = reader.GetString(12);
-                        assotiation.Settlement.Status = reader.GetChar(13);
+                            settlement = new Settlement();
+                            //settlement association
+                            settlement.Id = reader.GetInt32(11);
+                            settlement.DateReceived = reader.GetDateTime(12);
+                            settlement.Year = reader.GetString(13);
+                            string statusSettlement = reader.GetString(14);
+                            char[] cadSettlement = statusSettlement.ToCharArray();
+                            settlement.Status = cadSettlement[0];
 
-                        //economic report assotiation
-                        assotiation.EconomicReport.Id = reader.GetInt32(14);
-                        assotiation.EconomicReport.DateReceived = reader.GetDateTime(15);
-                        assotiation.EconomicReport.Year = reader.GetString(16);
-                        assotiation.EconomicReport.Status = reader.GetChar(17);
+                             economicReport = new EconomicReport();
+                            //economic report assotiation
+                            economicReport.Id = reader.GetInt32(15);
+                            economicReport.DateReceived = reader.GetDateTime(16);
+                            economicReport.Year = reader.GetString(17);
+                            economicReport.Balance = (float)reader.GetDouble(18);
+                            string statusEconomic = reader.GetString(19);
+                            char[] cadEconomic = statusEconomic.ToCharArray();
+                            economicReport.Status = cadEconomic[0];
 
-                        //concrete
-                        assotiation.ConcreteLiquidation.Id = reader.GetInt32(18);
-                        assotiation.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
-                        assotiation.ConcreteLiquidation.Year = reader.GetString(16);
-                        assotiation.ConcreteLiquidation.Status = reader.GetChar(17);
-=======
-                        association.Settlement.Id = reader.GetInt32(10);
-                        association.Settlement.DateReceived = reader.GetDateTime(11);
-                        association.Settlement.Year = reader.GetDateTime(12);
-                        association.Settlement.Status = reader.GetChar(13);
+                        concreteLiquidation = new ConcreteLiquidation();
+                            //concrete
+                            concreteLiquidation.Id = reader.GetInt32(20);
+                            concreteLiquidation.DateReceived = reader.GetDateTime(21);
+                            concreteLiquidation.Year = reader.GetString(22);
+                            string statusConcrete = reader.GetString(23);
+                            char[] cadConcrete = statusConcrete.ToCharArray();
+                            concreteLiquidation.Status = cadConcrete[0];
 
-                        //economic report assotiation
-                        association.EconomicReport.Id = reader.GetInt32(14);
-                        association.EconomicReport.DateReceived = reader.GetDateTime(15);
-                        association.EconomicReport.Year = reader.GetDateTime(16);
-                        association.EconomicReport.Status = reader.GetChar(17);
+                        association = new Association(id, registryCode,name,region,canton,status,active,province,
+                            workPlan,settlement,economicReport,concreteLiquidation);
 
-                        //concrete
-                        association.ConcreteLiquidation.Id = reader.GetInt32(18);
-                        association.ConcreteLiquidation.DateReceived = reader.GetDateTime(15);
-                        association.ConcreteLiquidation.Year = reader.GetDateTime(16);
-                        association.ConcreteLiquidation.Status = reader.GetChar(17);
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
-
-                        associations.Add(association);
-                    }
-
-                }
-<<<<<<< HEAD
-                return assotiations;
-            }
-
-            
-        }
-
-        public Document getDocument()
-        {
-            Document document = null;
-            using (SqlConnection conn = GetConnection())
-            {
-                SqlCommand commandGetDocument = new SqlCommand("Call getDocument", conn);
-                commandGetDocument.CommandType = CommandType.StoredProcedure;
-                using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
-                {
-                    Association assotiation = null;
-                    while (reader.Read())
-                    {
-                        
-                    }
+                        assotiations.Add(association);
+                        }
+                    conn.Close();
 
                 }
+
+                    return assotiations;
             }
 
-=======
-                return associations;
-            }
->>>>>>> 04944126202b05b381a18b15378533824d6545cc
+
         }
+
+            /** public Document getDocument()
+             {
+                 Document document = null;
+                 using (SqlConnection conn = GetConnection())
+                 {
+                     SqlCommand commandGetDocument = new SqlCommand("Call getDocument", conn);
+                     commandGetDocument.CommandType = CommandType.StoredProcedure;
+                     using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
+                     {
+                         Association assotiation = null;
+                         while (reader.Read())
+                         {
+                             
+                         }
+
+                     }
+                 }
+
+
+                     return associations;
+                 }
+
+             }**/
+        
     }
 }
