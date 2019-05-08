@@ -31,7 +31,7 @@ namespace OCFG.Data
                 Document doc = new Document();
 
                 conn.Open();
-                string fileName = Path.GetTempFileName() + ".doc";
+                string fileName = @"C:\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf";
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@fileName, FileMode.Create));
                 doc.Open();
 
@@ -42,68 +42,23 @@ namespace OCFG.Data
                 for (int i = 0; i < assotiations.Count; i++)
                 {
                     //Association
-                    PdfPCell idAssociation = new PdfPCell();
-                    idAssociation.AddElement(new Phrase(assotiations[i].Id));
-                    tblPrueba.AddCell(idAssociation);
-
-                    PdfPCell registryCode = new PdfPCell();
-                    registryCode.AddElement(new Phrase(assotiations[i].RegistryCode));
-                    tblPrueba.AddCell(registryCode);
-
-                    PdfPCell nameAssociation = new PdfPCell();
-                    nameAssociation.AddElement(new Phrase(assotiations[i].Name));
-                    tblPrueba.AddCell(nameAssociation);
-
-                    PdfPCell region = new PdfPCell();
-                    region.AddElement(new Phrase(assotiations[i].RegistryCode));
-                    tblPrueba.AddCell(region);
-
-                    PdfPCell canton = new PdfPCell();
-                    canton.AddElement(new Phrase(assotiations[i].Canton));
-                    tblPrueba.AddCell(canton);
-
-                    PdfPCell statusAssociation = new PdfPCell();
-                    statusAssociation.AddElement(new Phrase(assotiations[i].Id));
-                    tblPrueba.AddCell(statusAssociation);
-
-                    //work plan 
-                    PdfPCell idWork = new PdfPCell();
-                    idWork.AddElement(new Phrase(assotiations[i].WorkPlan.Id));
-                    tblPrueba.AddCell(idWork);
-
-                    PdfPCell workDate = new PdfPCell();
-                    workDate.AddElement(new Phrase(assotiations[i].WorkPlan.AssemblyDate));
-                    tblPrueba.AddCell(workDate);
-
-                    PdfPCell workStatus = new PdfPCell();
-                    workStatus.AddElement(new Phrase(assotiations[i].WorkPlan.Status));
-                    tblPrueba.AddCell(workStatus);
-
-                    //Economic Report
-                    PdfPCell economicId = new PdfPCell();
-                    economicId.AddElement(new Phrase(assotiations[i].EconomicReport.Id));
-                    tblPrueba.AddCell(economicId);
-
-                    PdfPCell economicDate = new PdfPCell();
-                    economicDate.AddElement(new Phrase("" + assotiations[i].EconomicReport.DateReceived.Month + "" + assotiations[i].EconomicReport.DateReceived.Day));
-                    tblPrueba.AddCell(economicDate);
-
-                    PdfPCell status = new PdfPCell();
-                    economicId.AddElement(new Phrase(assotiations[i].EconomicReport.Status));
-                    tblPrueba.AddCell(status);
-
-                    //Concrete Liquidation
-                    PdfPCell concreteId = new PdfPCell();
-                    concreteId.AddElement(new Phrase(assotiations[i].ConcreteLiquidation.Id));
-                    tblPrueba.AddCell(concreteId);
-
-                    PdfPCell concreteDate = new PdfPCell();
-                    concreteDate.AddElement(new Phrase("" + assotiations[i].ConcreteLiquidation.DateReceived.Month + "" + assotiations[i].ConcreteLiquidation.DateReceived.Day));
-                    tblPrueba.AddCell(concreteDate);
-
-                    PdfPCell concreteStatus = new PdfPCell();
-                    concreteStatus.AddElement(new Phrase(assotiations[i].ConcreteLiquidation.Status));
-                    tblPrueba.AddCell(concreteStatus);
+                    PdfPCell Association = new PdfPCell();
+                    Association.AddElement(new Phrase(assotiations[i].Id));
+                    Association.AddElement(new Phrase(assotiations[i].RegistryCode));
+                    Association.AddElement(new Phrase(assotiations[i].Name));
+                    Association.AddElement(new Phrase(assotiations[i].RegistryCode));
+                    Association.AddElement(new Phrase(assotiations[i].Canton));
+                    Association.AddElement(new Phrase(assotiations[i].Id));
+                    Association.AddElement(new Phrase(assotiations[i].WorkPlan.Id));
+                    Association.AddElement(new Phrase(assotiations[i].WorkPlan.AssemblyDate));
+                    Association.AddElement(new Phrase(assotiations[i].WorkPlan.Status));
+                    Association.AddElement(new Phrase(assotiations[i].EconomicReport.Id));
+                    Association.AddElement(new Phrase("" + assotiations[i].EconomicReport.DateReceived.Month + "" + assotiations[i].EconomicReport.DateReceived.Day));
+                    Association.AddElement(new Phrase(assotiations[i].EconomicReport.Status));
+                    Association.AddElement(new Phrase(assotiations[i].ConcreteLiquidation.Id));
+                    Association.AddElement(new Phrase("" + assotiations[i].ConcreteLiquidation.DateReceived.Month + "" + assotiations[i].ConcreteLiquidation.DateReceived.Day));
+                    Association.AddElement(new Phrase(assotiations[i].ConcreteLiquidation.Status));
+                    tblPrueba.AddCell(Association);
 
                     doc.Add(tblPrueba);
                     doc.Close();
@@ -122,6 +77,12 @@ namespace OCFG.Data
         {
 
             List<Association> assotiations;
+            assotiations = new List<Association>();
+            Association association;
+            WorkPlan workPlan;
+            Settlement settlement;
+            EconomicReport economicReport;
+            ConcreteLiquidation concreteLiquidation;
 
             using (SqlConnection conn = GetConnection())
             {
@@ -130,12 +91,7 @@ namespace OCFG.Data
                 
                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
                 {
-                    assotiations = new List<Association>();
-                    Association association = null;
-                    WorkPlan workPlan = null;
-                    Settlement settlement = null;
-                    EconomicReport economicReport = null;
-                    ConcreteLiquidation concreteLiquidation = null;
+                    
 
                         while (reader.Read())
                         {
@@ -149,6 +105,7 @@ namespace OCFG.Data
                             string status = reader.GetString(5);
                             string active = reader.GetString(6);
                             string province = reader.GetString(7);
+                            
 
                             workPlan = new WorkPlan();
                             //work plan assotiation
@@ -175,7 +132,7 @@ namespace OCFG.Data
                             char[] cadEconomic = statusEconomic.ToCharArray();
                             economicReport.Status = cadEconomic[0];
 
-                        concreteLiquidation = new ConcreteLiquidation();
+                            concreteLiquidation = new ConcreteLiquidation();
                             //concrete
                             concreteLiquidation.Id = reader.GetInt32(20);
                             concreteLiquidation.DateReceived = reader.GetDateTime(21);
@@ -198,11 +155,12 @@ namespace OCFG.Data
 
 
         }
-            public Document getDocument()
+            /**public void getDocument()
              {
                  Document document = null;
                  using (SqlConnection conn = GetConnection())
                  {
+                    conn.Open();
                      SqlCommand commandGetDocument = new SqlCommand("getDocument", conn);
                      
                      using (SqlDataReader reader = commandGetDocument.ExecuteReader())
@@ -214,14 +172,17 @@ namespace OCFG.Data
                              
                          }
 
+                    
+
                      }
-                 }
+                    conn.Close();
+                    PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(@"C:\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf", FileMode.Create));
+                   }   
+                        
+                     
+            }**/
+             
 
-
-                     return document;
-                 }
-
-             }
-        
+                
     }
 
