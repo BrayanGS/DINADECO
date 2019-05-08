@@ -11,6 +11,13 @@ namespace OCFG.Models
 
         public Settlement()
         {
+
+        }
+
+        public Settlement(DateTime dateReceived, string year)
+        {
+            this.dateReceived = dateReceived;
+            this.year = year;
         }
 
         public Settlement(int id, DateTime dateReceived, string year, char status)

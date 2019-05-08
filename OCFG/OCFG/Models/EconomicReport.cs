@@ -12,6 +12,13 @@ namespace OCFG.Models
 
         public EconomicReport()
         {
+
+        }
+
+        public EconomicReport(DateTime dateReceived, string year)
+        {
+            this.dateReceived = dateReceived;
+            this.year = year;
         }
 
         public EconomicReport(int id, DateTime dateReceived, string year, float balance, char status)

@@ -11,6 +11,10 @@ namespace OCFG.Data
     public class AssociationData
     {
         String connectionString = "Server=163.178.173.148; Database=OCFG_DataBase; Uid=lenguajesap; Pwd=lenguajesap;";
+        WorkPlan workPlan;
+        EconomicReport economicReport;
+        Settlement settlement;
+        ConcreteLiquidation concreteLiquidation;
 
         public AssociationData()
         {
@@ -61,149 +65,38 @@ namespace OCFG.Data
 
         public void updateAssociation(Association association)
         {
-            
-        }
-
-        public void updateWorkPlan(WorkPlan workPlan)
-        {
             using (SqlConnection sqlConnection = getConnection())
             {
-                SqlTransaction sqlTransaction = null;
-                string queryWork = "UPDATE WorkPlan SET assembly_date '" + workPlan.AssemblyDate + "'";
+                sqlConnection.Open();
 
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlSelect = new SqlCommand(queryWork, sqlConnection);
-                    sqlSelect.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    sqlTransaction.Commit();
+                string queryWork = "UPDATE WorkPlan SET assembly_date = '" + association.WorkPlan.AssemblyDate + "'" +
+                                   "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
 
-                }
-                catch (SqlException ex)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                        throw ex;
-                    }
-                }
-                finally
-                {
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
-                }
-            }
-        }
+                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + association.EconomicReport.DateReceived + "', " +
+                                       " year = '" + association.EconomicReport.Year + "', " +
+                                       "balance = '" + association.EconomicReport.Balance + "'" +
+                                       "WHERE EconomicReport.id_economic = "+association.EconomicReport.Id;
 
-        public void updateEconomicReport(EconomicReport economicReport)
-        {
-            using (SqlConnection sqlConnection = getConnection())
-            {
-                SqlTransaction sqlTransaction = null;
-                
-                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + economicReport.DateReceived + "', " +
-                                       " year = '" + economicReport.Year + "', " +
-                                       "balance = '" + economicReport.Balance + "'";
+                string querySettlement = "UPDATE Settlement SET date_received = '" + association.Settlement.DateReceived + "', " +
+                                        "year = '" + association.Settlement.Year + "'" +
+                                        "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
 
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlSelect = new SqlCommand(queryEconomic, sqlConnection);
-                    sqlSelect.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    sqlTransaction.Commit();
+                string queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + association.ConcreteLiquidation.DateReceived + "', " +
+                                       "year = '" + association.ConcreteLiquidation.Year + "'" +
+                                       "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
 
-                }
-                catch (SqlException ex)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                        throw ex;
-                    }
-                }
-                finally
-                {
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
-                }
-            }
-        }
+                SqlCommand sqlWork = new SqlCommand(queryWork, sqlConnection);
+                sqlWork.ExecuteNonQuery();
 
+                SqlCommand sqlEconomic = new SqlCommand(queryEconomic, sqlConnection);
+                sqlEconomic.ExecuteNonQuery();
 
-        public void updateSettlement(Settlement settlement)
-        {
-            using (SqlConnection sqlConnection = getConnection())
-            {
-                SqlTransaction sqlTransaction = null;
-                string querySettlement = "UPDATE Settlement SET date_received = '" + settlement.DateReceived + "', " +
-                                        "year = '" + settlement.Year + "'";
+                SqlCommand sqlSettlement = new SqlCommand(querySettlement, sqlConnection);
+                sqlSettlement.ExecuteNonQuery();
 
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlSelect = new SqlCommand(querySettlement, sqlConnection);
-                    sqlSelect.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    sqlTransaction.Commit();
+                SqlCommand sqlConcrete = new SqlCommand(queryConcrete, sqlConnection);
+                sqlConcrete.ExecuteNonQuery();
 
-                }
-                catch (SqlException ex)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                        throw ex;
-                    }
-                }
-                finally
-                {
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
-                }
-            }
-        }
-
-
-        public void updateConcreteLiquidation(ConcreteLiquidation concreteLiquidation)
-        {
-            using (SqlConnection sqlConnection = getConnection())
-            {
-                SqlTransaction sqlTransaction = null;
-                string queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + concreteLiquidation.DateReceived + "', " +
-                                       "year = '" + concreteLiquidation.Year + "'";
-
-                try
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlSelect = new SqlCommand(queryConcrete, sqlConnection);
-                    sqlSelect.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    sqlTransaction.Commit();
-
-                }
-                catch (SqlException ex)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                        throw ex;
-                    }
-                }
-                finally
-                {
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
-                }
             }
         }
 
@@ -269,35 +162,176 @@ namespace OCFG.Data
 
         }
 
-       public List<Association> getAssociationsByFilter(String search)
+        public Association getAssociationById(int idAssociation)
         {
-            List<Association> associations = new List<Association>();
+            Association association = null;
+
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "SELECT registry_code, name_association, canton, region, " +
-                               "status,active,province FROM Association " +
-                               "WHERE name_association ='"+search+ "' or registry_code=" + search+"or canton='"+search+"' or region='"+search+
-                               "' or province='" + search +"'";
+
+                String query = "SELECT a.registry_code, a.name_association, a.canton, a.region, a.status, a.active ,a.province, " +
+                               "w.assembly_date, w.status, e.date_received, e.balance, e.year, e.status, s.date_received, " +
+                               "s.year, s.status, c.date_received, c.year, c.status" +
+                               "FROM Association a, WorkPlan w, EconomicReport e, Settlement s, ConcreteLiquidation c" +
+                               "WHERE a.id_work = w.id_work" +
+                               "AND a.id_economic = e.id_economic" +
+                               "AND a.id_settlement = s.id_settlement" +
+                               "AND a.id_concrete = c.id_concrete" +
+                               "AND a.id_association = " + idAssociation + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
-                    Association association = null;
                     while (reader.Read())
                     {
-                        association = new Association();
-                        association.RegistryCode = (int)reader[0];
-                        association.Name = (string)reader[1];
-                        association.Canton = (string)reader[2];
-                        association.Province = (string)reader[6];
-                        association.Region = (string)reader[3];
-                        association.Status = (string)reader[4];
-                        association.Active = (string)reader[5];
+                        /*Association*/
+                        int registryCode = reader.GetInt32(0);
+                        string name = reader.GetString(2);
+                        string region = reader.GetString(3);
+                        string canton = reader.GetString(4);
+                        string status = reader.GetString(5);
+                        string active = reader.GetString(6);
+                        string province = reader.GetString(7);
 
-                        associations.Add(association);
+                        /*WorkPlan*/
+                        workPlan = new WorkPlan();
+                        workPlan.AssemblyDate = reader.GetString(8);
+                        workPlan.Status = reader.GetString(9);
+
+                        /*EconomicReport*/
+                        economicReport = new EconomicReport();
+                        economicReport.DateReceived = reader.GetDateTime(10);
+                        economicReport.Balance = reader.GetFloat(11);
+                        economicReport.Year = reader.GetString(12);
+                        economicReport.Status = reader.GetChar(13);
+
+                        /*Settlement*/
+                        settlement = new Settlement();
+                        settlement.DateReceived = reader.GetDateTime(14);
+                        settlement.Year = reader.GetString(15);
+                        settlement.Status = reader.GetChar(16);
+
+                        /*ConcreteLiquitation*/
+                        concreteLiquidation = new ConcreteLiquidation();
+                        concreteLiquidation.DateReceived = reader.GetDateTime(17);
+                        concreteLiquidation.Year = reader.GetString(18);
+                        concreteLiquidation.Status = reader.GetChar(19);
+
+                        association = new Association(registryCode, name, canton, region, status, active, province,
+                                                      workPlan, economicReport, settlement, concreteLiquidation);
+
                     }
                     sqlConnection.Close();
+                }
+                return association;
+            }
+        }
+
+       public List<Association> getAssociationsByFilter(String search)
+        {
+            List<Association> associations = new List<Association>();
+            if (!fiter.Equals("cod"))
+            {
+                using (SqlConnection sqlConnection = getConnection())
+                {
+                    sqlConnection.Open();
+                    String query = "SELECT registry_code, name_association, canton, region, " +
+                                   "status,active,province FROM Association " +
+                                   "WHERE name_association ='" + search + "' or canton='" + search + "' or region='" + search +
+                                   "' or province='" + search + "'";
+
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    String varStatus;
+                    string varActive;
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        Association association = null;
+                        while (reader.Read())
+                        {
+                            association = new Association();
+                            association.RegistryCode = (int)reader[0];
+                            association.Name = (string)reader[1];
+                            association.Canton = (string)reader[2];
+                            association.Province = (string)reader[6];
+                            association.Region = (string)reader[3];
+                            association.Status = (string)reader[4];
+                            association.Active = (string)reader[5];
+                            if (association.Status.Equals("1"))
+                            {
+                                varStatus = "Al día";
+                            }
+                            else
+                            {
+                                varStatus = "Pendiente";
+                            }
+                            if (association.Active.Equals("Yes"))
+                            {
+                                varActive = "Activa";
+                            }
+                            else
+                            {
+                                varActive = "Inactiva";
+                            }
+                            association.Status = varStatus;
+                            association.Active = varActive;
+
+                            associations.Add(association);
+                        }
+                        sqlConnection.Close();
+                    }
+                }
+
+
+            }
+            else
+            {
+                using (SqlConnection sqlConnection = getConnection())
+                {
+                    sqlConnection.Open();
+                    String query = "SELECT registry_code, name_association, canton, region, " +
+                                   "status,active,province FROM Association " +
+                                   "WHERE registry_code=" + search  + "";
+
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    String varStatus;
+                    string varActive;
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        Association association = null;
+                        while (reader.Read())
+                        {
+                            association = new Association();
+                            association.RegistryCode = (int)reader[0];
+                            association.Name = (string)reader[1];
+                            association.Canton = (string)reader[2];
+                            association.Province = (string)reader[6];
+                            association.Region = (string)reader[3];
+                            association.Status = (string)reader[4];
+                            association.Active = (string)reader[5];
+                            if (association.Status.Equals("1"))
+                            {
+                                varStatus = "Al día";
+                            }
+                            else
+                            {
+                                varStatus = "Pendiente";
+                            }
+                            if (association.Active.Equals("Yes"))
+                            {
+                                varActive = "Activa";
+                            }
+                            else
+                            {
+                                varActive = "Inactiva";
+                            }
+                            association.Status = varStatus;
+                            association.Active = varActive;
+
+                            associations.Add(association);
+                        }
+                        sqlConnection.Close();
+                    }
                 }
             }
             return associations;

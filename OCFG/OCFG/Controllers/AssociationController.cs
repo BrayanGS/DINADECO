@@ -13,6 +13,10 @@ namespace OCFG.Controllers
     {
         AssociationData associationData = new AssociationData();
         static Association association = new Association();
+        static WorkPlan workPlan = new WorkPlan();
+        static Settlement settlement = new Settlement();
+        static ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation();
+        static EconomicReport economicReport = new EconomicReport();
 
         // GET: Association
         public ActionResult Index()
@@ -29,22 +33,20 @@ namespace OCFG.Controllers
         // GET: Association/Search
         public ActionResult Search()
         {
-            return View();
+            List<Association> associations = new List<Association>();
+
+            return View(associations);
         }
 
         // POST: Association/Search
         [HttpPost]
-        public ActionResult Search(string search)
+        public ActionResult Search(string search, string filter)
         {
             List<Association> associations = new List<Association>();
 
             if (!String.IsNullOrEmpty(search))
             {
-                associations = associationData.getAssociationsByFilter(search);
-            }
-            else
-            {
-                associations = associationData.getAssociations();
+                associations = associationData.getAssociationsByFilter(search, filter);
             }
             return View(associations);
         }
@@ -80,7 +82,8 @@ namespace OCFG.Controllers
         // GET: Association/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            association = associationData.getAssociationById(id);
+            return View(association);
         }
 
         // POST: Association/Edit/5
@@ -89,44 +92,8 @@ namespace OCFG.Controllers
         {
             try
             {
-                association.EconomicReport.DateReceived = assoUpdate.EconomicReport.DateReceived;
-                association.EconomicReport.Year = association.EconomicReport.Year;
-                association.EconomicReport.Balance = assoUpdate.EconomicReport.Balance;
-                association.Settlement.DateReceived = assoUpdate.Settlement.DateReceived;
-                association.Settlement.Year = assoUpdate.Settlement.Year;
-                association.WorkPlan.AssemblyDate = assoUpdate.WorkPlan.AssemblyDate;
-                association.ConcreteLiquidation.DateReceived = assoUpdate.ConcreteLiquidation.DateReceived;
-                association.ConcreteLiquidation.Year = assoUpdate.ConcreteLiquidation.Year;
-
-                associationData.updateAssociation(association);
-
+                associationData.updateAssociation(assoUpdate);
                 return RedirectToAction("Index");
-
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        [HttpPost]
-        public ActionResult EditWorkPlan(Association assoUpdate)
-        {
-            try
-            {
-                association.EconomicReport.DateReceived = assoUpdate.EconomicReport.DateReceived;
-                association.EconomicReport.Year = association.EconomicReport.Year;
-                association.EconomicReport.Balance = assoUpdate.EconomicReport.Balance;
-                association.Settlement.DateReceived = assoUpdate.Settlement.DateReceived;
-                association.Settlement.Year = assoUpdate.Settlement.Year;
-                association.WorkPlan.AssemblyDate = assoUpdate.WorkPlan.AssemblyDate;
-                association.ConcreteLiquidation.DateReceived = assoUpdate.ConcreteLiquidation.DateReceived;
-                association.ConcreteLiquidation.Year = assoUpdate.ConcreteLiquidation.Year;
-
-                associationData.updateAssociation(association);
-
-                return RedirectToAction("Index");
-
             }
             catch
             {
