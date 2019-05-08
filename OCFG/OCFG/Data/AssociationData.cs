@@ -269,55 +269,110 @@ namespace OCFG.Data
 
         }
 
-       public List<Association> getAssociationsByFilter(String search)
+       public List<Association> getAssociationsByFilter(String search, string fiter)
         {
             List<Association> associations = new List<Association>();
-            using (SqlConnection sqlConnection = getConnection())
+            if (!fiter.Equals("cod"))
             {
-                sqlConnection.Open();
-                String query = "SELECT registry_code, name_association, canton, region, " +
-                               "status,active,province FROM Association " +
-                               "WHERE name_association ='"+search+ "' or registry_code=" + search+"or canton='"+search+"' or region='"+search+
-                               "' or province='" + search +"'";
-
-                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                String varStatus;
-                string varActive;
-                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                using (SqlConnection sqlConnection = getConnection())
                 {
-                    Association association = null;
-                    while (reader.Read())
-                    {
-                        association = new Association();
-                        association.RegistryCode = (int)reader[0];
-                        association.Name = (string)reader[1];
-                        association.Canton = (string)reader[2];
-                        association.Province = (string)reader[6];
-                        association.Region = (string)reader[3];
-                        association.Status = (string)reader[4];
-                        association.Active = (string)reader[5];
-                        if (association.Status.Equals("1"))
-                        {
-                            varStatus = "Al día";
-                        }
-                        else
-                        {
-                            varStatus = "Pendiente";
-                        }
-                        if (association.Active.Equals("Yes"))
-                        {
-                            varActive = "Activa";
-                        }
-                        else
-                        {
-                            varActive = "Inactiva";
-                        }
-                        association.Status = varStatus;
-                        association.Active = varActive;
+                    sqlConnection.Open();
+                    String query = "SELECT registry_code, name_association, canton, region, " +
+                                   "status,active,province FROM Association " +
+                                   "WHERE name_association ='" + search + "' or canton='" + search + "' or region='" + search +
+                                   "' or province='" + search + "'";
 
-                        associations.Add(association);
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    String varStatus;
+                    string varActive;
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        Association association = null;
+                        while (reader.Read())
+                        {
+                            association = new Association();
+                            association.RegistryCode = (int)reader[0];
+                            association.Name = (string)reader[1];
+                            association.Canton = (string)reader[2];
+                            association.Province = (string)reader[6];
+                            association.Region = (string)reader[3];
+                            association.Status = (string)reader[4];
+                            association.Active = (string)reader[5];
+                            if (association.Status.Equals("1"))
+                            {
+                                varStatus = "Al día";
+                            }
+                            else
+                            {
+                                varStatus = "Pendiente";
+                            }
+                            if (association.Active.Equals("Yes"))
+                            {
+                                varActive = "Activa";
+                            }
+                            else
+                            {
+                                varActive = "Inactiva";
+                            }
+                            association.Status = varStatus;
+                            association.Active = varActive;
+
+                            associations.Add(association);
+                        }
+                        sqlConnection.Close();
                     }
-                    sqlConnection.Close();
+                }
+
+
+            }
+            else
+            {
+                using (SqlConnection sqlConnection = getConnection())
+                {
+                    sqlConnection.Open();
+                    String query = "SELECT registry_code, name_association, canton, region, " +
+                                   "status,active,province FROM Association " +
+                                   "WHERE registry_code=" + search  + "";
+
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    String varStatus;
+                    string varActive;
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        Association association = null;
+                        while (reader.Read())
+                        {
+                            association = new Association();
+                            association.RegistryCode = (int)reader[0];
+                            association.Name = (string)reader[1];
+                            association.Canton = (string)reader[2];
+                            association.Province = (string)reader[6];
+                            association.Region = (string)reader[3];
+                            association.Status = (string)reader[4];
+                            association.Active = (string)reader[5];
+                            if (association.Status.Equals("1"))
+                            {
+                                varStatus = "Al día";
+                            }
+                            else
+                            {
+                                varStatus = "Pendiente";
+                            }
+                            if (association.Active.Equals("Yes"))
+                            {
+                                varActive = "Activa";
+                            }
+                            else
+                            {
+                                varActive = "Inactiva";
+                            }
+                            association.Status = varStatus;
+                            association.Active = varActive;
+
+                            associations.Add(association);
+                        }
+                        sqlConnection.Close();
+                    }
                 }
             }
             return associations;
