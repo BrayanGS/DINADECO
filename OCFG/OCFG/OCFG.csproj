@@ -201,7 +201,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Association\Create.cshtml" />
     <Content Include="Views\Association\Edit.cshtml" />
-    <Content Include="Views\Association\UpdateAssociation.cshtml" />
     <Content Include="Views\PDFs\Index.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
   </ItemGroup>
