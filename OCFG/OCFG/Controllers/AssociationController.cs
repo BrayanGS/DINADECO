@@ -31,13 +31,6 @@ namespace OCFG.Controllers
             return View();
         }
 
-        //GET: Association/Pdf
-        public ActionResult Pdf()
-        {
-            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
-            Document doc = pDFReportAssotiationForEmployee.getDocument();
-            return View(doc);
-        }
 
         // GET: Association/Search
         public ActionResult Search()

@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<OCFG.Models.Association>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <h1>Insertar información de asociación</h1>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -15,7 +13,6 @@
         </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
-
             <h4>Filtrar por: </h4>
             <select name="filter">
                 <option value="name">Nombre</option>
@@ -24,7 +21,7 @@
                 <option value="region">Región</option>
                 <option value="province">Provincia</option>
             </select>
-            <input type="text"  required name="search" title="En este espacio solo se permite ingresar letras" 
+            <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
                    id="search" tabindex="2" class="form-control" placeholder="">
             <br>
             <div class=" form-group ">
@@ -34,7 +31,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
         <div>
             <table class="table">
@@ -64,66 +60,32 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RegistryCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Canton)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Region)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Active)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Province)
-                        </td>
-                    </tr>
-                    @foreach (var item in associations)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RegistryCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Canton)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Region)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Active)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Province)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id})
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-      </div>
-     }
-
-            <div>
-                @Html.ActionLink("Página principal", "Home/Index")
-            </div>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistryCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Canton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Province)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modificar", "Edit", new { id = item.Id })
+                    </td>
+                </tr>
                 }
             </table>
         </div>

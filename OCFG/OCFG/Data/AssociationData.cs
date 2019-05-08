@@ -228,10 +228,10 @@ namespace OCFG.Data
             }
         }
 
-       public List<Association> getAssociationsByFilter(String search)
+       public List<Association> getAssociationsByFilter(String search, String filter)
         {
             List<Association> associations = new List<Association>();
-            if (!fiter.Equals("cod"))
+            if (!filter.Equals("cod"))
             {
                 using (SqlConnection sqlConnection = getConnection())
                 {
