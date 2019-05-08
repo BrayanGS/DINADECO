@@ -198,19 +198,19 @@ namespace OCFG.Data
 
 
         }
-
-            /** public Document getDocument()
+            public Document getDocument()
              {
                  Document document = null;
                  using (SqlConnection conn = GetConnection())
                  {
-                     SqlCommand commandGetDocument = new SqlCommand("Call getDocument", conn);
-                     commandGetDocument.CommandType = CommandType.StoredProcedure;
-                     using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
+                     SqlCommand commandGetDocument = new SqlCommand("getDocument", conn);
+                     
+                     using (SqlDataReader reader = commandGetDocument.ExecuteReader())
                      {
-                         Association assotiation = null;
+                         
                          while (reader.Read())
                          {
+                            document = (Document) reader.GetValue(0);
                              
                          }
 
@@ -218,10 +218,10 @@ namespace OCFG.Data
                  }
 
 
-                     return associations;
+                     return document;
                  }
 
-             }**/
+             }
         
     }
 }

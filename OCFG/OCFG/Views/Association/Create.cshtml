@@ -15,22 +15,22 @@
 
                 <div class="form-group">
                     <h4>Código de registo: </h4>
-                    <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números" 
+                    <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
                            id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <h4>Nombre: </h4>
-                    <input type="text" required pattern="[A-Za]" name="name" title="En este espacio solo se permite ingresar letras" 
+                    <input type="text" required pattern="[A-Za]" name="name" title="En este espacio solo se permite ingresar letras"
                            id="name" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <h4>Región: </h4>
-                    <input type="text" required pattern="[A-Za]" name="region" title="En este espacio solo se permite ingresar letras" 
+                    <input type="text" required pattern="[A-Za]" name="region" title="En este espacio solo se permite ingresar letras"
                            id="region" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <h4>Cantón: </h4>
-                    <input type="text" required pattern="[A-Za]" name="canton" title="En este espacio solo se permite ingresar letras y números" 
+                    <input type="text" required pattern="[A-Za]" name="canton" title="En este espacio solo se permite ingresar letras y números"
                            id="caton" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <h4>Seleccione una provincia</h4>
@@ -61,6 +61,14 @@
                 </div>
 
             </form>
+            <form class="text-center" asp-controller="AssociationController" asp-action="Create" method="get">
+                
+                <a href="Association/Pdf/Reporte.pdf" download="Reporte General.pdf">
+                    Descargar Reporte
+                </a>
+
+            </form>
+                    
         </div>
     </body>
 </html>

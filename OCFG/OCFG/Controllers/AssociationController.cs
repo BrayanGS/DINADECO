@@ -1,4 +1,5 @@
-﻿using OCFG.Data;
+﻿using iTextSharp.text;
+using OCFG.Data;
 using OCFG.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,14 @@ namespace OCFG.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        //GET: Association/Pdf
+        public ActionResult Pdf()
+        {
+            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
+            Document doc = pDFReportAssotiationForEmployee.getDocument();
+            return View(doc);
         }
 
         // GET: Association/Search
