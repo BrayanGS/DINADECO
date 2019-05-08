@@ -5,7 +5,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <h1>Insertar información de asociación</h1>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,7 +15,6 @@
         </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
-
             <h4>Filtrar por: </h4>
             <select name="filter">
                 <option value="name">Nombre</option>
@@ -35,7 +33,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
         <div>
             <table class="table">
@@ -93,6 +90,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Province)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Insertar Nueva Asociación", "Create")
                         </td>
                     </tr>
                     }

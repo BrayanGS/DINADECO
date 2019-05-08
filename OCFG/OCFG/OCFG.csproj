@@ -140,7 +140,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AssociationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PDFsController.cs" />
+    <Compile Include="Controllers\PdfsController.cs" />
     <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Data\PDFReportAssotiationForEmployee.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,7 +201,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Association\Create.cshtml" />
     <Content Include="Views\Association\Edit.cshtml" />
-    <Content Include="Views\Association\UpdateAssociation.cshtml" />
     <Content Include="Views\PDFs\Index.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
   </ItemGroup>

@@ -25,8 +25,9 @@ namespace OCFG.Models
 
         }
 
-        public Association(int id, int registryCode, string name, string region, string canton, string status, string active,string province,
-            WorkPlan workPlan, Settlement sttlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
+        public Association(int id, int registryCode, string name, string region, string canton, string status,
+            string active, string province, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
+            ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
             this.registryCode = registryCode;
@@ -37,7 +38,42 @@ namespace OCFG.Models
             this.active = active;
             this.province = province;
             this.workPlan = workPlan;
-            this.settlement = sttlement;
+            this.settlement = settlement;
+            this.economicReport = economicReport;
+            this.concreteLiquidation = concreteLiquidation;
+        }
+
+        public Association(int registryCode, string name, string region, string canton, string status,
+            string active, string province, WorkPlan workPlan, EconomicReport economicReport, Settlement settlement,
+            ConcreteLiquidation concreteLiquidation)
+        {
+            this.registryCode = registryCode;
+            this.name = name;
+            this.region = region;
+            this.canton = canton;
+            this.status = status;
+            this.active = active;
+            this.province = province;
+            this.workPlan = workPlan;
+            this.economicReport = economicReport;
+            this.settlement = settlement;
+            this.concreteLiquidation = concreteLiquidation;
+        }
+
+        public Association(int id, int registryCode, string name, string region, string canton, string status, 
+            string active, string province, Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, 
+            ConcreteLiquidation concreteLiquidation)
+        {
+            this.id = id;
+            this.registryCode = registryCode;
+            this.name = name;
+            this.region = region;
+            this.canton = canton;
+            this.status = status;
+            this.active = active;
+            this.province = province;
+            this.workPlan = workPlan;
+            this.settlement = settlement;
             this.economicReport = economicReport;
             this.concreteLiquidation = concreteLiquidation;
         }
