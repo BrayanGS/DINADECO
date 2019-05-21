@@ -1,5 +1,4 @@
 ﻿@model OCFG.Models.Association
-
 <h1>Insertar información de asociación</h1>
 
 @using (Html.BeginForm())
@@ -17,17 +16,17 @@
                 </div>
                 <div class="form-group">
                     <h4>Nombre: </h4>
-                    <input type="text" required pattern="[A-Za]" name="name" title="En este espacio solo se permite ingresar letras"
+                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
                            id="name" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <h4>Región: </h4>
-                    <input type="text" required pattern="[A-Za]" name="region" title="En este espacio solo se permite ingresar letras"
+                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="region" title="En este espacio solo se permite ingresar letras"
                            id="region" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <h4>Cantón: </h4>
-                    <input type="text" required pattern="[A-Za]" name="canton" title="En este espacio solo se permite ingresar letras y números"
+                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="canton" title="En este espacio solo se permite ingresar letras"
                            id="caton" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <h4>Seleccione una provincia</h4>
@@ -56,7 +55,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
             <form class="text-center" asp-controller="AssociationController" asp-action="Create" method="get">
                 
@@ -80,6 +78,10 @@
         }
     }
 </script>
+    </body>
+</html>
+
+   
 }
 
 <div>
