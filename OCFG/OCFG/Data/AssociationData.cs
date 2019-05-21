@@ -171,14 +171,14 @@ namespace OCFG.Data
                 sqlConnection.Open();
 
                 String query = "SELECT a.registry_code, a.name_association, a.canton, a.region, a.status, a.active ,a.province, " +
-                               "w.assembly_date, w.status, e.date_received, e.balance, e.year, e.status, s.date_received, " +
-                               "s.year, s.status, c.date_received, c.year, c.status" +
-                               "FROM Association a, WorkPlan w, EconomicReport e, Settlement s, ConcreteLiquidation c" +
-                               "WHERE a.id_work = w.id_work" +
-                               "AND a.id_economic = e.id_economic" +
-                               "AND a.id_settlement = s.id_settlement" +
-                               "AND a.id_concrete = c.id_concrete" +
-                               "AND a.id_association = " + idAssociation + ";";
+                               " w.assembly_date, w.status, e.date_received, e.balance, e.year, e.status, s.date_received, " +
+                               " s.year, s.status, c.date_received, c.year, c.status" +
+                               " FROM Association a, WorkPlan w, EconomicReport e, Settlement s, ConcreteLiquidation c" +
+                               " WHERE a.id_work = w.id_work" +
+                               " AND a.id_economic = e.id_economic" +
+                               " AND a.id_settlement = s.id_settlement" +
+                               " AND a.id_concrete = c.id_concrete" +
+                               " AND a.registry_code = " + idAssociation + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
@@ -187,36 +187,42 @@ namespace OCFG.Data
                     {
                         /*Association*/
                         int registryCode = reader.GetInt32(0);
-                        string name = reader.GetString(2);
-                        string region = reader.GetString(3);
-                        string canton = reader.GetString(4);
-                        string status = reader.GetString(5);
-                        string active = reader.GetString(6);
-                        string province = reader.GetString(7);
+                        string name = reader.GetString(1);
+                        string region = reader.GetString(2);
+                        string canton = reader.GetString(3);
+                        string status = reader.GetString(4);
+                        string active = reader.GetString(5);
+                        string province = reader.GetString(6);
 
                         /*WorkPlan*/
                         workPlan = new WorkPlan();
-                        workPlan.AssemblyDate = reader.GetString(8);
-                        workPlan.Status = reader.GetString(9);
+                        workPlan.AssemblyDate = reader.GetString(7);
+                        workPlan.Status = reader.GetString(8);
 
                         /*EconomicReport*/
                         economicReport = new EconomicReport();
-                        economicReport.DateReceived = reader.GetDateTime(10);
-                        economicReport.Balance = reader.GetFloat(11);
-                        economicReport.Year = reader.GetString(12);
-                        economicReport.Status = reader.GetChar(13);
+                        economicReport.DateReceived = reader.GetDateTime(9);
+                        economicReport.Balance = (float)reader.GetDouble(10);
+                        economicReport.Year = reader.GetString(11);
+                        string statusEconomic = reader.GetString(12);
+                        char[] cadEconomic = statusEconomic.ToCharArray();
+                        economicReport.Status = cadEconomic[0];
 
                         /*Settlement*/
                         settlement = new Settlement();
-                        settlement.DateReceived = reader.GetDateTime(14);
-                        settlement.Year = reader.GetString(15);
-                        settlement.Status = reader.GetChar(16);
+                        settlement.DateReceived = reader.GetDateTime(13);
+                        settlement.Year = reader.GetString(14);
+                        string statusSettlement = reader.GetString(15);
+                        char[] cadSettlement = statusSettlement.ToCharArray();
+                        settlement.Status = cadSettlement[0];
 
                         /*ConcreteLiquitation*/
                         concreteLiquidation = new ConcreteLiquidation();
-                        concreteLiquidation.DateReceived = reader.GetDateTime(17);
-                        concreteLiquidation.Year = reader.GetString(18);
-                        concreteLiquidation.Status = reader.GetChar(19);
+                        concreteLiquidation.DateReceived = reader.GetDateTime(16);
+                        concreteLiquidation.Year = reader.GetString(17);
+                        string statusConcrete = reader.GetString(18);
+                        char[] cadConcrete = statusConcrete.ToCharArray();
+                        concreteLiquidation.Status = cadConcrete[0];
 
                         association = new Association(registryCode, name, canton, region, status, active, province,
                                                       workPlan, economicReport, settlement, concreteLiquidation);

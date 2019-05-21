@@ -2,15 +2,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<h1>Insertar información de asociación</h1>
+<h1></h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <header>
-            <h4>Búsqueda de Asociaciones</h4>
-        </header>
+        <br/>
+        <h2>Búsqueda de Asociaciones</h2>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
             <h4>Filtrar por: </h4>
@@ -83,7 +82,7 @@
                         @Html.DisplayFor(modelItem => item.Province)
                     </td>
                     <td>
-                        @Html.ActionLink("Modificar", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Modificar", "Edit", new { id = item.RegistryCode })
                     </td>
                 </tr>
                 }

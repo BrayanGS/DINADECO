@@ -31,7 +31,7 @@ namespace OCFG.Data
                 Document doc = new Document();
 
                 conn.Open();
-                string fileName = @"C:\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf";
+                string fileName = @"C:\DINADECO\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf";
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@fileName, FileMode.Create));
                 doc.Open();
 
@@ -88,101 +88,102 @@ namespace OCFG.Data
             {
                 conn.Open();
                 SqlCommand commandGetAssotiation = new SqlCommand("getAllAssotiations", conn);
-                
+
                 using (SqlDataReader reader = commandGetAssotiation.ExecuteReader())
                 {
-                    
 
-                        while (reader.Read())
-                        {
-                            
-                            //Obtengo asociacion
-                            int id = reader.GetInt32(0);
-                            int registryCode = reader.GetInt32(1);
-                            string name = reader.GetString(2);
-                            string region = reader.GetString(3);
-                            string canton = reader.GetString(4);
-                            string status = reader.GetString(5);
-                            string active = reader.GetString(6);
-                            string province = reader.GetString(7);
-                            
 
-                            workPlan = new WorkPlan();
-                            //work plan assotiation
-                            workPlan.Id = reader.GetInt32(8);
-                            workPlan.AssemblyDate = reader.GetString(9);// averiguar
-                            workPlan.Status = reader.GetString(10);
+                    while (reader.Read())
+                    {
 
-                            settlement = new Settlement();
-                            //settlement association
-                            settlement.Id = reader.GetInt32(11);
-                            settlement.DateReceived = reader.GetDateTime(12);
-                            settlement.Year = reader.GetString(13);
-                            string statusSettlement = reader.GetString(14);
-                            char[] cadSettlement = statusSettlement.ToCharArray();
-                            settlement.Status = cadSettlement[0];
+                        //Obtengo asociacion
+                        int id = reader.GetInt32(0);
+                        int registryCode = reader.GetInt32(1);
+                        string name = reader.GetString(2);
+                        string region = reader.GetString(3);
+                        string canton = reader.GetString(4);
+                        string status = reader.GetString(5);
+                        string active = reader.GetString(6);
+                        string province = reader.GetString(7);
 
-                             economicReport = new EconomicReport();
-                            //economic report assotiation
-                            economicReport.Id = reader.GetInt32(15);
-                            economicReport.DateReceived = reader.GetDateTime(16);
-                            economicReport.Year = reader.GetString(17);
-                            economicReport.Balance = (float)reader.GetDouble(18);
-                            string statusEconomic = reader.GetString(19);
-                            char[] cadEconomic = statusEconomic.ToCharArray();
-                            economicReport.Status = cadEconomic[0];
 
-                            concreteLiquidation = new ConcreteLiquidation();
-                            //concrete
-                            concreteLiquidation.Id = reader.GetInt32(20);
-                            concreteLiquidation.DateReceived = reader.GetDateTime(21);
-                            concreteLiquidation.Year = reader.GetString(22);
-                            string statusConcrete = reader.GetString(23);
-                            char[] cadConcrete = statusConcrete.ToCharArray();
-                            concreteLiquidation.Status = cadConcrete[0];
+                        workPlan = new WorkPlan();
+                        //work plan assotiation
+                        workPlan.Id = reader.GetInt32(8);
+                        workPlan.AssemblyDate = reader.GetString(9);// averiguar
+                        workPlan.Status = reader.GetString(10);
 
-                        association = new Association(id, registryCode,name,region,canton,status,active,province,
-                            workPlan,settlement,economicReport,concreteLiquidation);
+                        settlement = new Settlement();
+                        //settlement association
+                        settlement.Id = reader.GetInt32(11);
+                        settlement.DateReceived = reader.GetDateTime(12);
+                        settlement.Year = reader.GetString(13);
+                        string statusSettlement = reader.GetString(14);
+                        char[] cadSettlement = statusSettlement.ToCharArray();
+                        settlement.Status = cadSettlement[0];
+
+                        economicReport = new EconomicReport();
+                        //economic report assotiation
+                        economicReport.Id = reader.GetInt32(15);
+                        economicReport.DateReceived = reader.GetDateTime(16);
+                        economicReport.Year = reader.GetString(17);
+                        economicReport.Balance = (float)reader.GetDouble(18);
+                        string statusEconomic = reader.GetString(19);
+                        char[] cadEconomic = statusEconomic.ToCharArray();
+                        economicReport.Status = cadEconomic[0];
+
+                        concreteLiquidation = new ConcreteLiquidation();
+                        //concrete
+                        concreteLiquidation.Id = reader.GetInt32(20);
+                        concreteLiquidation.DateReceived = reader.GetDateTime(21);
+                        concreteLiquidation.Year = reader.GetString(22);
+                        string statusConcrete = reader.GetString(23);
+                        char[] cadConcrete = statusConcrete.ToCharArray();
+                        concreteLiquidation.Status = cadConcrete[0];
+
+                        association = new Association(id, registryCode, name, region, canton, status, active, province,
+                            workPlan, settlement, economicReport, concreteLiquidation);
 
                         assotiations.Add(association);
-                        }
+                    }
                     conn.Close();
 
                 }
 
-                    return assotiations;
+                return assotiations;
             }
 
 
         }
-            /**public void getDocument()
+        /**public void getDocument()
+         {
+             Document document = null;
+             using (SqlConnection conn = GetConnection())
              {
-                 Document document = null;
-                 using (SqlConnection conn = GetConnection())
+                conn.Open();
+                 SqlCommand commandGetDocument = new SqlCommand("getDocument", conn);
+                 
+                 using (SqlDataReader reader = commandGetDocument.ExecuteReader())
                  {
-                    conn.Open();
-                     SqlCommand commandGetDocument = new SqlCommand("getDocument", conn);
                      
-                     using (SqlDataReader reader = commandGetDocument.ExecuteReader())
+                     while (reader.Read())
                      {
+                        document = (Document) reader.GetValue(0);
                          
-                         while (reader.Read())
-                         {
-                            document = (Document) reader.GetValue(0);
-                             
-                         }
-
-                    
-
                      }
-                    conn.Close();
-                    PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(@"C:\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf", FileMode.Create));
-                   }   
-                        
-                     
-            }**/
-             
 
                 
+
+                 }
+                conn.Close();
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(@"C:\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf", FileMode.Create));
+               }   
+                    
+                 
+        }**/
+
+
+
     }
+}
 

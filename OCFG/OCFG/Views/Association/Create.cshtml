@@ -5,11 +5,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <html>
-    <body>
-
         <div class="form-horizontal">
-            <h4>Association</h4>
+            <h2>Insertar nueva asociación</h2>
             <hr />
             <form name=formulario action="Association/Create" method="post" role="form" style="display: block;">
 
@@ -70,8 +67,7 @@
             </form>
                     
         </div>
-    </body>
-</html>
+
 <script>
     function verificar_campos() {
         var text = document.forms[0].firstname.value.length;
@@ -87,5 +83,5 @@
 }
 
 <div>
-    @Html.ActionLink("Página principal", "Home/Index")
+    @Html.ActionLink("Página principal", "Index", "Home")
 </div>
