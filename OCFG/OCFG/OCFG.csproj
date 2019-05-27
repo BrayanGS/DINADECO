@@ -142,9 +142,11 @@
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PdfsController.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\AssociationData.cs" />
+    <Compile Include="Data\LoginData.cs" />
     <Compile Include="Data\PDFReportAssotiationForEmployee.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
