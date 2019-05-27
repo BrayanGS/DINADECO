@@ -1,0 +1,65 @@
+﻿@model OCFG.Models.Employee
+
+<h1>Insertar información de un funcionario</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h2>Insertar nuevo funcionario</h2>
+        <hr />
+        <form name=formulario action="Employee/Create" method="post" role="form" style="display: block;">
+
+            <div class="form-group">
+                <h4>Nombre: </h4>
+                <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
+                       id="name" tabindex="2" min="1" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+                <h4>Apellidos: </h4>
+                <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="lastName" title="En este espacio solo se permite ingresar letras"
+                       id="lastName" tabindex="2" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+                <h4>Número de cédula: </h4>
+                <input type="number" required name="idCard" placeholder="305120356" title="En este espacio solo se permite ingresar números"
+                       id="idCard" tabindex="2" min="1" class="form-control">
+            </div>
+            <div class="form-group">
+                <h4>Dirección: </h4>
+                <textarea name="address" id="address" tabindex="2" class="form-control" placeholder="" rows="5" cols="50" />
+            </div>
+            <div class="form-group">
+                <h4>Número de telefono: </h4>
+                <input type="tel" name="phoneNumber" pattern="\[0-9]{4}[ -][0-9]{4}" title="Un número de teléfono válido consta de los tres cuatro dígitos del número, un guión (-) y cuatro dígitos más"
+                       id="idCard" placeholder="8587-4387" tabindex="2" min="1" class="form-control">
+            </div>
+            <div class="form-group">
+                <h4>Fecha que ingresó a trabajar: </h4>
+                <input type="date" name="dateIn"
+                       id="dateIn" tabindex="2" min="1958-01-01" step="2" class="form-control">
+            </div>
+            <div class=" form-group ">
+                <div class="row ">
+                    <div class="col-sm-6 col-sm-offset-3 ">
+                        <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="text-center" asp-controller="AssociationController" asp-action="Create" method="get">
+
+            <a href="~/Document/ReporteGeneral.pdf" download="Reporte General.pdf">
+                Descargar Reporte
+            </a>
+
+        </form>
+
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Página principal", "Index", "Home")
+</div>
+

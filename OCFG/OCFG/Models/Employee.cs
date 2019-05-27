@@ -13,14 +13,13 @@ namespace OCFG.Models
         private string phoneNumber;
         private DateTime dateIn;
         private DateTime dateOut;
-        private List<Association> assotiations;
         private Officer officer;
 
         public Employee()
         {
         }
             public Employee(int id, string name, string lastName, string idCard, string address, 
-            string phoneNumber, DateTime dateIn, DateTime dateOut, List<Association> assotiations, Officer officer)
+            string phoneNumber, DateTime dateIn, DateTime dateOut,  Officer officer)
         {
             this.id = id;
             this.name = name;
@@ -30,7 +29,6 @@ namespace OCFG.Models
             this.phoneNumber = phoneNumber;
             this.dateIn = dateIn;
             this.dateOut = dateOut;
-            this.assotiations = assotiations;
             this.officer = officer;
         }
 
@@ -42,7 +40,6 @@ namespace OCFG.Models
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public DateTime DateIn { get => dateIn; set => dateIn = value; }
         public DateTime DateOut { get => dateOut; set => dateOut = value; }
-        public List<Association> Assotiations { get => assotiations; set => assotiations = value; }
         public Officer Officer { get => officer; set => officer = value; }
     }
 }
