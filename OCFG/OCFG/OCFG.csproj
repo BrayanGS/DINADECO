@@ -203,6 +203,7 @@
     <Content Include="Views\Association\Edit.cshtml" />
     <Content Include="Views\PDFs\Index.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
+    <Content Include="Views\Administrator\MenuAdministrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

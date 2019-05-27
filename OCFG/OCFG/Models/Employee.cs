@@ -14,9 +14,10 @@ namespace OCFG.Models
         private DateTime dateIn;
         private DateTime dateOut;
         private List<Association> assotiations;
+        private Officer officer;
 
         public Employee(int id, string name, string lastName, string idCard, string address, 
-            string phoneNumber, DateTime dateIn, DateTime dateOut, List<Association> assotiations)
+            string phoneNumber, DateTime dateIn, DateTime dateOut, List<Association> assotiations, Officer officer)
         {
             this.id = id;
             this.name = name;
@@ -27,6 +28,7 @@ namespace OCFG.Models
             this.dateIn = dateIn;
             this.dateOut = dateOut;
             this.assotiations = assotiations;
+            this.officer = officer;
         }
 
         public int Id { get => id; set => id = value; }
