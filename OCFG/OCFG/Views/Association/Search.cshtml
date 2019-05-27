@@ -4,7 +4,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<h1></h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -61,6 +60,8 @@
                 </tr>
                 @if (!Model.Any())
                 {
+                    foreach (var item in Model)
+                    {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.RegistryCode)
@@ -87,6 +88,7 @@
                         @Html.ActionLink("Modificar", "Edit", new { id = item.RegistryCode })
                     </td>
                 </tr>
+                    }
                     <tr><td colspan="4">No hay datos disponibles</td></tr>
                 }
                 else
