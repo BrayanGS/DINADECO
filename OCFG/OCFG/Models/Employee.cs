@@ -16,7 +16,10 @@ namespace OCFG.Models
         private List<Association> assotiations;
         private Officer officer;
 
-        public Employee(int id, string name, string lastName, string idCard, string address, 
+        public Employee()
+        {
+        }
+            public Employee(int id, string name, string lastName, string idCard, string address, 
             string phoneNumber, DateTime dateIn, DateTime dateOut, List<Association> assotiations, Officer officer)
         {
             this.id = id;

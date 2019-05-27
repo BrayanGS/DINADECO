@@ -1,14 +1,18 @@
 ﻿@{
     ViewBag.Title = "DINADECO";
 }
-
+<div class="jumbotron text-center">
+    <h1>Sistema Organizaciones Comunales de Fondo por Girar</h1>
+</div>
 <div class="row">
     <div class="col-md-2">
         <img src="~/Content/image/search here.jpeg" class="img-rounded" alt="Cinque Terre"/>
     </div>
     <div class="col-md-4"></div>
-    <div class="col-md-6 text-center" >
+    <div class="col-md-6 text-center">
         <h1>Busque la información general de su asociación aquí</h1>
         <h4>@Html.ActionLink("Buscar", "Search", "Association")</h4>
+        <h1>Administrador</h1>
+        <h4>@Html.ActionLink("Menu", "Menu", "Administrator")</h4>
     </div>
 </div>

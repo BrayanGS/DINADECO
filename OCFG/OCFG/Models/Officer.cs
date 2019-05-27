@@ -12,6 +12,10 @@ namespace OCFG.Models
         private string password;
         private string departament;
 
+        public Officer()
+        {
+        }
+
         public Officer(int idOfficer, string userName, string password, string departament)
         {
             this.idOfficer = idOfficer;

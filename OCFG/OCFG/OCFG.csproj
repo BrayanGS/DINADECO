@@ -139,9 +139,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AssociationController.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PdfsController.cs" />
+    <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Data\LoginData.cs" />
     <Compile Include="Data\PDFReportAssotiationForEmployee.cs" />
@@ -162,13 +165,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\asociaciones_0_0.png" />
     <Content Include="Content\image\icoLog.png" />
     <Content Include="Content\image\icoFA.png" />
     <Content Include="Content\image\icoLogIn.png" />
+    <Content Include="Content\image\icon_rh.png" />
     <Content Include="Content\image\icoTw.png" />
     <Content Include="Content\image\icoYt.png" />
     <Content Include="Content\image\logDinadeco.png" />
     <Content Include="Content\image\search here.jpeg" />
+    <Content Include="Content\image\unlock-icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,8 +210,8 @@
     <Content Include="Views\Association\Edit.cshtml" />
     <Content Include="Views\PDFs\Index.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
-    <Content Include="Views\Administrator\MenuAdministrator.cshtml" />
-    <Content Include="Views\Index\Create.cshtml" />
+    <Content Include="Views\Administrator\Menu.cshtml" />
+    <Content Include="Views\Employee\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
