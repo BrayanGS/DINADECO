@@ -150,7 +150,6 @@
     <Compile Include="Models\ConcreteLiquidation.cs" />
     <Compile Include="Models\EconomicReport.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\Officer.cs" />
     <Compile Include="Models\Settlement.cs" />
     <Compile Include="Models\WorkPlan.cs" />

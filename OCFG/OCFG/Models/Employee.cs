@@ -40,5 +40,6 @@ namespace OCFG.Models
         public DateTime DateIn { get => dateIn; set => dateIn = value; }
         public DateTime DateOut { get => dateOut; set => dateOut = value; }
         public List<Association> Assotiations { get => assotiations; set => assotiations = value; }
+        public Officer Officer { get => officer; set => officer = value; }
     }
 }
