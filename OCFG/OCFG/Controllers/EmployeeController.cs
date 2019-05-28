@@ -32,15 +32,20 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Search(string search, string filter)
         {
+            List<Association> associations = new List<Association>();
 
-            return View();
+            if (!String.IsNullOrEmpty(search))
+            {
+                associations = associationData.getAssociationsByFilter(search, filter);
+            }
+            return View(associations);
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-
-            return View();
+            association = associationData.getAssociationById(id);
+            return View(association);
         }
 
         // GET: Employee/Create

@@ -56,21 +56,6 @@ namespace OCFG.Models
         }
 
         public Employee(int id, string name, string lastName, string idCard, string address,
-            string phoneNumber, string email, DateTime dateIn, DateTime dateOut, Officer officer, LinkedList<Canton> cantons)
-        {
-            this.id = id;
-            this.name = name;
-            this.lastName = lastName;
-            this.idCard = idCard;
-            this.address = address;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-            this.dateIn = dateIn;
-            this.dateOut = dateOut;
-            this.officer = officer;
-            this.cantons2 = cantons2;
-        }
-        public Employee(int id, string name, string lastName, string idCard, string address,
           string phoneNumber, string email, DateTime dateIn, DateTime dateOut, Officer officer, string[] cantons2)
         {
             this.id = id;

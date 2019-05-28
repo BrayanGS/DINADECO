@@ -1,5 +1,4 @@
-﻿@model IEnumerable<OCFG.Models.Employee>
-
+﻿@model IEnumerable<OCFG.Models.Association>
 @using System.Linq
 
 <p>
@@ -18,23 +17,23 @@
                 <div class="col-md-2">
                     <h4>Filtrar por: </h4>
                 </div>
-                    <div class="col-md-3">
-                        <select name="filter">
-                            <option value="name">Nombre</option>
-                            <option value="cod">Código de Registro</option>
-                            <option value="canton">Cantón</option>
-                            <option value="region">Región</option>
-                            <option value="province">Provincia</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
-                               id="search" tabindex="2" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <button class="form-horizontal btn btn-default" type="submit">Buscar</button>
-                    </div>
+                <div class="col-md-3">
+                    <select name="filter">
+                        <option value="name">Nombre</option>
+                        <option value="cod">Código de Registro</option>
+                        <option value="canton">Cantón</option>
+                        <option value="region">Región</option>
+                        <option value="province">Provincia</option>
+                    </select>
                 </div>
+                <div class="col-md-2">
+                    <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
+                           id="search" tabindex="2" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="form-horizontal btn btn-default" type="submit">Buscar</button>
+                </div>
+            </div>
         </form>
         <div>
             <table class="table">
@@ -66,39 +65,30 @@
                 {
                     foreach (var item in Model)
                     {
-
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdCard)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Canton)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Modificar", "Edit", new { id = item.IdCard})
-                        </td>
-                    </tr>
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.RegistryCode)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdCard)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Canton)
                             </td>
                             <td>
-                                @Html.ActionLink("Modificar", "Edit", new { id = item.IdCard })
+                                @Html.DisplayFor(modelItem => item.Region)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Province)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Modificar", "Edit", new { id = item.RegistryCode })
                             </td>
                         </tr>
                     }
@@ -108,38 +98,31 @@
                 {
                     foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdCard)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Canton)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Insertar Nuevo Funcionario", "Create")
-                        </td>
-                        </tr >
-<tr>
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RegistryCode)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdCard)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Canton)
                             </td>
                             <td>
-                                @Html.ActionLink("Detalles", "Details", new { id = item. IdCard})
+                                @Html.DisplayFor(modelItem => item.Region)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Province)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalles", "Details", new { id = item.RegistryCode })
                             </td>
                         </tr>
                     }
