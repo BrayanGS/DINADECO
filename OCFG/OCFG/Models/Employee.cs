@@ -16,11 +16,33 @@ namespace OCFG.Models
         private DateTime dateOut;
         private Officer officer;
         private List<Canton> cantons;
+        private string name_employee;
+        private string last_name;
+        private string id_card;
+        private string phone_number;
+        private DateTime date_in;
 
         public Employee()
         {
         }
-            public Employee(int id, string name, string lastName, string idCard, string address, 
+
+        public Employee(DateTime dateOut, string phoneNumber)
+        {
+            this.dateOut = dateOut;
+            this.phoneNumber = phoneNumber;
+        }
+
+        public Employee(string name_employee, string last_name, string id_card, string phone_number, DateTime date_in, string email)
+        {
+            this.name_employee = name_employee;
+            this.last_name = last_name;
+            this.id_card = id_card;
+            this.phone_number = phone_number;
+            this.date_in = date_in;
+            this.email = email;
+        }
+
+        public Employee(int id, string name, string lastName, string idCard, string address, 
             string phoneNumber, string email, DateTime dateIn, DateTime dateOut,  Officer officer, List<Canton> cantons)
         {
             this.id = id;

@@ -13,15 +13,15 @@
         <h2>Detalles de la asociación </h2>
     </div>
     <hr />
-    <dl class="dl-horizontal">
+    <div class="dl-horizontal">
         <div class="row">
             <div class="col-md-3 text-center">
-                <dt>
+                <td>
                     @Html.DisplayNameFor(model => model.RegistryCode)
-                </dt>
-                <dd>
+                </td>
+                <tr>
                     @Html.DisplayFor(model => model.RegistryCode)
-                </dd>
+                </tr>
             </div>
             <div class="col-md-3 text-center">
                 <dt>
@@ -226,7 +226,7 @@
             </div>
         </div>
 
-    </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Search")
