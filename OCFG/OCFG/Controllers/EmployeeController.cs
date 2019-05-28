@@ -11,6 +11,7 @@ namespace OCFG.Controllers
     public class EmployeeController : Controller
     {
         EmployeeData employeeData = new EmployeeData();
+        AssociationData associationData = new AssociationData();
         Association association = new Association();
 
         // GET: Employee
@@ -35,15 +36,15 @@ namespace OCFG.Controllers
 
             if (!String.IsNullOrEmpty(search))
             {
-                associations = employeeData.getAssociationsByFilter(search, filter);
+                associations = associationData.getAssociationsByFilter(search, filter);
             }
             return View(associations);
-        }*/
+        }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-            association = employeeData.getAssociationById(id);
+            association = associationData.getAssociationById(id);
             return View(association);
         }
 
@@ -101,28 +102,8 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                for (int i = 0; i < cantons.Length; i++)
-                {
-                    canton.Id = i;
-                    canton.Name = cantons[i];
-                    cantons1.Insert(i,canton);
-    
-                }
-
-                DateTime dateOut = new DateTime(0001,1,1);
-                Officer officer = new Officer(0, null, null, null);
-                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, cantons1);
-                employeeData.insertEmployee(employeeInsert);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
                 return View();
-            }
+            
         }
     }
 }

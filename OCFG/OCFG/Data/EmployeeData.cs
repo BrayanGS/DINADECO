@@ -55,29 +55,35 @@ namespace OCFG.Data
                     sqlConnection.Close();
                 }
             }
-            return listAssociations;
         }
 
-       
+
         public Boolean ExistAssociation(int code)
         {
             Boolean exist = false;
 
+            string query1;
 
-                for (int i = 0; i < employee.Canton.Count; i++)
-                {
-                    string query3 = "Update Canton set id_employee=" + idEmployee+" where name_canton ='" + employee.Canton[i].Name + "'";
-                    SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
-                    sqlSelect3.ExecuteNonQuery();
-                }
-             
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                SqlTransaction transaction = null;
+
+                query1 = "SELECT COUNT(*) FROM Association WHERE registry_code =" + code;
+
                 try
                 {
-                   
+                    sqlConnection.Open();
+                    SqlCommand sqlSelect = new SqlCommand(query1, sqlConnection);
+                    sqlSelect.ExecuteNonQuery();
+                    SqlDataReader rdr = sqlSelect.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        int numAssociations = (int)rdr["numAssociations"];
+                        if (numAssociations > 0) exist = true;
+                    }
                     sqlConnection.Close();
                     transaction.Commit();
                 }
-
                 catch (SqlException ex)
                 {
                     if (transaction != null)
@@ -96,6 +102,7 @@ namespace OCFG.Data
                 }
             }
 
+            return exist;
         }
 
         private int getIdEmployee(string idCard)
