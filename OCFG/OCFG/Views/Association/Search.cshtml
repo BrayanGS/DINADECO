@@ -4,13 +4,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<h1>Insertar información de asociación</h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <br/>
-        <h2>Búsqueda de Asociaciones</h2>
+        <header>
+            <h4>Búsqueda de Asociaciones</h4>
+        </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
             <h4>Filtrar por: </h4>
@@ -60,40 +62,12 @@
                 </tr>
                 @if (!Model.Any())
                 {
-                    foreach (var item in Model)
-                    {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RegistryCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Canton)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Region)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Province)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Modificar", "Edit", new { id = item.RegistryCode })
-                    </td>
-                </tr>
-                    }
                     <tr><td colspan="4">No hay datos disponibles</td></tr>
                 }
                 else
                 {
-                    foreach (var item in Model){
+                    foreach (var item in Model)
+                {
 
                     <tr>
                         <td>
