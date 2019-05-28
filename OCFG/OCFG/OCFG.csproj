@@ -175,6 +175,7 @@
     <Content Include="Content\image\logDinadeco.png" />
     <Content Include="Content\image\search here.jpeg" />
     <Content Include="Content\image\unlock-icon.png" />
+    <Content Include="Content\image\user-login.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +213,8 @@
     <Content Include="Views\Association\Search.cshtml" />
     <Content Include="Views\Administrator\Menu.cshtml" />
     <Content Include="Views\Employee\Search.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
