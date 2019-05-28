@@ -69,12 +69,14 @@ namespace OCFG.Data
 
                 query1 = "SELECT COUNT(*) FROM Association WHERE registry_code =" + code;
 
-                for (int i = 0; i < employee.Canton.Count; i++)
+                foreach (var item in employee.Canton2)
                 {
-                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + employee.Canton[i].Name + "'";
+                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + item + "'";
                     SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
                     sqlSelect3.ExecuteNonQuery();
+
                 }
+
 
                 try
                 {

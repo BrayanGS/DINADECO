@@ -43,9 +43,10 @@ namespace OCFG.Data
                 int idEmployee = getIdEmployee(employee.IdCard);
 
 
-                for (int i = 0; i < employee.Canton.Count; i++)
+                foreach (var item in employee.Canton)
+
                 {
-                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + employee.Canton[i].Name + "'";
+                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + item.Name + "'";
                     SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
                     sqlSelect3.ExecuteNonQuery();
                 }
@@ -152,7 +153,7 @@ namespace OCFG.Data
         /// </summary>
         /// <param name="idCardEmployee"></param>
         /// <returns></returns>
-        public Employee getEmployeeByIdCard(string idCardEmployee)
+       public Employee getEmployeeByIdCard(string idCardEmployee)
         {
             Employee employee = null;
 
@@ -177,7 +178,7 @@ namespace OCFG.Data
                         DateTime date_in = reader.GetDateTime(4);
                         string email = reader.GetString(5);
 
-                        employee = new Employee(name_employee, last_name, id_card, phone_number, date_in, email);
+                     //   employee = new Employee(name_employee, last_name, id_card, phone_number, date_in, email);
 
                     }
                     sqlConnection.Close();
@@ -185,6 +186,7 @@ namespace OCFG.Data
                 return employee;
             }
         }
+    
 
         /// <summary>
         /// 
