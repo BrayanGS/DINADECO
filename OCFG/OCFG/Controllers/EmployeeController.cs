@@ -11,6 +11,7 @@ namespace OCFG.Controllers
     public class EmployeeController : Controller
     {
         EmployeeData employeeData = new EmployeeData();
+        AssociationData associationData = new AssociationData();
         Association association = new Association();
 
         // GET: Employee

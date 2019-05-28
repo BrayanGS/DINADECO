@@ -1,4 +1,5 @@
 ﻿using OCFG.Data;
+using OCFG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace OCFG.Controllers
     public class LoginController : Controller
     {
         LoginData loginData = new LoginData();
+        Officer officer = new Officer();
 
         // GET: Login
         public ActionResult Index()
@@ -44,7 +46,9 @@ namespace OCFG.Controllers
                 {
                     return RedirectToAction("Search", "Employee");
                 }
-                return RedirectToAction("Create");
+                else { 
+                return View();
+                }
             }
             catch
             {

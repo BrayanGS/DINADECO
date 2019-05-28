@@ -52,6 +52,7 @@ namespace OCFG.Data
                 sqlSelect1.ExecuteNonQuery();
                 int idEmployee = getIdEmployee(employee.IdCard);
 
+            string query1;
 
                 foreach (var item in employee.Canton2)
                 {
@@ -68,7 +69,6 @@ namespace OCFG.Data
                     sqlConnection.Close();
                     transaction.Commit();
                 }
-
                 catch (SqlException ex)
                 {
                     if (transaction != null)
@@ -87,6 +87,7 @@ namespace OCFG.Data
                 }
             }
 
+            return exist;
         }
 
         private int getIdEmployee(string idCard)

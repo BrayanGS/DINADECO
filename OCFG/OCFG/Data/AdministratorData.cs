@@ -88,7 +88,7 @@ namespace OCFG.Data
         /// </summary>
         /// <param name="idCardEmployee"></param>
         /// <returns></returns>
-        public Employee getEmployeeByIdCard(string idCardEmployee)
+       public Employee getEmployeeByIdCard(string idCardEmployee)
         {
             Employee employee = null;
 
@@ -121,6 +121,7 @@ namespace OCFG.Data
                 return employee;
             }
         }
+    
 
         /// <summary>
         /// 
