@@ -9,36 +9,39 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav  class="navbar navbar-expand-xl">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4" align="left">
                     <a href="~/Views/Home"><img src="~/Content/image/logDinadeco.png" alt="DINADECO" style="width:65%" /></a>
                 </div>
-                <div class="col-md-4">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Correo", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Transparencia", "About", "Home")</li>
-                            <li>@Html.ActionLink("Temática", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Quienes somos", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Servicios", "Contact", "Home")</li>
-                        </ul>
+                <div class="col-md-6" align="right">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>@Html.ActionLink("Correo", "Index", "Home")</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>@Html.ActionLink("Transparencia", "About", "Home")</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>@Html.ActionLink("Temática", "Contact", "Home")</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>@Html.ActionLink("Quienes somos", "Contact", "Home")</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>@Html.ActionLink("Servicios", "Contact", "Home")</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2" align="center">
                     <a href="#"><img src="~/Content/image/icoLog.png" alt="Log In" style="width:25%"/></a>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />

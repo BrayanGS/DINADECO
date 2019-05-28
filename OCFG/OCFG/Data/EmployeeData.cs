@@ -36,15 +36,6 @@ namespace OCFG.Data
                 string password = employee.PhoneNumber.Substring(0, 3) + employee.Name.Substring(0, 1) + employee.IdCard.Substring(0, 3) + employee.LastName.Substring(0, 1);
                 string rol = "Empleado";
 
-       
-        public Boolean ExistAssociation(int code)
-        {
-            Boolean exist = false;
-            Employee employee = new Employee;
-
-                for (int i = 0; i < employee.Canton.Count; i++)
-                {
-                    string query3 = "Update Canton set id_employee=" + employee.Id+" where name_canton ='" + employee.Canton[i].Name + "'";
                 query2 = "Insert into Officer(user_name, password_officer, rol) " +
                 "values ('" + user + "','" + password + "','" + rol + "')";
 
@@ -62,12 +53,14 @@ namespace OCFG.Data
                 int idEmployee = getIdEmployee(employee.IdCard);
 
 
-                for (int i = 0; i < employee.Canton.Count; i++)
+                foreach (var item in employee.Canton2)
                 {
-                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + employee.Canton[i].Name + "'";
+                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + item + "'";
                     SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
                     sqlSelect3.ExecuteNonQuery();
+
                 }
+
 
                 try
                 {

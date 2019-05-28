@@ -31,14 +31,14 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Search(string search, string filter)
         {
-           
+
             return View();
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-          
+
             return View();
         }
 
@@ -54,22 +54,12 @@ namespace OCFG.Controllers
         public ActionResult Create(string name, string lastName, string idCard, string address, string phoneNumber,
             string email, DateTime dateIn, string[] cantons)
         {
-            Canton canton = new Canton();
-            List<Canton> cantons1 = new List<Canton>();
             try
             {
 
-                for (int i = 0; i < cantons.Length; i++)
-                {
-                    canton.Id = i;
-                    canton.Name = cantons[i];
-                    cantons1.Insert(i, canton);
-
-                }
-
                 DateTime dateOut = new DateTime(0001, 1, 1);
                 Officer officer = new Officer(0, null, null, null);
-                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, cantons1);
+                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, cantons);
                 employeeData.insertEmployee(employeeInsert);
                 return RedirectToAction("Index");
             }
@@ -111,9 +101,9 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-           
-                return View();
-            
+
+            return View();
+
         }
     }
 }

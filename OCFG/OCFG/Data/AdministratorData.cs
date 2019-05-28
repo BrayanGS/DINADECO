@@ -12,70 +12,6 @@ namespace OCFG.Data
     {
         string connectionString = "Server=163.178.173.148; Database=OCFG_DataBase; Uid=lenguajesap; Pwd=lenguajesap;";
 
-        public void insertEmployee(Employee employee)
-        {
-
-
-            using (SqlConnection sqlConnection = getConnection())
-            {
-                SqlTransaction transaction = null;
-                string query1;
-                string query2;
-
-                string user = employee.Name.Substring(0, 3) + employee.LastName.Substring(0, 3) + employee.PhoneNumber.Substring(0, 3);
-                string password = employee.PhoneNumber.Substring(0, 3) + employee.Name.Substring(0, 1) + employee.IdCard.Substring(0, 3) + employee.LastName.Substring(0, 1);
-                string rol = "Empleado";
-
-                query2 = "Insert into Officer(user_name, password_officer, rol) " +
-                "values ('" + user + "','" + password + "','" + rol + "')";
-
-                sqlConnection.Open();
-                SqlCommand sqlSelect2 = new SqlCommand(query2, sqlConnection);
-                sqlSelect2.ExecuteNonQuery();
-                int idOfficer = getIdOfficer(user);
-                string formatted = employee.DateIn.ToString("dd/M/yyyy");
-
-                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, id_officer) " +
-                "values (" + "'" + employee.Name + "','" + employee.LastName + "','" + employee.IdCard + "','" + employee.PhoneNumber + "','"
-                + formatted + "','" + employee.Email + "'," + idOfficer + ")";
-                SqlCommand sqlSelect1 = new SqlCommand(query1, sqlConnection);
-                sqlSelect1.ExecuteNonQuery();
-                int idEmployee = getIdEmployee(employee.IdCard);
-
-
-                for (int i = 0; i < employee.Canton.Count; i++)
-                {
-                    string query3 = "Update Canton set id_employee=" + idEmployee + " where name_canton ='" + employee.Canton[i].Name + "'";
-                    SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
-                    sqlSelect3.ExecuteNonQuery();
-                }
-
-                try
-                {
-
-                    sqlConnection.Close();
-                    transaction.Commit();
-                }
-
-                catch (SqlException ex)
-                {
-                    if (transaction != null)
-                    {
-                        transaction.Rollback();
-                        throw ex;
-                    }
-                    throw ex;
-                }
-                finally
-                {
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
-                }
-            }
-
-        }
         private int getIdEmployee(string idCard)
         {
             int idEmployee = 0;
@@ -170,14 +106,14 @@ namespace OCFG.Data
                     while (reader.Read())
                     {
                         /*Employee*/
-                        string name_employee = reader.GetString(0);
-                        string last_name = reader.GetString(1);
-                        string id_card = reader.GetString(2);
-                        string phone_number = reader.GetString(3);
-                        DateTime date_in = reader.GetDateTime(4);
+                        string nameEmployee = reader.GetString(0);
+                        string lastName = reader.GetString(1);
+                        string idCard = reader.GetString(2);
+                        string phoneNumber = reader.GetString(3);
+                        DateTime dateIn = reader.GetDateTime(4);
                         string email = reader.GetString(5);
 
-                        employee = new Employee(name_employee, last_name, id_card, phone_number, date_in, email);
+                        employee = new Employee(nameEmployee, lastName, idCard, phoneNumber, dateIn, email);
 
                     }
                     sqlConnection.Close();
