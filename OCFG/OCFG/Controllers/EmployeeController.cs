@@ -1,100 +1,66 @@
-﻿using iTextSharp.text;
-using OCFG.Data;
+﻿using OCFG.Data;
 using OCFG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace OCFG.Controllers
 {
-    public class EmployeeController: Controller
+    public class EmployeeController : Controller
     {
         EmployeeData employeeData = new EmployeeData();
-        static Employee employee = new Employee();
-        static Officer officer = new Officer();
+        Association association = new Association();
 
-
-        // GET: Association
+        // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Association/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-
-        // GET: Association/Search
+        // GET: Employee/Search
         public ActionResult Search()
         {
             List<Association> associations = new List<Association>();
 
             return View(associations);
         }
-        
-     /*   // POST: Association/Search
 
+        // POST: Employee/Search
         [HttpPost]
         public ActionResult Search(string search, string filter)
         {
-            List<Employee> employees = new List<Employee>();
+            List<Association> associations = new List<Association>();
 
             if (!String.IsNullOrEmpty(search))
             {
-                employees = employeeData.getAssociationsByFilter(search, filter);
+                associations = employeeData.getAssociationsByFilter(search, filter);
             }
             return View(associations);
         }*/
 
-        /*
-        // GET: Association/Create
-        public ActionResult Create()
-
-
+        // GET: Employee/Details/5
+        public ActionResult Details(int id)
         {
-            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
-            pDFReportAssotiationForEmployee.generateReport();
-
-            return View();
-        }
-
-        // POST: Association/Create
-        [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string canton, string status, string active, string province)
-        {
-
-            try
-            {
-                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, null, null, null, null);
-                associationData.insertarAssociation(associationInsert);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Association/Edit/5
-        public ActionResult Edit(int id)
-        {
-            association = associationData.getAssociationById(id);
+            association = employeeData.getAssociationById(id);
             return View(association);
         }
 
-        // POST: Association/Edit/5
+        // GET: Employee/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Employee/Create
         [HttpPost]
-        public ActionResult Edit(Association assoUpdate)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
-                associationData.updateAssociation(assoUpdate);
+                // TODO: Add insert logic here
+
                 return RedirectToAction("Index");
             }
             catch
@@ -103,13 +69,35 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: Association/Delete/5
+        // GET: Employee/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Employee/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Association/Delete/5
+        // POST: Employee/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -124,6 +112,5 @@ namespace OCFG.Controllers
                 return View();
             }
         }
-        */
     }
 }

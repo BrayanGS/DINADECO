@@ -62,44 +62,7 @@ namespace OCFG.Data
             return listAssociations;
         }
 
-
-
-        public void updateAssociation(Association association)
-        {
-            using (SqlConnection sqlConnection = getConnection())
-            {
-                sqlConnection.Open();
-
-                string queryWork = "UPDATE WorkPlan SET assembly_date = '" + association.WorkPlan.AssemblyDate + "'" +
-                                   "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
-
-                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + association.EconomicReport.DateReceived + "', " +
-                                       " year = '" + association.EconomicReport.Year + "', " +
-                                       "balance = '" + association.EconomicReport.Balance + "'" +
-                                       "WHERE EconomicReport.id_economic = "+association.EconomicReport.Id;
-
-                string querySettlement = "UPDATE Settlement SET date_received = '" + association.Settlement.DateReceived + "', " +
-                                        "year = '" + association.Settlement.Year + "'" +
-                                        "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
-
-                string queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + association.ConcreteLiquidation.DateReceived + "', " +
-                                       "year = '" + association.ConcreteLiquidation.Year + "'" +
-                                       "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
-
-                SqlCommand sqlWork = new SqlCommand(queryWork, sqlConnection);
-                sqlWork.ExecuteNonQuery();
-
-                SqlCommand sqlEconomic = new SqlCommand(queryEconomic, sqlConnection);
-                sqlEconomic.ExecuteNonQuery();
-
-                SqlCommand sqlSettlement = new SqlCommand(querySettlement, sqlConnection);
-                sqlSettlement.ExecuteNonQuery();
-
-                SqlCommand sqlConcrete = new SqlCommand(queryConcrete, sqlConnection);
-                sqlConcrete.ExecuteNonQuery();
-
-            }
-        }
+       
         public Boolean ExistAssociation(int code)
         {
             Boolean exist = false;

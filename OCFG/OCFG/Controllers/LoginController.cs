@@ -11,25 +11,25 @@ namespace OCFG.Controllers
     {
         LoginData loginData = new LoginData();
 
-        // GET: Index
+        // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Index/Details/5
+        // GET: Login/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Index/Create
+        // GET: Login/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Index/Create
+        // POST: Login/Create
         [HttpPost]
         public ActionResult Create(string userName, string password)
         {
@@ -38,11 +38,11 @@ namespace OCFG.Controllers
                 string rol = loginData.getRolEmployee(userName, password);
                 if (rol.Equals("Administrador"))
                 {
-                    return RedirectToAction("Administrador/MenuAdministrator");
+                    return RedirectToAction("Menu", "Administrator");
                 }
                 else if (rol.Equals("Empleado"))
                 {
-                    return RedirectToAction("Empleado");
+                    return RedirectToAction("Search", "Employee");
                 }
                 return RedirectToAction("Create");
             }
@@ -52,13 +52,13 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: Index/Edit/5
+        // GET: Login/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Index/Edit/5
+        // POST: Login/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -74,13 +74,13 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: Index/Delete/5
+        // GET: Login/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Index/Delete/5
+        // POST: Login/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -173,6 +173,7 @@
     <Content Include="Content\image\logDinadeco.png" />
     <Content Include="Content\image\search here.jpeg" />
     <Content Include="Content\image\unlock-icon.png" />
+    <Content Include="Content\image\user-login.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -239,6 +240,8 @@
     <Content Include="Views\Association\Search.cshtml" />
     <Content Include="Views\Administrator\Menu.cshtml" />
     <Content Include="Views\Employee\Search.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />

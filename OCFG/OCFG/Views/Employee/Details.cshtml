@@ -1,0 +1,233 @@
+﻿@model OCFG.Models.Association
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h2>Detalles de la asociación </h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RegistryCode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RegistryCode)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Region)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Region)
+                </dd>
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Canton)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Canton)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Province)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Province)
+                </dd>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>_________________________________________________________________________________________ </h3>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <h3>Informe Economico</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3  text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EconomicReport.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EconomicReport.Status)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EconomicReport.Year)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EconomicReport.Year)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EconomicReport.Balance)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EconomicReport.Balance)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EconomicReport.DateReceived)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EconomicReport.DateReceived)
+                </dd>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>_________________________________________________________________________________________ </h3>
+            </div>
+        </div>
+        <div class="text-center">
+            <h3>Plan de trabajo en copia del acta confrontada</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.WorkPlan.AssemblyDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WorkPlan.AssemblyDate)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.WorkPlan.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WorkPlan.Status)
+                </dd>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>_________________________________________________________________________________________ </h3>
+            </div>
+        </div>
+        <div class="text-center">
+            <h3>Liquidacion del 2% ISR</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Settlement.DateReceived)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Settlement.DateReceived)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Settlement.Year)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Settlement.Year)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Settlement.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Settlement.Status)
+                </dd>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>_________________________________________________________________________________________ </h3>
+            </div>
+        </div>
+        <div class="text-center">
+            <h4>Liquidacion de cemento</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ConcreteLiquidation.DateReceived)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ConcreteLiquidation.DateReceived)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ConcreteLiquidation.Year)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ConcreteLiquidation.Year)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ConcreteLiquidation.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ConcreteLiquidation.Status)
+                </dd>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>_________________________________________________________________________________________ </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3  text-center">
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            </div>
+            <div class="col-md-3  text-center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Active)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Active)
+                </dd>
+            </div>
+        </div>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Search")
+</p>
