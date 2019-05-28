@@ -62,11 +62,11 @@ namespace OCFG.Data
         public Boolean ExistAssociation(int code)
         {
             Boolean exist = false;
-
+            Employee employee = new Employee;
 
                 for (int i = 0; i < employee.Canton.Count; i++)
                 {
-                    string query3 = "Update Canton set id_employee=" + idEmployee+" where name_canton ='" + employee.Canton[i].Name + "'";
+                    string query3 = "Update Canton set id_employee=" + employee.Id+" where name_canton ='" + employee.Canton[i].Name + "'";
                     SqlCommand sqlSelect3 = new SqlCommand(query3, sqlConnection);
                     sqlSelect3.ExecuteNonQuery();
                 }
