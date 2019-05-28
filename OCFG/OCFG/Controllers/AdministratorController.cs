@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OCFG.Data;
+using OCFG.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,60 @@ namespace OCFG.Controllers
 {
     public class AdministratorController : Controller
     {
+        AdministratorData administratorData = new AdministratorData();
+        EmployeeData employeeData = new EmployeeData();
+        static Employee employee = new Employee();
+        static Canton canton = new Canton();
+
         public ActionResult Menu()
         {
             return View();
         }
+
+        //GET: Administrator/Edit/111111111
+        public ActionResult Edit(string idCard)
+        {
+            employee = administratorData.getEmployeeByIdCard(idCard); 
+            return View(employee);
+        }
+
+        // POST: Asministrator/Edit/111111111
+        [HttpPost]
+        public ActionResult Edit(DateTime dateOut, string phoneNumber, Employee idEmployee)
+        {
+            employee = new Employee(dateOut, phoneNumber);
+            canton = new Canton(idEmployee);
+            try
+            {
+                administratorData.updateEmployee(employee, canton);
+                return RedirectToAction("Details","Administrator");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Administrator/Search
+        public ActionResult Search()
+        {
+            List<Employee> employees = new List<Employee>();
+
+            return View(employees);
+        }
+
+        // POST: Administrator/Search
+        [HttpPost]
+        public ActionResult Search(string idCard)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            if (!String.IsNullOrEmpty(idCard))
+            {
+                employees = administratorData.searchEmployeeByFilter(idCard);
+            }
+            return View(employees);
+        }
+
     }
 }

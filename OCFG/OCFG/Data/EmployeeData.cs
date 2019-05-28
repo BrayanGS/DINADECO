@@ -24,33 +24,44 @@ namespace OCFG.Data
 
         public void insertEmployee(Employee employee)
         {
-
-           
+            List<Association> listAssociations = new List<Association>();
             using (SqlConnection sqlConnection = getConnection())
             {
-                 SqlTransaction transaction = null;
-                 string query1;
-                 string query2;
-                
-                string user= employee.Name.Substring(0, 3)+ employee.LastName.Substring(0, 3)+ employee.PhoneNumber.Substring(0, 3);
-                string password = employee.PhoneNumber.Substring(0, 3) + employee.Name.Substring(0, 1)+ employee.IdCard.Substring(0, 3)+ employee.LastName.Substring(0, 1);
-                string rol = "Empleado";
-
-                query2 = "Insert into Officer(user_name, password_officer, rol) " +
-                "values ('" + user + "','" + password+ "','" + rol + "')";
-
                 sqlConnection.Open();
-                SqlCommand sqlSelect2 = new SqlCommand(query2, sqlConnection);
-                sqlSelect2.ExecuteNonQuery();
-                int idOfficer = getIdOfficer(user);
-                string formatted = employee.DateIn.ToString("dd/M/yyyy");
+                String query = "SELECT as.registry_code, as.name_association, as.canton, as.region, " +
+                               "wr.assembly_date,as.status FROM Association as, WorkPlan wp" +
+                               "WHERE as.id_work = wp.id_work";
 
-                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, id_officer) " +
-                "values (" + "'" + employee.Name + "','" + employee.LastName + "','" + employee.IdCard + "','" + employee.PhoneNumber + "','"
-                + formatted + "','" + employee.Email + "'," + idOfficer + ")";
-                SqlCommand sqlSelect1 = new SqlCommand(query1, sqlConnection);
-                sqlSelect1.ExecuteNonQuery();
-                int idEmployee = getIdEmployee(employee.IdCard);
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Association association = null;
+                    WorkPlan workPlan = null;
+                    while (reader.Read())
+                    {
+                        association = new Association();
+                        workPlan = new WorkPlan();
+                        association.RegistryCode = reader.GetInt32(1);
+                        association.Name = reader.GetString(2);
+                        association.Canton = reader.GetString(3);
+                        association.Region = reader.GetString(4);
+                        workPlan.AssemblyDate = reader.GetString(5);
+                        association.Status = reader.GetString(6);
+
+                        //association.RegistryCode = getAssociationById(registryCode);
+
+                        listAssociations.Add(association);
+                    }
+                    sqlConnection.Close();
+                }
+            }
+            return listAssociations;
+        }
+
+       
+        public Boolean ExistAssociation(int code)
+        {
+            Boolean exist = false;
 
 
                 for (int i = 0; i < employee.Canton.Count; i++)
