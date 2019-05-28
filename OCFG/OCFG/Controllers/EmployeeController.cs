@@ -17,113 +17,123 @@ namespace OCFG.Controllers
         static Officer officer = new Officer();
 
 
-        // GET: Association
+        // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Association/Details/5
+        // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
 
-        // GET: Association/Search
+        // GET: Employee/Search
         public ActionResult Search()
         {
             List<Association> associations = new List<Association>();
 
             return View(associations);
         }
-        
-        // POST: Association/Search
 
-        [HttpPost]
-        public ActionResult Search(string search, string filter)
-        {
-            List<Employee> employees = new List<Employee>();
+        // GET: Employee/Create
+        public ActionResult Create(){
 
-            if (!String.IsNullOrEmpty(search))
-            {
-                employees = employeeData.getAssociationsByFilter(search, filter);
-            }
-            return View(associations);
+            return View();
         }
 
+        // POST: Employee/Create
+        [HttpPost]
+        public ActionResult Create(string name, string lastName, string idCard, string address, string phoneNumber,
+            string email, DateTime dateIn, string[] cantons)
+        {
+            Canton canton = new Canton();
+            List<Canton> cantons1 = new List<Canton>();
+            try
+            {
+
+                for (int i = 0; i < cantons.Length; i++)
+                {
+                    canton.Id = i;
+                    canton.Name = cantons[i];
+                    cantons1.Insert(i,canton);
+    
+                }
+
+                DateTime dateOut = new DateTime(0001,1,1);
+                Officer officer = new Officer(0, null, null, null);
+                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, cantons1);
+                employeeData.insertEmployee(employeeInsert);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         /*
-        // GET: Association/Create
-        public ActionResult Create()
+     // POST: Association/Search
+
+     [HttpPost]
+     public ActionResult Search(string search, string filter)
+     {
+         List<Employee> employees = new List<Employee>();
+
+         if (!String.IsNullOrEmpty(search))
+         {
+             employees = employeeData.getAssociationsByFilter(search, filter);
+         }
+         return View(associations);
+     }
 
 
-        {
-            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
-            pDFReportAssotiationForEmployee.generateReport();
+     
 
-            return View();
-        }
+     // GET: Association/Edit/5
+     public ActionResult Edit(int id)
+     {
+         association = associationData.getAssociationById(id);
+         return View(association);
+     }
 
-        // POST: Association/Create
-        [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string canton, string status, string active, string province)
-        {
+     // POST: Association/Edit/5
+     [HttpPost]
+     public ActionResult Edit(Association assoUpdate)
+     {
+         try
+         {
+             associationData.updateAssociation(assoUpdate);
+             return RedirectToAction("Index");
+         }
+         catch
+         {
+             return View();
+         }
+     }
 
-            try
-            {
-                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, null, null, null, null);
-                associationData.insertarAssociation(associationInsert);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+     // GET: Association/Delete/5
+     public ActionResult Delete(int id)
+     {
+         return View();
+     }
 
-        // GET: Association/Edit/5
-        public ActionResult Edit(int id)
-        {
-            association = associationData.getAssociationById(id);
-            return View(association);
-        }
+     // POST: Association/Delete/5
+     [HttpPost]
+     public ActionResult Delete(int id, FormCollection collection)
+     {
+         try
+         {
+             // TODO: Add delete logic here
 
-        // POST: Association/Edit/5
-        [HttpPost]
-        public ActionResult Edit(Association assoUpdate)
-        {
-            try
-            {
-                associationData.updateAssociation(assoUpdate);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Association/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Association/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        */
+             return RedirectToAction("Index");
+         }
+         catch
+         {
+             return View();
+         }
+     }
+     */
     }
 }
