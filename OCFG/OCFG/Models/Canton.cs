@@ -16,6 +16,11 @@ namespace OCFG.Models
 
         }
 
+        public Canton(Employee employee)
+        {
+            this.employee = employee;
+        }
+
         public Canton(int id, string name, Employee employee)
         {
             this.id = id;

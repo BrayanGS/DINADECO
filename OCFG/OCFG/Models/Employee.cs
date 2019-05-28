@@ -14,12 +14,35 @@ namespace OCFG.Models
         private DateTime dateIn;
         private DateTime dateOut;
         private Officer officer;
+        private string email;
+        private string name_employee;
+        private string last_name;
+        private string id_card;
+        private string phone_number;
+        private DateTime date_in;
 
         public Employee()
         {
         }
-            public Employee(int id, string name, string lastName, string idCard, string address, 
-            string phoneNumber, DateTime dateIn, DateTime dateOut,  Officer officer)
+
+        public Employee(DateTime dateOut, string phoneNumber)
+        {
+            this.dateOut = dateOut;
+            this.phoneNumber = phoneNumber;
+        }
+
+        public Employee(string name_employee, string last_name, string id_card, string phone_number, DateTime date_in, string email)
+        {
+            this.name_employee = name_employee;
+            this.last_name = last_name;
+            this.id_card = id_card;
+            this.phone_number = phone_number;
+            this.date_in = date_in;
+            this.email = email;
+        }
+
+        public Employee(int id, string name, string lastName, string idCard, string address, 
+            string phoneNumber, DateTime dateIn, DateTime dateOut,  Officer officer, string email)
         {
             this.id = id;
             this.name = name;
@@ -30,6 +53,7 @@ namespace OCFG.Models
             this.dateIn = dateIn;
             this.dateOut = dateOut;
             this.officer = officer;
+            this.email = email;
         }
 
         public int Id { get => id; set => id = value; }
@@ -41,5 +65,6 @@ namespace OCFG.Models
         public DateTime DateIn { get => dateIn; set => dateIn = value; }
         public DateTime DateOut { get => dateOut; set => dateOut = value; }
         public Officer Officer { get => officer; set => officer = value; }
+        public string Email { get => email; set => email = value; }
     }
 }

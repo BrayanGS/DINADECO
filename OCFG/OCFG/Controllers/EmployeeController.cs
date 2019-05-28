@@ -38,7 +38,7 @@ namespace OCFG.Controllers
             return View(associations);
         }
         
-        // POST: Association/Search
+     /*   // POST: Association/Search
 
         [HttpPost]
         public ActionResult Search(string search, string filter)
@@ -50,7 +50,7 @@ namespace OCFG.Controllers
                 employees = employeeData.getAssociationsByFilter(search, filter);
             }
             return View(associations);
-        }
+        }*/
 
         /*
         // GET: Association/Create
