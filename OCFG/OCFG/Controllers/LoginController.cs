@@ -28,6 +28,7 @@ namespace OCFG.Controllers
         // GET: Login/Create
         public ActionResult Create()
         {
+            ViewData["message"] = " ";
             return View();
         }
 
@@ -46,8 +47,9 @@ namespace OCFG.Controllers
                 {
                     return RedirectToAction("Search", "Employee");
                 }
-                else { 
-                return View();
+                else {
+                    ViewData["message"] = "No se encuentre registrado";
+                    return View();
                 }
             }
             catch

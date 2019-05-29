@@ -1,4 +1,7 @@
 ﻿@model OCFG.Models.Employee
+@{
+    var cantones = (List<OCFG.Models.Canton>)ViewData["cantones"];
+}
 
 <h2>Insertar información de un funcionario</h2>
 
@@ -34,7 +37,7 @@
                     <input type="tel" name="phoneNumber" pattern="\[0-9]{4}[-][0-9]{4}" title="Un número de teléfono válido consta de los tres cuatro dígitos del número, un guión (-) y cuatro dígitos más"
                            id="idCard" placeholder="8587-4387" tabindex="2" min="1" class="form-control">
                 </div>
-                
+
             </div>
             <div style="width:50%; float:right;">
                 <div class="form-group">
@@ -49,12 +52,10 @@
                 </div>
                 <p>
                     Cantones:<br>
-
-                    <input type="checkbox" name="cantons" value="Alvarado">Cantón de Alvarado<br>
-
-                    <input type="checkbox" name="cantons" value="Central">Cantón Central<br>
-
-                    <input type="checkbox" name="cantons" value="Guarco"> Guarco
+                    @foreach (var canton in cantones)
+                    {
+                        <input type="checkbox" name="cantons" value="canton">@Html.DisplayFor(modelItem => canton.Name)<br>
+                    }
 
                 </p>
 
