@@ -71,10 +71,10 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection()) {
                 sqlConnection.Open();
 
-                string queryEmployee = "UPDATE Employee SET date_out " + employee.DateOut + " " +
-                                       " phone_number = " + employee.PhoneNumber+" ";
+                string queryEmployee = "UPDATE Employee SET date_out '" + employee.DateOut + "' " +
+                                       " phone_number = '" + employee.PhoneNumber+"' WHERE id_employee = '" +employee.Id+"'";
                 string queryCanton = "UPDATE Cantons SET id_employee " + canton.Employee.Id + " " +
-                                     " WHERE id_employee = " + employee.Id + "";
+                                     " WHERE id_employee = '" + employee.Id + "' ";
 
                 SqlCommand sqlEmployee = new SqlCommand(queryEmployee, sqlConnection);
                 sqlEmployee.ExecuteNonQuery();
@@ -88,7 +88,7 @@ namespace OCFG.Data
         /// </summary>
         /// <param name="idCardEmployee"></param>
         /// <returns></returns>
-       public Employee getEmployeeByIdCard(string idCardEmployee)
+        public Employee getEmployeeByIdCard(string idCardEmployee)
         {
             Employee employee = null;
 
@@ -98,22 +98,21 @@ namespace OCFG.Data
 
                 String query = "SELECT e.name_employee, e.last_name, e.id_card, e.phone_number, e.date_in , e.email" +
                                " FROM Employee e" +
-                               " WHERE e.id_card = '" + idCardEmployee+"';";
+                               " WHERE e.id_card = '" + idCardEmployee + "';";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        /*Employee*/
-                        string nameEmployee = reader.GetString(0);
-                        string lastName = reader.GetString(1);
-                        string idCard = reader.GetString(2);
-                        string phoneNumber = reader.GetString(3);
-                        DateTime dateIn = reader.GetDateTime(4);
-                        string email = reader.GetString(5);
-
-                        employee = new Employee(nameEmployee, lastName, idCard, phoneNumber, dateIn, email);
+                        /** Employee **/
+                        employee = new Employee();
+                        employee.Name = reader.GetString(0);
+                        employee.LastName = reader.GetString(1);
+                        employee.IdCard = reader.GetString(2);
+                        employee.PhoneNumber = reader.GetString(3);
+                        employee.DateIn = reader.GetDateTime(4);
+                        employee.Email = reader.GetString(5);
 
                     }
                     sqlConnection.Close();
@@ -121,7 +120,34 @@ namespace OCFG.Data
                 return employee;
             }
         }
-    
+
+        public Canton getCantonByIdEmployee(string idEmployee)
+        {
+            Canton canton = null;
+
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                String query = "SELECT c.name_canton" +
+                               " FROM Canton c" +
+                               " WHERE c.id_employee = '" + idEmployee+ "';";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        /** Employee **/
+                        canton = new Canton();
+                        canton.Name = reader.GetString(0);
+                    }
+                    sqlConnection.Close();
+                }
+                return canton;
+            }
+        }
+
 
         /// <summary>
         /// 
@@ -134,8 +160,10 @@ namespace OCFG.Data
                 using (SqlConnection sqlConnection = getConnection())
                 {
                     sqlConnection.Open();
-                    String query = "SELECT name, last_name, id_card, phone_number, email " +
-                                   "WHERE name ='" + search + "' or last_name='" + search + "' or id_card = '" + search + "'";
+                    String query = "SELECT name_employee, last_name, id_card, phone_number, email FROM Employee" +
+                                   " WHERE name_employee ='" + search + "' " +
+                                   " OR last_name='" + search + "' " +
+                                   " OR id_card = '" + search + "'";
 
                     SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                     using (SqlDataReader reader = sqlSelect.ExecuteReader())
@@ -155,6 +183,12 @@ namespace OCFG.Data
                     }
                 }
             return employees;
+        }
+
+        private string validateRol(string search)
+        {
+
+            return (search);
         }
 
         /// <summary>

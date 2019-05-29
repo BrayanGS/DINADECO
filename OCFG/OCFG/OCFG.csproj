@@ -139,6 +139,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PdfsController.cs" />
     <Compile Include="Data\AdministratorData.cs" />
+    <Compile Include="Data\CantonData.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Data\LoginData.cs" />

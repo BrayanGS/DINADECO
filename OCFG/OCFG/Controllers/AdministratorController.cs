@@ -21,9 +21,9 @@ namespace OCFG.Controllers
         }
 
         //GET: Administrator/Edit/111111111
-        public ActionResult Edit(string idCard)
+        public ActionResult Edit(string id)
         {
-            employee = administratorData.getEmployeeByIdCard(idCard); 
+            employee = administratorData.getEmployeeByIdCard(id); 
             return View(employee);
         }
 
