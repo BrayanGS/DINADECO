@@ -48,19 +48,18 @@ namespace OCFG.Controllers
         public ActionResult Search()
         {
             List<Employee> employees = new List<Employee>();
-
             return View(employees);
         }
 
         // POST: Administrator/Search
         [HttpPost]
-        public ActionResult Search(string idCard)
+        public ActionResult Search(string search)
         {
             List<Employee> employees = new List<Employee>();
 
-            if (!String.IsNullOrEmpty(idCard))
+            if (!String.IsNullOrEmpty(search))
             {
-                employees = administratorData.searchEmployeeByFilter(idCard);
+                employees = administratorData.searchEmployeeByFilter(search);
             }
             return View(employees);
         }

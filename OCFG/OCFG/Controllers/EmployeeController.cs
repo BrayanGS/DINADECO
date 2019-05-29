@@ -11,6 +11,7 @@ namespace OCFG.Controllers
     public class EmployeeController : Controller
     {
         EmployeeData employeeData = new EmployeeData();
+        AssociationData associationData = new AssociationData();
         Association association = new Association();
 
         // GET: Employee
@@ -31,15 +32,20 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Search(string search, string filter)
         {
-           
-            return View();
+            List<Association> associations = new List<Association>();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                associations = associationData.getAssociationsByFilter(search, filter);
+            }
+            return View(associations);
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-          
-            return View();
+            association = associationData.getAssociationById(id);
+            return View(association);
         }
 
         // GET: Employee/Create
@@ -101,9 +107,9 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-           
-                return View();
-            
+
+            return View();
+
         }
     }
 }
