@@ -155,13 +155,11 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PdfsController.cs" />
     <Compile Include="Data\AdministratorData.cs" />
     <Compile Include="Data\CantonData.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\AssociationData.cs" />
     <Compile Include="Data\LoginData.cs" />
-    <Compile Include="Data\PDFReportAssotiationForEmployee.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,7 +287,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Association\Create.cshtml" />
     <Content Include="Views\Association\Edit.cshtml" />
-    <Content Include="Views\PDFs\Index.cshtml" />
     <Content Include="Views\Association\Search.cshtml" />
     <Content Include="Views\Administrator\Menu.cshtml" />
     <Content Include="Views\Employee\Search.cshtml" />
@@ -309,9 +306,7 @@
     <Content Include="Views\Administrator\Search.cshtml" />
     <Content Include="Views\Administrator\Delete.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Document\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

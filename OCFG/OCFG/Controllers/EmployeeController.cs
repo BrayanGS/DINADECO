@@ -74,6 +74,8 @@ namespace OCFG.Controllers
             }
             catch
             {
+                List<Canton> cantons = cantonData.getCantonWithoutAssociation();
+                ViewData["cantons"] = cantons;
                 return View();
             }
         }

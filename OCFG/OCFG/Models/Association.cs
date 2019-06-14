@@ -19,7 +19,7 @@ namespace OCFG.Models
         private string superavit;
         private string adequacy;
         private string affiavit;
-        private string type;
+        private int type;
         private WorkPlan workPlan;
         private Settlement settlement;
         private EconomicReport economicReport;
@@ -32,7 +32,7 @@ namespace OCFG.Models
         }
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
-            string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, string type, 
+            string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, int type, 
             Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
             ConcreteLiquidation concreteLiquidation)
         {
@@ -70,7 +70,7 @@ namespace OCFG.Models
             this.concreteLiquidation = concreteLiquidation;
         }
 
-        public Association(int id, int registryCode, string name, string region, string canton, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, string type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
+        public Association(int id, int registryCode, string name, string region, string canton, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
             this.registryCode = registryCode;
@@ -107,7 +107,7 @@ namespace OCFG.Models
         public string Superavit { get => superavit; set => superavit = value; }
         public string Adequacy { get => adequacy; set => adequacy = value; }
         public string Affiavit { get => affiavit; set => affiavit = value; }
-        public string Type { get => type; set => type = value; }
+        public int Type { get => type; set => type = value; }
     }
 
 }

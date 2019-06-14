@@ -11,74 +11,81 @@
             <h2>Insertar nueva asociación</h2>
             <hr />
             <form name=formulario action="Association/Create" method="post" role="form" style="display: block;">
+                <div style="width:50%; float:left;">
+                    <div class="form-group">
+                        <h4>Código de registo: </h4>
+                        <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
+                               id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <h4>Nombre: </h4>
+                        <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
+                               id="name" tabindex="2" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <h6>Cédula Jurídica: </h6>
+                        <input type="text" required name="legalDocument" pattern="[1-9]{1}[-]\d{3}[-]\d{6}" placeholder="x-xxx-xxxxxx" title="En este espacio solo se permite ingresar números y '-', debe utilizar 
+                               el siguiente formato x-xxx-xxxxxx"
+                               id="legalDocument" tabindex="2" min="1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <h4>Selecione una región: </h4>
+                        <select name="region">
+                            <option value="Central Oriental">Central Oriental</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            Cantones:<br>
+                            @foreach (var canton in cantons)
+                            {
 
-                <div class="form-group">
-                    <h4>Código de registo: </h4>
-                    <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
-                           id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
+                                <input type="radio" name="ICanton" value="@canton.Name" />
+                                @canton.Name
+                                <br />
+                            }
+                        </p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <h4>Nombre: </h4>
-                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
-                           id="name" tabindex="2" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                    <h4>Selecione una región: </h4>
-                    <select name="region">
-                        <option value="Central Oriental">Central Oriental</option>
+                <div style="width:50%; float:right;">
+                    <h4>Seleccione una provincia</h4>
+                    <select name="province">
+                        <option value="Cartago">Cartago</option>
                     </select>
-                </div>
-                <br>
-                <br>
-                <div class="form-group">
-                    <p>
-                        Cantones:<br>
-                        @foreach (var canton in cantons)
-                        {
-
-                            <input type="radio" name="ICanton" value="@canton.Name" />
-                            @canton.Name
-                        }
-                    </p>
-                </div>
-                <br>
-                <br>
-                <h4>Seleccione una provincia</h4>
-                <select name="province">
-                    <option value="Cartago">Cartago</option>
-                </select>
-                <br>
-                <br>
-                <h4>Seleccione un estado</h4>
-                <select name="status">
-                    <option value="toTheDate">Al día</option>
-                    <option value="pending">Pendiente</option>
-                </select>
-                <br>
-                <br>
-                <h4>Seleccione la participación</h4>
-                <select name="active">
-                    <option value="active">Activa</option>
-                    <option value="inactive">Inactiva</option>
-                </select>
-
-                <br>
-                <div class=" form-group ">
-                    <div class="row ">
-                        <div class="col-sm-6 col-sm-offset-3 ">
-                            <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                    <br>
+                    <br>
+                    <h4>Seleccione un estado</h4>
+                    <select name="status">
+                        <option value="toTheDate">Al día</option>
+                        <option value="pending">Pendiente</option>
+                    </select>
+                    <br>
+                    <br>
+                    <h4>Seleccione la participación</h4>
+                    <select name="active">
+                        <option value="active">Activa</option>
+                        <option value="inactive">Inactiva</option>
+                    </select>
+                    <br>
+                    <h4>Seleccione el tipo</h4>
+                    <select name="type">
+                        <option value="1">ASOCIACIÓN DE DESARROLLO ESPECÍFICAPRO</option>
+                        <option value="2">ASOCIACIÓN DE DESARROLLO INTEGRAL</option>
+                        <option value="3">UNION ZONAL</option>
+                        <option value="4">FEDERACION DE UNIONES</option>
+                        <option value="6">ASOCIACION DE DESARROLLO INTEGRAL DE RESERVA INDIGENA</option>
+                        <option value="10">DISUELTA</option>
+                    </select>
+                    <br>
+                    <div class=" form-group ">
+                        <div class="row ">
+                            <div class="col-sm-6 col-sm-offset-3 ">
+                                <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
-            <form class="text-center" asp-controller="AssociationController" asp-action="Create" method="get">
-
-                <a href="~/Document/ReporteGeneral.pdf" download="Reporte General.pdf">
-                    Descargar Reporte
-                </a>
-
-            </form>
-
         </div>
 
     }
