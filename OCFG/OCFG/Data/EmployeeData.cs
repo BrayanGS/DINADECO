@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Web;
+using System.Net.Mail;
 
 namespace OCFG.Data
 {
@@ -34,6 +32,7 @@ namespace OCFG.Data
 
                 string user = employee.Name.Substring(0, 3) + employee.LastName.Substring(0, 3) + employee.PhoneNumber.Substring(0, 3);
                 string password = employee.PhoneNumber.Substring(0, 3) + employee.Name.Substring(0, 1) + employee.IdCard.Substring(0, 3) + employee.LastName.Substring(0, 1);
+                generarCorreo(employee.Email, user, password, employee.Name + " " + employee.LastName);
                 string rol = "Empleado";
 
                 query2 = "Insert into Officer(user_name, password_officer, rol) " +
@@ -60,7 +59,7 @@ namespace OCFG.Data
                     sqlSelect3.ExecuteNonQuery();
 
                 }
-
+              
 
                 try
                 {
@@ -89,7 +88,39 @@ namespace OCFG.Data
 
         }
 
-        private int getIdEmployee(string idCard)
+
+
+
+            public void generarCorreo(string email, string username, string password, string nameClient)
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add(email);
+                mail.From = new MailAddress(email);
+                mail.Subject = "Correo DINADECO";
+                mail.Body = "Buenas " + nameClient + " sus datos para ingresar a la plataforma DINADECO son: " +
+                    " USUARIO: " + username + " CONTRASEÑA: " + password + "";
+
+
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Credentials = new System.Net.NetworkCredential("dinadecoprueba@gmail.com", "DINADECO123cartago");
+                smtp.EnableSsl = true;
+
+                try
+                {
+                    smtp.Send(mail);
+                    mail.Dispose();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            
+
+    private int getIdEmployee(string idCard)
         {
             int idEmployee = 0;
             using (SqlConnection sqlConnection = getConnection())

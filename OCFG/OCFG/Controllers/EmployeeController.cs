@@ -13,6 +13,7 @@ namespace OCFG.Controllers
         EmployeeData employeeData = new EmployeeData();
         AssociationData associationData = new AssociationData();
         Association association = new Association();
+        CantonData cantonData = new CantonData();
 
         // GET: Employee
         public ActionResult Index()
@@ -48,24 +49,26 @@ namespace OCFG.Controllers
             return View(association);
         }
 
+
         // GET: Employee/Create
         public ActionResult Create()
         {
-
+            List<Canton> cantons = cantonData.getCantonWithoutAssociation();
+            ViewData["cantons"] = cantons;
             return View();
         }
 
         // POST: Employee/Create
         [HttpPost]
         public ActionResult Create(string name, string lastName, string idCard, string address, string phoneNumber,
-            string email, DateTime dateIn, string[] cantons)
+            string email, DateTime dateIn, string[] ICanton)
         {
             try
             {
 
                 DateTime dateOut = new DateTime(0001, 1, 1);
                 Officer officer = new Officer(0, null, null, null);
-                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, cantons);
+                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, ICanton);
                 employeeData.insertEmployee(employeeInsert);
                 return RedirectToAction("Index");
             }

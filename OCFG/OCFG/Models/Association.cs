@@ -15,10 +15,16 @@ namespace OCFG.Models
         private string status;
         private string active;
         private string province;
+        private string legalDocumet;
+        private string superavit;
+        private string adequacy;
+        private string affiavit;
+        private string type;
         private WorkPlan workPlan;
         private Settlement settlement;
         private EconomicReport economicReport;
         private ConcreteLiquidation concreteLiquidation;
+        private string legalDocument;
 
         public Association()
         {
@@ -26,7 +32,8 @@ namespace OCFG.Models
         }
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
-            string active, string province, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
+            string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, string type, 
+            Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
             ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
@@ -37,20 +44,23 @@ namespace OCFG.Models
             this.status = status;
             this.active = active;
             this.province = province;
+            this.legalDocumet = legalDocumet;
+            this.superavit = superavit;
+            this.adequacy = adequacy;
+            this.affiavit = affiavit;
+            this.type = type;
             this.workPlan = workPlan;
             this.settlement = settlement;
             this.economicReport = economicReport;
             this.concreteLiquidation = concreteLiquidation;
         }
 
-        public Association(int registryCode, string name, string region, string canton, string status,
-            string active, string province, WorkPlan workPlan, EconomicReport economicReport, Settlement settlement,
-            ConcreteLiquidation concreteLiquidation)
+        public Association(int registryCode, string name, string canton, string region, string status, string active, string province, WorkPlan workPlan, EconomicReport economicReport, Settlement settlement, ConcreteLiquidation concreteLiquidation)
         {
             this.registryCode = registryCode;
             this.name = name;
-            this.region = region;
             this.canton = canton;
+            this.region = region;
             this.status = status;
             this.active = active;
             this.province = province;
@@ -60,9 +70,7 @@ namespace OCFG.Models
             this.concreteLiquidation = concreteLiquidation;
         }
 
-        public Association(int id, int registryCode, string name, string region, string canton, string status, 
-            string active, string province, Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, 
-            ConcreteLiquidation concreteLiquidation)
+        public Association(int id, int registryCode, string name, string region, string canton, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, string type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
         {
             this.id = id;
             this.registryCode = registryCode;
@@ -72,6 +80,11 @@ namespace OCFG.Models
             this.status = status;
             this.active = active;
             this.province = province;
+            this.legalDocument = legalDocument;
+            this.superavit = superavit;
+            this.adequacy = adequacy;
+            this.affiavit = affiavit;
+            this.type = type;
             this.workPlan = workPlan;
             this.settlement = settlement;
             this.economicReport = economicReport;
@@ -90,7 +103,11 @@ namespace OCFG.Models
         public Settlement Settlement { get => settlement; set => settlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
         public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
-        
+        public string LegalDocumet { get => legalDocumet; set => legalDocumet = value; }
+        public string Superavit { get => superavit; set => superavit = value; }
+        public string Adequacy { get => adequacy; set => adequacy = value; }
+        public string Affiavit { get => affiavit; set => affiavit = value; }
+        public string Type { get => type; set => type = value; }
     }
 
 }

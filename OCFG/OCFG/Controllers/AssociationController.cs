@@ -18,6 +18,7 @@ namespace OCFG.Controllers
         static Settlement settlement = new Settlement();
         static ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation();
         static EconomicReport economicReport = new EconomicReport();
+        CantonData cantonData = new CantonData();
 
         // GET: Association
         public ActionResult Index()
@@ -58,20 +59,23 @@ namespace OCFG.Controllers
 
 
         {
+            List<Canton> cantons = cantonData.getAll();
+            ViewData["cantons"] = cantons;
+
             PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
             pDFReportAssotiationForEmployee.generateReport();
 
-                return View();
+            return View();
         }
 
         // POST: Association/Create
         [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province)
+        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province, string legalDocument, string type )
         {
-            
             try
             {
-                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, null, null, null, null);
+              
+                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, legalDocument,null,null,null, type, null, null, null, null,null);
                 associationData.insertarAssociation(associationInsert);
                 return RedirectToAction("Index");
             }
