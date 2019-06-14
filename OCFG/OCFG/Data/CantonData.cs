@@ -47,6 +47,34 @@ namespace OCFG.Data
             return list;
 
         }
+
+        public List<Canton> getAll()
+        {
+            List<Canton> list = new List<Canton>();
+
+            using (SqlConnection sqlCon = getConnection())
+            {
+                sqlCon.Open();
+                String query = "Select name_canton from Canton;";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlCon);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Canton canton = null;
+                    while (reader.Read())
+                    {
+                        canton = new Canton();
+                        canton.Name = reader.GetString(0);
+
+                        list.Add(canton);
+
+                    }
+                    sqlCon.Close();
+                }
+            }
+            return list;
+
+        }
     }
 }
 

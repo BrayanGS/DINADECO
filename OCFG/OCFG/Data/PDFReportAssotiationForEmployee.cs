@@ -31,7 +31,7 @@ namespace OCFG.Data
                 Document doc = new Document();
 
                 conn.Open();
-                string fileName = @"C:\DINADECO\DINADECO\OCFG\OCFG\Document\ReporteGeneral.pdf";
+                string fileName = @"Descargas\ReporteGeneral.pdf";
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@fileName, FileMode.Create));
                 doc.Open();
 
@@ -99,13 +99,17 @@ namespace OCFG.Data
                         //Obtengo asociacion
                         int id = reader.GetInt32(0);
                         int registryCode = reader.GetInt32(1);
-                        string name = reader.GetString(2);
-                        string region = reader.GetString(3);
-                        string canton = reader.GetString(4);
-                        string status = reader.GetString(5);
-                        string active = reader.GetString(6);
-                        string province = reader.GetString(7);
-
+                        string type = reader.GetString(2);
+                        string name = reader.GetString(3);
+                        string region = reader.GetString(4);
+                        string canton = reader.GetString(5);
+                        string province = reader.GetString(6);
+                        string status = reader.GetString(7);
+                        string active = reader.GetString(8);
+                        string adequacy = reader.GetString(9);
+                        string affiavit = reader.GetString(10);
+                        string legalDocument = reader.GetString(15);
+                        string superavit = reader.GetString(16);
 
                         workPlan = new WorkPlan();
                         //work plan assotiation
@@ -141,8 +145,8 @@ namespace OCFG.Data
                         char[] cadConcrete = statusConcrete.ToCharArray();
                         concreteLiquidation.Status = cadConcrete[0];
 
-                        association = new Association(id, registryCode, name, region, canton, status, active, province,
-                            workPlan, settlement, economicReport, concreteLiquidation);
+                        association = new Association(id, registryCode, name, region, canton, status, active, province, legalDocument,  superavit,  adequacy,  affiavit,  type,
+                           workPlan, settlement, economicReport, concreteLiquidation);
 
                         assotiations.Add(association);
                     }

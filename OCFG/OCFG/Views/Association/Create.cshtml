@@ -1,10 +1,12 @@
 ﻿@model OCFG.Models.Association
 <h1>Insertar información de asociación</h1>
+@{
+    var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
+}
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
         <div class="form-horizontal">
             <h2>Insertar nueva asociación</h2>
             <hr />
@@ -21,59 +23,66 @@
                            id="name" tabindex="2" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                    <h4>Región: </h4>
-                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="region" title="En este espacio solo se permite ingresar letras"
-                           id="region" tabindex="2" class="form-control" placeholder="">
+                    <h4>Selecione una región: </h4>
+                    <select name="region">
+                        <option value="Central Oriental">Central Oriental</option>
+                    </select>
                 </div>
+                <br>
+                <br>
                 <div class="form-group">
-                    <h4>Selecione un cantón: </h4>
-                    <select name="canton">
-                        <option value="Alvarado">Cantón Alvarado</option>
-                        <option value="Central">Cantón Central</option>
-                        <option value="Guarco">Cantón el Guarco</option>
-                    </select>
-                    </div>
-                    <br>
-                    <br>
-                    <h4>Seleccione una provincia</h4>
-                    <select name="province">
-                        <option value="Cartago">Cartago</option>
-                    </select>
-                    <br>
-                    <br>
-                    <h4>Seleccione un estado</h4>
-                    <select name="status">
-                        <option value="toTheDate">Al día</option>
-                        <option value="pending">Pendiente</option>
-                    </select>
-                    <br>
-                    <br>
-                    <h4>Seleccione la participación</h4>
-                    <select name="active">
-                        <option value="active">Activa</option>
-                        <option value="inactive">Inactiva</option>
-                    </select>
-                    <br>
-                    <div class=" form-group ">
-                        <div class="row ">
-                            <div class="col-sm-6 col-sm-offset-3 ">
-                                <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
-                            </div>
+                    <p>
+                        Cantones:<br>
+                        @foreach (var canton in cantons)
+                        {
+
+                            <input type="radio" name="ICanton" value="@canton.Name" />
+                            @canton.Name
+                        }
+                    </p>
+                </div>
+                <br>
+                <br>
+                <h4>Seleccione una provincia</h4>
+                <select name="province">
+                    <option value="Cartago">Cartago</option>
+                </select>
+                <br>
+                <br>
+                <h4>Seleccione un estado</h4>
+                <select name="status">
+                    <option value="toTheDate">Al día</option>
+                    <option value="pending">Pendiente</option>
+                </select>
+                <br>
+                <br>
+                <h4>Seleccione la participación</h4>
+                <select name="active">
+                    <option value="active">Activa</option>
+                    <option value="inactive">Inactiva</option>
+                </select>
+
+                <br>
+                <div class=" form-group ">
+                    <div class="row ">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
                         </div>
                     </div>
-</form>
+                </div>
+            </form>
             <form class="text-center" asp-controller="AssociationController" asp-action="Create" method="get">
-                
+
                 <a href="~/Document/ReporteGeneral.pdf" download="Reporte General.pdf">
                     Descargar Reporte
                 </a>
 
             </form>
-                    
-        </div>
- 
-}
 
-<div>
-    @Html.ActionLink("Página principal", "Index", "Home")
-</div>
+        </div>
+
+    }
+
+    <div>
+        @Html.ActionLink("Página principal", "Index", "Home")
+    </div>

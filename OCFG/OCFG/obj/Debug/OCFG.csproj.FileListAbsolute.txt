@@ -267,7 +267,6 @@ C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.dll
 C:\DINADECO\DINADECO\OCFG\OCFG\bin\itextsharp.xml
 C:\DINADECO\OCFG\OCFG\bin\itextsharp.dll
 C:\DINADECO\OCFG\OCFG\bin\itextsharp.xml
-<<<<<<< HEAD
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Globalization.Calendars.dll
@@ -276,21 +275,81 @@ C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Http.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Sockets.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\roslyn\System.Threading.Tasks.Extensions.dll
-=======
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Globalization.Calendars.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Http.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Sockets.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\DINADECO\DINADECO\OCFG\OCFG\bin\roslyn\System.Threading.Tasks.Extensions.dll
->>>>>>> 542e13326c30cf898c4947624e1533f13117e664
-C:\DINADECO\OCFG\OCFG\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Globalization.Calendars.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Http.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Net.Sockets.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\DINADECO\OCFG\OCFG\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\SqlServerTypes\x64\msvcr120.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\SqlServerTypes\x86\msvcr120.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.Design.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.Build.Utilities.v3.5.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ADODB.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.Build.Framework.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\EnvDTE.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\stdole.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.ProjectAggregator.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Debugger.InteropA.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\EnvDTE80.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.Build.Tasks.Core.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Data.Services.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\VSLangProj.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Data.Core.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\VSLangProj80.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.ManagedInterfaces.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\System.Threading.Tasks.Dataflow.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.MSXML.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.Build.Utilities.Core.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\VSLangProj2.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.Build.Utilities.v3.5.xml
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.Build.Utilities.v3.5.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.VisualStudio.Data.Services.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.VisualStudio.Data.Core.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
