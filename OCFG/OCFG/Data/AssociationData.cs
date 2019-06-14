@@ -26,6 +26,10 @@ namespace OCFG.Data
             return new SqlConnection(connectionString);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Association> getAssociations()
         {
             List<Association> listAssociations = new List<Association>();
@@ -63,7 +67,10 @@ namespace OCFG.Data
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="association"></param>
         public void updateAssociation(Association association)
         {
             using (SqlConnection sqlConnection = getConnection())
@@ -100,6 +107,110 @@ namespace OCFG.Data
 
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="association"></param>
+        public void updateWorkPlan(Association association)
+        {
+            string queryWork = null;
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                if (association.WorkPlan.Id == 0)
+                {
+                    queryWork = "INSERT INTO WorkPlan " +
+                                "VALUES assembly_date = '" + association.WorkPlan.AssemblyDate + "'";
+                }
+                queryWork = "UPDATE WorkPlan SET assembly_date = '" + association.WorkPlan.AssemblyDate + "'" +
+                                   "WHERE WorkPlan.id_work = " + association.WorkPlan.Id;
+
+                SqlCommand sqlWork = new SqlCommand(queryWork, sqlConnection);
+                sqlWork.ExecuteNonQuery();
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="association"></param>
+        public void updateEconomicReport(Association association)
+        {
+            string queryWork = null;
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                if (association.EconomicReport.Id == 0)
+                {
+                    queryWork = "INSERT INTO EconomicReport " +
+                                "VALUES date_received = '" + association.EconomicReport.DateReceived + "', " +
+                                        "year = '" + association.EconomicReport.Year + "', " +
+                                        "balance = " + association.EconomicReport.Balance;
+                }
+                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + association.EconomicReport.DateReceived + "', " +
+                                       " year = '" + association.EconomicReport.Year + "', " +
+                                       "balance = '" + association.EconomicReport.Balance + "'" +
+                                       "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
+
+                SqlCommand sqlEconomic = new SqlCommand(queryWork, sqlConnection);
+                sqlEconomic.ExecuteNonQuery();
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="association"></param>
+        public void updateSettlement(Association association)
+        {
+            string querySettlement = null;
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                if (association.Settlement.Id == 0)
+                {
+                    querySettlement = "INSERT INTO Settlement " +
+                                      "VALUES date_received = '" + association.Settlement.DateReceived + "', " +
+                                      "year = '" + association.Settlement + "'";
+                }
+                querySettlement = "UPDATE Settlement SET date_received = '" + association.Settlement.DateReceived + "', " +
+                                        "year = '" + association.Settlement.Year + "'" +
+                                        "WHERE Settlement.id_settlement = " + association.Settlement.Id;
+
+                SqlCommand sqlSettlement = new SqlCommand(querySettlement, sqlConnection);
+                sqlSettlement.ExecuteNonQuery();
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="association"></param>
+        public void updateConcreteLiquidation(Association association)
+        {
+            string queryConcrete = null;
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                if (association.Settlement.Id == 0)
+                {
+                    queryConcrete = "INSERT INTO ConcreteLiquidation " +
+                                      "VALUES date_received = '" + association.ConcreteLiquidation.DateReceived + "', " +
+                                      "year = '" + association.ConcreteLiquidation.Year + "'";
+                }
+                queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + association.ConcreteLiquidation.DateReceived + "', " +
+                                        "year = '" + association.ConcreteLiquidation.Year + "'" +
+                                        "WHERE ConcreteLiquidation.id_concrete = " + association.ConcreteLiquidation.Id;
+
+                SqlCommand sqlConcrete = new SqlCommand(queryConcrete, sqlConnection);
+                sqlConcrete.ExecuteNonQuery();
+            }
+        }
+
         public Boolean ExistAssociation(int code)
         {
             Boolean exist = false;
@@ -225,6 +336,8 @@ namespace OCFG.Data
                                " AND a.registry_code = " + idAssociation + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                String varStatus;
+                string varActive;
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     while (reader.Read())
@@ -237,11 +350,37 @@ namespace OCFG.Data
                         string status = reader.GetString(4);
                         string active = reader.GetString(5);
                         string province = reader.GetString(6);
+                        if (status.Equals("1"))
+                        {
+                            varStatus = "Al día";
+                        }
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+                        if (active.Equals("Yes"))
+                        {
+                            varActive = "Activa";
+                        }
+                        else
+                        {
+                            varActive = "Inactiva";
+                        }
+                        status = varStatus;
+                        active = varActive;
 
                         /*WorkPlan*/
                         workPlan = new WorkPlan();
                         workPlan.AssemblyDate = reader.GetString(7);
                         workPlan.Status = reader.GetString(8);
+                        if (reader.GetString(7).Equals(null)) {
+                            workPlan.AssemblyDate = "No disponible";
+                        }
+                        else if(reader.GetString(7).Equals(null))
+                        {
+                            workPlan.Status = "Pendiente";
+                        }
+
 
                         /*EconomicReport*/
                         economicReport = new EconomicReport();
@@ -251,6 +390,22 @@ namespace OCFG.Data
                         string statusEconomic = reader.GetString(12);
                         char[] cadEconomic = statusEconomic.ToCharArray();
                         economicReport.Status = cadEconomic[0];
+                        if (reader.GetDateTime(9).Equals(null))
+                        {
+                            economicReport.DateReceived = new DateTime(0001, 1, 1);
+                        }
+                        else if (reader.GetDouble(10)== 0)
+                        {
+                            economicReport.Balance = 0;
+                        }
+                        else if (reader.GetString(11).Equals(null))
+                        {
+                            economicReport.Year = "0000";
+                        }
+                        else if (statusEconomic.Equals(null))
+                        {
+                            statusEconomic = "No disponible";
+                        }
 
                         /*Settlement*/
                         settlement = new Settlement();
@@ -259,6 +414,18 @@ namespace OCFG.Data
                         string statusSettlement = reader.GetString(15);
                         char[] cadSettlement = statusSettlement.ToCharArray();
                         settlement.Status = cadSettlement[0];
+                        if (reader.GetDateTime(13).Equals(null))
+                        {
+                            settlement.DateReceived = new DateTime(0001, 1, 1);
+                        }
+                        else if (reader.GetString(14).Equals(null))
+                        {
+                            settlement.Year = "0000";
+                        }
+                        else if (statusSettlement.Equals(null))
+                        {
+                            statusSettlement = "No disponible";
+                        }
 
                         /*ConcreteLiquitation*/
                         concreteLiquidation = new ConcreteLiquidation();
@@ -267,6 +434,18 @@ namespace OCFG.Data
                         string statusConcrete = reader.GetString(18);
                         char[] cadConcrete = statusConcrete.ToCharArray();
                         concreteLiquidation.Status = cadConcrete[0];
+                        if (reader.GetDateTime(16).Equals(null))
+                        {
+                            concreteLiquidation.DateReceived = new DateTime(0001, 1, 1);
+                        }
+                        else if (reader.GetString(17).Equals(null))
+                        {
+                            concreteLiquidation.Year = "0000";
+                        }
+                        else if (statusSettlement.Equals(null))
+                        {
+                            statusSettlement = "No disponible";
+                        }
 
                         association = new Association(registryCode, name, canton, region, status, active, province,
                                                       workPlan, economicReport, settlement, concreteLiquidation);
@@ -288,8 +467,10 @@ namespace OCFG.Data
                     sqlConnection.Open();
                     String query = "SELECT registry_code, name_association, canton, region, " +
                                    "status,active,province FROM Association " +
-                                   "WHERE name_association ='" + search + "' or canton='" + search + "' or region='" + search +
-                                   "' or province='" + search + "'";
+                                   "WHERE name_association LIKE '%" + search + "%' " +
+                                   "or canton LIKE '%" + search + "%' " +
+                                   "or region LIKE '%" + search +"%' " +
+                                   "or province LIKE '%" + search + "%'";
 
                     SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                     String varStatus;
@@ -341,7 +522,7 @@ namespace OCFG.Data
                     sqlConnection.Open();
                     String query = "SELECT registry_code, name_association, canton, region, " +
                                    "status,active,province FROM Association " +
-                                   "WHERE registry_code=" + search  + "";
+                                   "WHERE registry_code LIKE '%" + search + "%'";
 
                     SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                     String varStatus;

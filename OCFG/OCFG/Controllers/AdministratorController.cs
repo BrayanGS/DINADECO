@@ -85,7 +85,7 @@ namespace OCFG.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Search");
             }
         }
 

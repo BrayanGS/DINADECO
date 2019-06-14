@@ -9,21 +9,48 @@ namespace OCFG.Models
     {
         private int id;
         private int registryCode;
+        private int type;
         private string name;
-        private string region;
         private string canton;
+        private string region;
+        private string province;
         private string status;
         private string active;
-        private string province;
-        private WorkPlan workPlan;
-        private Settlement settlement;
+        private string adequacy;
+        private string affidavit;
         private EconomicReport economicReport;
+        private Settlement settlement;
+        private WorkPlan workPlan;
         private ConcreteLiquidation concreteLiquidation;
+        private string legalDocument;
+        private string superavit;
 
         public Association()
         {
 
         }
+
+        public Association(int id, int registryCode, int type, string name, string canton, string region, string province, string status,
+            string active, EconomicReport economicReport, Settlement settlement, WorkPlan workPlan, ConcreteLiquidation concreteLiquidation,
+            string legalDocument, string superavit)
+        {
+            this.id = id;
+            this.registryCode = registryCode;
+            this.type = type;
+            this.name = name;
+            this.canton = canton;
+            this.region = region;
+            this.province = province;
+            this.status = status;
+            this.active = active;
+            this.workPlan = workPlan;
+            this.settlement = settlement;
+            this.economicReport = economicReport;
+            this.concreteLiquidation = concreteLiquidation;
+            this.legalDocument = legalDocument;
+            this.superavit = superavit;
+        }
+
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
             string active, string province, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
@@ -90,7 +117,11 @@ namespace OCFG.Models
         public Settlement Settlement { get => settlement; set => settlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
         public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
-        
+        public string Adequacy { get => adequacy; set => adequacy = value; }
+        public string Affidavit { get => affidavit; set => affidavit = value; }
+        public int Type { get => type; set => type = value; }
+        public string LegalDocument { get => legalDocument; set => legalDocument = value; }
+        public string Superavit { get => superavit; set => superavit = value; }
     }
 
 }

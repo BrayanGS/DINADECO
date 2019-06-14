@@ -27,7 +27,7 @@ namespace OCFG.Data
             using (SqlConnection sqlCon = getConnection())
             {
                 sqlCon.Open();
-                String query = "Select name_canton from Canton where id_employee= null;";
+                String query = "Select name_canton from Canton where id_employee is null;";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlCon);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())

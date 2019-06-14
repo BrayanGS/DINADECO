@@ -1,10 +1,9 @@
 ﻿@model OCFG.Models.Employee
+
 @{
-    var cantones = (List<OCFG.Models.Canton>)ViewData["cantones"];
+    var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
 }
-
 <h2>Insertar información de un funcionario</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -37,12 +36,10 @@
                     <input type="tel" name="phoneNumber" pattern="\[0-9]{4}[-][0-9]{4}" title="Un número de teléfono válido consta de los tres cuatro dígitos del número, un guión (-) y cuatro dígitos más"
                            id="idCard" placeholder="8587-4387" tabindex="2" min="1" class="form-control">
                 </div>
-
             </div>
             <div style="width:50%; float:right;">
                 <div class="form-group">
                     <h6>Correo Eléctronico: </h6>
-
                     <input type="email" name="email" id="email" tabindex="2" min="1" class="form-control">
                 </div>
                 <div class="form-group">
@@ -52,13 +49,13 @@
                 </div>
                 <p>
                     Cantones:<br>
-                    @foreach (var canton in cantones)
+                    @foreach (var canton in cantons)
                     {
-                        <input type="checkbox" name="cantons" value="canton">@Html.DisplayFor(modelItem => canton.Name)<br>
+
+                        <input type="checkbox" name="ICanton" value="@canton.Name" />
+                        @canton.Name
                     }
-
                 </p>
-
                 <div class=" form-group ">
                     <div class="row ">
                         <div class="col-sm-6 col-sm-offset-3 ">
@@ -68,12 +65,10 @@
                 </div>
             </div>
         </form>
-
     </div>
 
 }
-
 <div>
-    @Html.ActionLink("Página principal", "Index", "Home")
+    @Html.ActionLink("Volver al menú", "Menu", "Administrator")
 </div>
 
