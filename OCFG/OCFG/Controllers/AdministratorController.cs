@@ -21,22 +21,23 @@ namespace OCFG.Controllers
         }
 
         //GET: Administrator/Edit/111111111
-        public ActionResult Edit(string idCard)
+        public ActionResult Edit(string id)
         {
-            employee = administratorData.getEmployeeByIdCard(idCard); 
+            employee = administratorData.getEmployeeByIdCard(id); 
             return View(employee);
         }
 
         // POST: Asministrator/Edit/111111111
         [HttpPost]
-        public ActionResult Edit(DateTime dateOut, string phoneNumber, Employee idEmployee)
+        public ActionResult Edit(DateTime dateOut, string phoneNumber, string IdCard)
         {
             employee = new Employee(dateOut, phoneNumber);
-            canton = new Canton(idEmployee);
+            Employee empleadoBuscar = administratorData.getEmployeeByIdCard(IdCard);
+            canton = new Canton(1, "Alvarado", empleadoBuscar);
             try
             {
                 administratorData.updateEmployee(employee, canton);
-                return RedirectToAction("Details","Administrator");
+                return RedirectToAction("Search","Administrator");
             }
             catch
             {
@@ -62,6 +63,30 @@ namespace OCFG.Controllers
                 employees = administratorData.searchEmployeeByFilter(search);
             }
             return View(employees);
+        }
+
+
+        // GET: Administrator/Delete/5
+        public ActionResult Delete(string id)
+        {
+            employee = administratorData.getEmployeeByIdCard(id);
+            return View(employee);
+        }
+
+        // POST: Administrator/Delete/5
+        [HttpPost]
+        public ActionResult Delete(string id, FormCollection collection)
+        {
+            try
+            {
+                administratorData.deleteEmployee(id);
+
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
     }

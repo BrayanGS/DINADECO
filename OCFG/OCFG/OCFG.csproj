@@ -307,6 +307,7 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Administrator\Search.cshtml" />
+    <Content Include="Views\Administrator\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Document\" />
