@@ -223,11 +223,14 @@ namespace OCFG.Data
                 sqlConnection.Open();
                 
                 String query1 = "delete from Officer where id_officer = (select id_officer from Employee where id_card = '"+ idCard + "');";
-                String query2 = "delete from Employee where id_card = '"+idCard +"';";
+                String query2 = "update canton set id_employee = NULL where id_employee = " + idEmployee + ";";
+                String query3 = "delete from Employee where id_card = '"+idCard +"';";
 
                 SqlCommand sqlOfficer = new SqlCommand(query1, sqlConnection);
                 sqlOfficer.ExecuteNonQuery();
-                SqlCommand sqlEmployee = new SqlCommand(query2, sqlConnection);
+                SqlCommand sqlCanton = new SqlCommand(query2, sqlConnection);
+                sqlCanton.ExecuteNonQuery();
+                SqlCommand sqlEmployee = new SqlCommand(query3, sqlConnection);
                 sqlEmployee.ExecuteNonQuery();
             }
         }

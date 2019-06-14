@@ -1,10 +1,6 @@
 ﻿@model IEnumerable<OCFG.Models.Association>
 @using System.Linq
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<h1>Insertar información de asociación</h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -15,7 +11,7 @@
         </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
-            <h4>Filtrar por: </h4>
+            <h4>Filtros:</h4>
             <select name="filter">
                 <option value="name">Nombre</option>
                 <option value="cod">Código de Registro</option>
@@ -92,7 +88,7 @@
                             @Html.DisplayFor(modelItem => item.Province)
                         </td>
                         <td>
-                            @Html.ActionLink("Insertar Nueva Asociación", "Create")
+                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
                         </td>
                     </tr>
                     }

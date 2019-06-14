@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Linq;
+using System.Web;
 using System.Net.Mail;
 
 namespace OCFG.Data
@@ -88,39 +91,35 @@ namespace OCFG.Data
 
         }
 
+        public void generarCorreo(string email, string username, string password, string nameClient)
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress(email);
+            mail.Subject = "Correo DINADECO";
+            mail.Body = "Buenas " + nameClient + " sus datos para ingresar a la plataforma DINADECO son: " +
+                " USUARIO: " + username + " CONTRASEÑA: " + password + "";
 
 
+            mail.IsBodyHtml = true;
 
-            public void generarCorreo(string email, string username, string password, string nameClient)
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Credentials = new System.Net.NetworkCredential("dinadecoprueba@gmail.com", "DINADECO123cartago");
+            smtp.EnableSsl = true;
+
+            try
             {
-                MailMessage mail = new MailMessage();
-                mail.To.Add(email);
-                mail.From = new MailAddress(email);
-                mail.Subject = "Correo DINADECO";
-                mail.Body = "Buenas " + nameClient + " sus datos para ingresar a la plataforma DINADECO son: " +
-                    " USUARIO: " + username + " CONTRASEÑA: " + password + "";
-
-
-                mail.IsBodyHtml = true;
-
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.Credentials = new System.Net.NetworkCredential("dinadecoprueba@gmail.com", "DINADECO123cartago");
-                smtp.EnableSsl = true;
-
-                try
-                {
-                    smtp.Send(mail);
-                    mail.Dispose();
-                }
-                catch (Exception ex)
-                {
-
-                }
+                smtp.Send(mail);
+                mail.Dispose();
             }
-            
+            catch (Exception ex)
+            {
 
-    private int getIdEmployee(string idCard)
+            }
+        }
+
+        private int getIdEmployee(string idCard)
         {
             int idEmployee = 0;
             using (SqlConnection sqlConnection = getConnection())

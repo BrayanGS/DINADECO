@@ -87,9 +87,6 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Province)
                             </td>
-                            <td>
-                                @Html.ActionLink("Modificar", "Edit", new { id = item.RegistryCode })
-                            </td>
                         </tr>
                     }
                     <tr><td colspan="4">No hay datos disponibles</td></tr>
@@ -99,32 +96,38 @@
                     foreach (var item in Model)
                     {
 
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RegistryCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Canton)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Region)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Active)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Province)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Detalles", "Details", new { id = item.RegistryCode })
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistryCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Canton)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Region)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Province)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", "Association", new { id = item.Id})
+                        </td>
+                        <td>
+                            <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                        </td>
+                    </tr>
                     }
                 }
             </table>

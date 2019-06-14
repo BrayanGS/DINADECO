@@ -70,7 +70,7 @@ namespace OCFG.Controllers
                 Officer officer = new Officer(0, null, null, null);
                 Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, ICanton);
                 employeeData.insertEmployee(employeeInsert);
-                return RedirectToAction("Index");
+                return RedirectToAction("Menu","Administrator");
             }
             catch
             {

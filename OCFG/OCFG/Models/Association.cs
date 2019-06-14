@@ -9,22 +9,25 @@ namespace OCFG.Models
     {
         private int id;
         private int registryCode;
+        private int type;
         private string name;
-        private string region;
         private string canton;
+        private string region;
+        private string province;
         private string status;
         private string active;
-        private string province;
-        private string legalDocumet;
-        private string superavit;
         private string adequacy;
         private string affiavit;
         private int type;
+        private string legalDocument;
+        private string superavit;
         private WorkPlan workPlan;
         private Settlement settlement;
         private EconomicReport economicReport;
+        private Settlement settlement;
+        private WorkPlan workPlan;
         private ConcreteLiquidation concreteLiquidation;
-        private string legalDocument;
+
 
         public Association()
         {
@@ -70,27 +73,6 @@ namespace OCFG.Models
             this.concreteLiquidation = concreteLiquidation;
         }
 
-        public Association(int id, int registryCode, string name, string region, string canton, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
-        {
-            this.id = id;
-            this.registryCode = registryCode;
-            this.name = name;
-            this.region = region;
-            this.canton = canton;
-            this.status = status;
-            this.active = active;
-            this.province = province;
-            this.legalDocument = legalDocument;
-            this.superavit = superavit;
-            this.adequacy = adequacy;
-            this.affiavit = affiavit;
-            this.type = type;
-            this.workPlan = workPlan;
-            this.settlement = settlement;
-            this.economicReport = economicReport;
-            this.concreteLiquidation = concreteLiquidation;
-        }
-
         public int Id { get => id; set => id = value; }
         public int RegistryCode { get => registryCode; set => registryCode = value; }
         public string Name { get => name; set => name = value; }
@@ -103,11 +85,11 @@ namespace OCFG.Models
         public Settlement Settlement { get => settlement; set => settlement = value; }
         public EconomicReport EconomicReport { get => economicReport; set => economicReport = value; }
         public ConcreteLiquidation ConcreteLiquidation { get => concreteLiquidation; set => concreteLiquidation = value; }
-        public string LegalDocumet { get => legalDocumet; set => legalDocumet = value; }
-        public string Superavit { get => superavit; set => superavit = value; }
         public string Adequacy { get => adequacy; set => adequacy = value; }
-        public string Affiavit { get => affiavit; set => affiavit = value; }
+        public string Affidavit { get => affidavit; set => affidavit = value; }
         public int Type { get => type; set => type = value; }
+        public string LegalDocument { get => legalDocument; set => legalDocument = value; }
+        public string Superavit { get => superavit; set => superavit = value; }
     }
 
 }

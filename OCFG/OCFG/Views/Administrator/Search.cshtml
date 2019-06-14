@@ -6,56 +6,66 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal card-block p-0">
-        <form action="Administrator/Search" method="post" role="form" style="display: block;">
-            <div class="row">
-                <div class="col-md-8">
-                    <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
-                           id="search" tabindex="2" class="form-control" placeholder="">
-                </div>
-                <div class="col-md-4">
-                    <div class=" form-group ">
-                        <div class="row ">
-                            <div class="col-sm-6 col-sm-offset-3 ">
-                                <button class="form-horizontal btn btn-default" type="submit">Buscar</button>
-                            </div>
+<div class="form-horizontal card-block p-0">
+    <form action="Administrator/Search" method="post" role="form" style="display: block;">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
+                       id="search" tabindex="2" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-4">
+                <div class=" form-group ">
+                    <div class="row ">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <button class="form-horizontal btn btn-default" type="submit">Buscar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="col-md-4">
+                <div class=" form-group ">
+                    <div class="row ">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <h5>@Html.ActionLink("Ingresar Nuevo Funcionario", "Create", "Employee")</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <table class="table table-bordered table-sm m-0">
-            <thead class="table-info">
-                <tr>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                        Apellido
-                    </th>
-                    <th>
-                        Cédula
-                    </th>
-                    <th>
-                        Telefono
-                    </th>
-                    <th>
-                        Correo
-                    </th>
-                    <th>
-                         
-                    </th>
-                </tr>
-            </thead>
-            @if (!Model.Any())
+        </div>
+    </form>
+
+    <table class="table table-bordered table-sm m-0">
+        <thead class="table-info">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Cédula
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Correo
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        @if (!Model.Any())
+        {
+            <tr><td colspan="4">No hay datos disponibles</td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
             {
-                <tr><td colspan="4">No hay datos disponibles</td></tr>
-            }
-            else
-            {
-                foreach (var item in Model)
-                {
                 <tbody>
                     <tr>
                         <td>
@@ -74,15 +84,18 @@
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.IdCard }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.IdCard }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.IdCard })
+                            @Html.ActionLink("Modificar", "Edit", new { id = item.IdCard }) |
+                            @Html.ActionLink("Ver", "Details", new { id = item.IdCard }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCard })
                         </td>
                     </tr>
                 </tbody>
-                }
             }
+        }
 
-        </table>
+    </table>
+    <div>
+        @Html.ActionLink("Volver al menú principal", "Menu")
     </div>
+</div>
 }

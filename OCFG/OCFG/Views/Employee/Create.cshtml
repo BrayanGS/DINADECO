@@ -1,4 +1,5 @@
 ﻿@model OCFG.Models.Employee
+
 @{
     var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
 }
@@ -68,5 +69,6 @@
 
 }
 <div>
-    @Html.ActionLink("Página principal", "Index", "Home")
+    @Html.ActionLink("Volver al menú", "Menu", "Administrator")
 </div>
+

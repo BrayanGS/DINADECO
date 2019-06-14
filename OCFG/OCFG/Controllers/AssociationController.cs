@@ -29,7 +29,8 @@ namespace OCFG.Controllers
         // GET: Association/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            association = associationData.getAssociationById(id);
+            return View(association);
         }
 
 
@@ -89,6 +90,78 @@ namespace OCFG.Controllers
         {
             association = associationData.getAssociationById(id);
             return View(association);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assoUpdate"></param>
+        /// <returns></returns>
+        public ActionResult EditWorkPlan(Association assoUpdate)
+        {
+            try
+            {
+                associationData.updateWorkPlan(assoUpdate);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assoUpdate"></param>
+        /// <returns></returns>
+        public ActionResult EditEconomicReport(Association assoUpdate)
+        {
+            try
+            {
+                associationData.updateEconomicReport(assoUpdate);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assoUpdate"></param>
+        /// <returns></returns>
+        public ActionResult EditSettlement(Association assoUpdate)
+        {
+            try
+            {
+                associationData.updateSettlement(assoUpdate);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assoUpdate"></param>
+        /// <returns></returns>
+        public ActionResult EditConcrete(Association assoUpdate)
+        {
+            try
+            {
+                associationData.updateConcreteLiquidation(assoUpdate);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Association/Edit/5

@@ -1,47 +1,46 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - OCFG</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="~/Content/example/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/example/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/example/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/example/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/example/scss/animate.min.css">
+    <link rel="stylesheet" href="~/Content/example/css/main.css">
+    <link rel="stylesheet" href="~/Content/example/css/linearicons.css">
+
 </head>
 <body>
-    <nav  class="navbar navbar-expand-xl">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4" align="left">
-                    <a href="~/Views/Home"><img src="~/Content/image/logDinadeco.png" alt="DINADECO" style="width:65%" /></a>
+        <nav class="navbar navbar-expand-lg  navbar-light">
+            <div class="container">
+                <div class="col-md-3" align="left">
+                    <a href="/Home/Index"><img src="~/Content/image/logDinadeco.png" alt="DINADECO" style="width:85%" /></a>
                 </div>
-                <div class="col-md-6" align="right">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h5>@Html.ActionLink("Correo", "Index", "Home")</h5>
-                        </div>
-                        <div class="col-md-4">
-                            <h5>@Html.ActionLink("Transparencia", "About", "Home")</h5>
-                        </div>
-                        <div class="col-md-4">
-                            <h5>@Html.ActionLink("Temática", "Contact", "Home")</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h5>@Html.ActionLink("Quienes somos", "Contact", "Home")</h5>
-                        </div>
-                        <div class="col-md-4">
-                            <h5>@Html.ActionLink("Servicios", "Contact", "Home")</h5>
-                        </div>
+                <div class="col-md-7 text-center" align="center">
+                    <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li><h5>@Html.ActionLink("Correo", "Index", "Home")</h5></li>
+                            <li><h5>@Html.ActionLink("Transparencia", "About", "Home")</h5></li>
+                            <li><h5>@Html.ActionLink("Temática", "Contact", "Home")</h5></li>
+                            <li><h5>@Html.ActionLink("Quienes somos", "Contact", "Home")</h5></li>
+                            <li><h5>@Html.ActionLink("Servicios", "Contact", "Home")</h5></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-2" align="center">
-                    <a href="#"><img src="~/Content/image/icoLog.png" alt="Log In" style="width:25%"/></a>
+                <div class="col-md-2" align="right">
+                   <a href="/Login/Create"><img src="~/Content/image/icoLog.png" alt="Log In" style="width:30%" /></a>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -57,9 +56,5 @@
            
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
