@@ -47,11 +47,11 @@ namespace OCFG.Data
                 int idOfficer = getIdOfficer(user);
                 string formatted = employee.DateIn.ToString("dd/M/yyyy");
 
-                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, id_officer) " +
+                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, address, id_officer, status) " +
                 "values (" + "'" + employee.Name + "','" + employee.LastName + "','" + employee.IdCard + "','" + employee.PhoneNumber + "','"
-                + formatted + "','" + employee.Email + "'," + idOfficer + ")";
+                + formatted + "','" + employee.Email + "','"+ employee.Address + "'," + idOfficer +","+ 1+ ")";
                 SqlCommand sqlSelect1 = new SqlCommand(query1, sqlConnection);
-                sqlSelect1.ExecuteNonQuery();
+                sqlSelect1.ExecuteNonQuery(); 
                 int idEmployee = getIdEmployee(employee.IdCard);
 
 
@@ -89,6 +89,45 @@ namespace OCFG.Data
                 }
             }
 
+        }
+
+        public Employee getEmployeeById(string idEmployee)
+        {
+ 
+                Employee employee = null;
+
+                using (SqlConnection sqlConnection = getConnection())
+                {
+                    sqlConnection.Open();
+
+                    String query = "SELECT name_employee, last_name, id_card, phone_number, date_in, email, address, status,id_employee" +
+                                   " FROM Employee" +
+                                   " WHERE id_card = '" + idEmployee + "';";
+
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            /*Employee*/
+                            string name = reader.GetString(0);
+                            string lastName = reader.GetString(1);
+                            string IdCard = reader.GetString(2);
+                            string phone = reader.GetString(3);
+                            DateTime dateIn = reader.GetDateTime(4);
+                            string email = reader.GetString(5);
+                            string address = reader.GetString(6);
+                            int status = reader.GetInt32(7);
+                            int id = reader.GetInt32(8);
+
+
+                        employee = new Employee(id, name, lastName, IdCard, address, phone, dateIn, email, status);
+
+                        }
+                        sqlConnection.Close();
+                    }
+                    return employee;
+                }
         }
 
         public void generarCorreo(string email, string username, string password, string nameClient)

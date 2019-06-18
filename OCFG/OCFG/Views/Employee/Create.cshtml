@@ -12,58 +12,78 @@
         <form name=formulario action="Employee/Create" method="post" role="form" style="display: block;">
             <div style="width:50%; float:left;">
                 <div class="form-group">
-                    <h6>Nombre: </h6>
-                    <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
-                           id="name" tabindex="2" min="1" class="form-control" placeholder="">
-                </div>
+                    <div class="col-md-8">
+                        <h5>Nombre: </h5>
+                     
+                            <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
+                                   id="name" tabindex="2" min="1" class="form-control" placeholder="">
+                        </div>
+                    </div>
                 <div class="form-group">
-                    <h6>Apellidos: </h6>
-                    <input type="text" required pattern="/[A-Za-\ZñÑáéíóúÁÉÍÓÚ\s]/+" name="lastName" title="En este espacio solo se permite ingresar letras"
-                           id="lastName" tabindex="2" class="form-control" placeholder="">
+                    <div class="col-md-8">
+                        <h5>Apellidos: </h5>
+
+                        <input type="text" required pattern="/[A-Za-\ZñÑáéíóúÁÉÍÓÚ\s]/+" name="lastName" title="En este espacio solo se permite ingresar letras"
+                               id="lastName" tabindex="2" class="form-control" placeholder="">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <h6>Número de cédula: </h6>
-                    <input type="text" required name="idCard" placeholder="305120356" title="En este espacio solo se permite ingresar números con el formato 305120356"
-                           id="idCard" tabindex="2" min="1" class="form-control">
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <h5>Número de cédula: </h5>
+
+                            <input type="text" required name="idCard" placeholder="3-0512-0356" pattern="\[1-9]{1}[-][0-9]{4}[-][0-9]{4}" title="En este espacio solo se permite ingresar números con el formato 3-0512-0356"
+                                   id="idCard" tabindex="2" min="1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <h5>Dirección: </h5>
+
+                            <textarea name="address" id="address" tabindex="2" class="form-control" placeholder="" rows="5" cols="50">
+                                </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <h5>Número de telefono: </h5>
+
+                            <input type="tel" name="phoneNumber" pattern="\[0-9]{4}[-][0-9]{4}" title="Un número de teléfono válido consta de los tres cuatro dígitos del número, un guión (-) y cuatro dígitos más"
+                                   id="idCard" placeholder="8587-4387" tabindex="2" min="1" class="form-control">
+                        </div>
+                    </div>
+
+
                 </div>
-                <div class="form-group">
-                    <h6>Dirección: </h6>
-                    <textarea name="address" id="address" tabindex="2" class="form-control" placeholder="" rows="5" cols="50">
-                </textarea>
-                </div>
-                <div class="form-group">
-                    <h6>Número de telefono: </h6>
-                    <input type="tel" name="phoneNumber" pattern="\[0-9]{4}[-][0-9]{4}" title="Un número de teléfono válido consta de los tres cuatro dígitos del número, un guión (-) y cuatro dígitos más"
-                           id="idCard" placeholder="8587-4387" tabindex="2" min="1" class="form-control">
-                </div>
-            </div>
             <div style="width:50%; float:right;">
                 <div class="form-group">
-                    <h6>Correo Eléctronico: </h6>
-                    <input type="email" name="email" id="email" tabindex="2" min="1" class="form-control">
+                    <div class="col-md-8">
+                        <h5>Correo Eléctronico: </h5>
+                        <input type="email" name="email" id="email" tabindex="2" min="1" class="form-control">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <h6>Fecha que ingresó a trabajar: </h6>
-                    <input type="date" name="dateIn"
-                           id="dateIn" tabindex="2" min="1958-01-01" step="2" class="form-control">
-                </div>
-                <p>
-                    Cantones:<br>
-                    @foreach (var canton in cantons)
-                    {
+                    <div class="col-md-8">
+                        <h5>Fecha que ingresó a trabajar: </h5>
+                        <input type="date" name="dateIn" id="dateIn" tabindex="2" min="1958-01-01" class="form-control">
+                    </div>
+                    </div>
+                    <p>
+                        Cantones:<br>
+                        @foreach (var canton in cantons)
+                        {
 
-                        <input type="checkbox" name="ICanton" value="@canton.Name" />
-                        @canton.Name
-                    }
-                </p>
-                <div class=" form-group ">
-                    <div class="row ">
-                        <div class="col-sm-6 col-sm-offset-3 ">
-                            <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                            <input type="checkbox" name="ICanton" value="@canton.Name" />
+                            @canton.Name
+                        }
+                    </p>
+                    <div class=" form-group ">
+                        <div class="row ">
+                            <div class="col-sm-6 col-sm-offset-3 ">
+                                <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 

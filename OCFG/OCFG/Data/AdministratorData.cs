@@ -59,14 +59,29 @@ namespace OCFG.Data
             }
             return idOfficer;
         }
-    
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <param name="canton"></param>
-    public void updateEmployee(Employee employee, Canton canton)
+        public void updateEmployee(DateTime dateIn, string phoneNumber, string id)
+        {
+            string formatted = dateIn.ToString("dd/M/yyyy");
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                string queryEmployee = "UPDATE Employee SET date_in = '" +formatted + "', " +
+                                       " phone_number = '" + phoneNumber + "', status=" + 0 + " WHERE id_card = '" + id + "';";
+
+                SqlCommand sqlEmployee = new SqlCommand(queryEmployee, sqlConnection);
+                sqlEmployee.ExecuteNonQuery();
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="canton"></param>
+        public void updateEmployee(Employee employee, Canton canton)
         {
             using (SqlConnection sqlConnection = getConnection()) {
                 sqlConnection.Open();
@@ -99,7 +114,7 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
 
-                String query = "SELECT e.name_employee, e.last_name, e.id_card, e.phone_number, e.date_in , e.email" +
+                String query = "SELECT e.name_employee, e.last_name, e.id_card, e.phone_number, e.date_in , e.email, e.address, e.date_out" +
                                " FROM Employee e" +
                                " WHERE e.id_card = '" + idCardEmployee + "';";
 
@@ -116,7 +131,8 @@ namespace OCFG.Data
                         employee.PhoneNumber = reader.GetString(3);
                         employee.DateIn = reader.GetDateTime(4);
                         employee.Email = reader.GetString(5);
-
+                        employee.Address = reader.GetString(6);
+                        employee.DateOut = reader.GetDateTime(7);
                     }
                     sqlConnection.Close();
                 }
@@ -163,10 +179,10 @@ namespace OCFG.Data
                 using (SqlConnection sqlConnection = getConnection())
                 {
                     sqlConnection.Open();
-                    String query = "SELECT name_employee, last_name, id_card, phone_number, email FROM Employee" +
-                                   " WHERE name_employee ='" + search + "' " +
-                                   " OR last_name='" + search + "' " +
-                                   " OR id_card = '" + search + "'";
+                    String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
+                                   " WHERE name_employee like '" + search.Substring(0, 1).ToUpper()+ search.Substring(1) + "%"+ "' " +
+                                   " OR last_name like'" + search.Substring(0, 1).ToUpper()+ search.Substring(1)+ "%" + "' " +
+                                   " OR id_card like '" + search + "%" + "'";
 
                     SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                     using (SqlDataReader reader = sqlSelect.ExecuteReader())
@@ -180,6 +196,7 @@ namespace OCFG.Data
                             employee.IdCard = (string)reader[2];
                             employee.PhoneNumber = (string)reader[3];
                             employee.Email = (string)reader[4];
+                            employee.Status = (int)reader[5];
                             employees.Add(employee);
                         }
                         sqlConnection.Close();
@@ -215,16 +232,16 @@ namespace OCFG.Data
 
         }
 
-        public void deleteEmployee(string idCard) {
+        public void deleteEmployee(string idCard, DateTime dateOut) {
             int idEmployee = getIdEmployeeByIdCard(idCard);
-
+            string formatted = dateOut.ToString("dd/M/yyyy");
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
                 
                 String query1 = "delete from Officer where id_officer = (select id_officer from Employee where id_card = '"+ idCard + "');";
                 String query2 = "update canton set id_employee = NULL where id_employee = " + idEmployee + ";";
-                String query3 = "delete from Employee where id_card = '"+idCard +"';";
+                String query3 = "update Employee set status = "+ 1 + ", date_out ='" + formatted + "' where id_card = '"+ idCard +"'; ";
 
                 SqlCommand sqlOfficer = new SqlCommand(query1, sqlConnection);
                 sqlOfficer.ExecuteNonQuery();

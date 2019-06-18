@@ -536,6 +536,8 @@
     <Content Include="Views\Administrator\Delete.cshtml" />
     <Content Include="Views\Association\Details.cshtml" />
     <Content Include="Views\Association\EditWorkPlan.cshtml" />
+    <Content Include="Views\Administrator\Details.cshtml" />
+    <Content Include="Views\Administrator\Enable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

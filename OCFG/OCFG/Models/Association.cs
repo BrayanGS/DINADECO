@@ -9,7 +9,6 @@ namespace OCFG.Models
     {
         private int id;
         private int registryCode;
-        private int type;
         private string name;
         private string canton;
         private string region;
@@ -17,15 +16,13 @@ namespace OCFG.Models
         private string status;
         private string active;
         private string adequacy;
-        private string affiavit;
+        private string affidavit;
         private int type;
         private string legalDocument;
         private string superavit;
         private WorkPlan workPlan;
         private Settlement settlement;
         private EconomicReport economicReport;
-        private Settlement settlement;
-        private WorkPlan workPlan;
         private ConcreteLiquidation concreteLiquidation;
 
 
@@ -35,7 +32,7 @@ namespace OCFG.Models
         }
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
-            string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, int type, 
+            string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, 
             Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
             ConcreteLiquidation concreteLiquidation)
         {
@@ -47,10 +44,10 @@ namespace OCFG.Models
             this.status = status;
             this.active = active;
             this.province = province;
-            this.legalDocumet = legalDocumet;
+            this.legalDocument = legalDocument;
             this.superavit = superavit;
             this.adequacy = adequacy;
-            this.affiavit = affiavit;
+            this.affidavit = affiavit;
             this.type = type;
             this.workPlan = workPlan;
             this.settlement = settlement;
