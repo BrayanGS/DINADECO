@@ -32,6 +32,12 @@ namespace OCFG.Models
             this.status = status;
         }
 
+        public WorkPlan(string assemblyDate, string status)
+        {
+            this.assemblyDate = assemblyDate;
+            this.status = status;
+        }
+
         public int Id { get => id; set => id = value; }
         public string AssemblyDate { get => assemblyDate; set => assemblyDate = value; }
         public string Status { get => status; set => status = value; }

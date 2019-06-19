@@ -1,5 +1,5 @@
 ﻿@model OCFG.Models.Association
-<h1>Insertar información de asociación</h1>
+<h1>Insertar nueva asociación</h1>
 @{
     var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
 }
@@ -8,74 +8,91 @@
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
-            <h2>Insertar nueva asociación</h2>
             <hr />
             <form name=formulario action="Association/Create" method="post" role="form" style="display: block;">
                 <div style="width:50%; float:left;">
                     <div class="form-group">
-                        <h4>Código de registo: </h4>
-                        <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
-                               id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
+                        <div class="col-md-6">
+                            <h5>Código de registo: </h5>
+                            <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
+                                   id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <h4>Nombre: </h4>
-                        <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
-                               id="name" tabindex="2" class="form-control" placeholder="">
+                        <div class="col-md-6">
+                            <h5>Nombre: </h5>
+                            <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
+                                   id="name" tabindex="2" class="form-control" placeholder="">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <h6>Cédula Jurídica: </h6>
-                        <input type="text" required name="legalDocument" pattern="[1-9]{1}[-]\d{3}[-]\d{6}" placeholder="x-xxx-xxxxxx" title="En este espacio solo se permite ingresar números y '-', debe utilizar 
+                        <div class="col-md-6">
+                            <h5>Cédula Jurídica: </h5>
+                            <input type="text" required name="legalDocument" pattern="[1-9]{1}[-]\d{3}[-]\d{6}" placeholder="x-xxx-xxxxxx" title="En este espacio solo se permite ingresar números y '-', debe utilizar
                                el siguiente formato x-xxx-xxxxxx"
-                               id="legalDocument" tabindex="2" min="1" class="form-control">
+                                   id="legalDocument" tabindex="2" min="1" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <h4>Selecione una región: </h4>
-                        <select name="region">
-                            <option value="Central Oriental">Central Oriental</option>
-                        </select>
+                        <div class="col-md-6">
+                            <h5>Selecione una región: </h5>
+                            <select name="region">
+                                <option value="Central Oriental">Central Oriental</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <p>
-                            Cantones:<br>
-                            @foreach (var canton in cantons)
-                            {
+                        <div class="col-md-6">
+                            <p>
+                                Cantones:<br>
+                                @foreach (var canton in cantons)
+                                {
 
-                                <input type="radio" name="ICanton" value="@canton.Name" />
-                                @canton.Name
-                                <br />
-                            }
-                        </p>
+                                    <input type="radio" name="ICanton" value="@canton.Name" />
+                                    @canton.Name
+                                    <br />
+                                }
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div style="width:50%; float:right;">
-                    <h4>Seleccione una provincia</h4>
-                    <select name="province">
-                        <option value="Cartago">Cartago</option>
-                    </select>
+                    <div class="col-md-7">
+                        <h5>Seleccione una provincia</h5>
+                        <select name="province">
+                            <option value="Cartago">Cartago</option>
+                        </select>
+                    </div>
                     <br>
                     <br>
-                    <h4>Seleccione un estado</h4>
-                    <select name="status">
-                        <option value="toTheDate">Al día</option>
-                        <option value="pending">Pendiente</option>
-                    </select>
+                    <div class="col-md-7">
+                        <h5>Seleccione un estado</h5>
+                        <select name="status">
+                            <option value="toTheDate">Al día</option>
+                            <option value="pending">Pendiente</option>
+                        </select>
+                    </div>
                     <br>
                     <br>
-                    <h4>Seleccione la participación</h4>
-                    <select name="active">
-                        <option value="active">Activa</option>
-                        <option value="inactive">Inactiva</option>
-                    </select>
+                    <div class="col-md-7">
+                        <h5>Seleccione la participación</h5>
+                        <select name="active">
+                            <option value="active">Activa</option>
+                            <option value="inactive">Inactiva</option>
+                        </select>
+                    </div>
                     <br>
-                    <h4>Seleccione el tipo</h4>
-                    <select name="type">
-                        <option value="1">ASOCIACIÓN DE DESARROLLO ESPECÍFICAPRO</option>
-                        <option value="2">ASOCIACIÓN DE DESARROLLO INTEGRAL</option>
-                        <option value="3">UNION ZONAL</option>
-                        <option value="4">FEDERACION DE UNIONES</option>
-                        <option value="6">ASOCIACION DE DESARROLLO INTEGRAL DE RESERVA INDIGENA</option>
-                        <option value="10">DISUELTA</option>
-                    </select>
+                    <div class="col-md-7">
+                        <h5>Seleccione el tipo</h5>
+                        <select name="type">
+                            <option value="1">ASOCIACIÓN DE DESARROLLO ESPECÍFICAPRO</option>
+                            <option value="2">ASOCIACIÓN DE DESARROLLO INTEGRAL</option>
+                            <option value="3">UNION ZONAL</option>
+                            <option value="4">FEDERACION DE UNIONES</option>
+                            <option value="6">ASOCIACION DE DESARROLLO INTEGRAL DE RESERVA INDIGENA</option>
+                            <option value="10">DISUELTA</option>
+                        </select>
+                    </div>
                     <br>
                     <div class=" form-group ">
                         <div class="row ">
