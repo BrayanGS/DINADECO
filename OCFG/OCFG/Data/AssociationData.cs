@@ -359,6 +359,12 @@ namespace OCFG.Data
                                 + " from Association a Where a.registry_code = " + idAssociation + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                string varStatus;
+                string varActive;
+                string varAdequacy;
+                string varAffidavit;
+                string varSuperavit;
+
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     while (reader.Read())
@@ -395,6 +401,61 @@ namespace OCFG.Data
                         /*ConcreteLiquitation*/
                         concreteLiquidation = getConcreteById(idConcrete);
 
+                        /*Status*/
+                        if (status.Equals("1"))
+                        {
+                            varStatus = "Al Día";
+                        }
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+                        /*Active*/
+                        if (active.Equals("YES"))
+                        {
+                            varActive = "Activa";
+                        }
+                        else
+                        {
+                            varActive = "Inactiva";
+                        }
+
+                        /*Adequacy*/
+                        if (adequacy.Equals("YES"))
+                        {
+                            varAdequacy = "Si";
+                        }
+                        else
+                        {
+                            varAdequacy = "No";
+                        }
+
+                        /*Affidavit*/
+                        if (affidavit.Equals("YES"))
+                        {
+                            varAffidavit = "Si";
+                        }
+                        else
+                        {
+                            varAffidavit = "No";
+                        }
+
+                        /*Superavit*/
+                        if (superavit.Equals("YES"))
+                        {
+                            varSuperavit = "Si";
+                        }
+                        else
+                        {
+                            varSuperavit = "No";
+                        }
+
+                        status = varStatus;
+                        active = varActive;
+                        adequacy = varAdequacy;
+                        affidavit = varAffidavit;
+                        superavit = varSuperavit;
+
                         association = new Association(registryCode, name, region, canton, status,
                         active, province, legalDocument, superavit, adequacy, affidavit,
                         type, workPlan, settlement, economicReport, concreteLiquidation);
@@ -417,14 +478,27 @@ namespace OCFG.Data
                 String query = "select w.assembly_date, w.status from WorkPlan w where w.id_work = " + idWork + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                string varStatus;
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         /*WorkPlan*/
-                        workPlan = new WorkPlan();
-                        workPlan.AssemblyDate = reader.GetString(0);
-                        workPlan.Status = reader.GetString(1);
+                        String assemblyDate = reader.GetString(0);
+                        String status = reader.GetString(1);
+
+                        /*Status*/
+                        if (status.Equals("1"))
+                        {
+                            varStatus = "Al Día";
+                        }
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+
+                        status = varStatus;
+                        workPlan = new WorkPlan(assemblyDate, status);
 
                     }
                     sqlConnection.Close();
