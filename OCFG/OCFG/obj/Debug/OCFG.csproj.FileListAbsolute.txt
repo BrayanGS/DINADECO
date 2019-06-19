@@ -509,3 +509,4 @@ C:\DINADECO\OCFG\OCFG\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.
 C:\DINADECO\OCFG\OCFG\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\DINADECO\OCFG\OCFG\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\DINADECO\OCFG\OCFG\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\Arelys Granados\DINADECO\OCFG\OCFG\bin\Rotativa.dll

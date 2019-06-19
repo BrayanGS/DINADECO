@@ -74,10 +74,10 @@ namespace OCFG.Controllers
         {
             try
             {
-
+                int permit = 0;
                 DateTime dateOut = new DateTime(0001, 1, 1);
                 Officer officer = new Officer(0, null, null, null);
-                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, ICanton);
+                Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, ICanton, permit);
                 employeeData.insertEmployee(employeeInsert);
                 return RedirectToAction("Menu", "Administrator");
             }

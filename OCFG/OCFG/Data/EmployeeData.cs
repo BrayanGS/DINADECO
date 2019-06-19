@@ -49,9 +49,9 @@ namespace OCFG.Data
                 int idOfficer = getIdOfficer(user);
                 string formatted = employee.DateIn.ToString("dd/M/yyyy");
 
-                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, address, id_officer, status) " +
+                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, address, id_officer, status, permit) " +
                 "values (" + "'" + employee.Name + "','" + employee.LastName + "','" + employee.IdCard + "','" + employee.PhoneNumber + "','"
-                + formatted + "','" + employee.Email + "','"+ employee.Address + "'," + idOfficer +","+ 1+ ")";
+                + formatted + "','" + employee.Email + "','"+ employee.Address + "'," + idOfficer +","+ 1+ 1+")";
                 SqlCommand sqlSelect1 = new SqlCommand(query1, sqlConnection);
                 sqlSelect1.ExecuteNonQuery(); 
                 int idEmployee = getIdEmployee(employee.IdCard);
@@ -114,8 +114,8 @@ namespace OCFG.Data
                             /*Employee*/
                             string name = reader.GetString(0);
                             string lastName = reader.GetString(1);
-                            string IdCard = reader.GetString(2);
-                            string phone = reader.GetString(3);
+                            string idCard = reader.GetString(2);
+                            string phoneNumber = reader.GetString(3);
                             DateTime dateIn = reader.GetDateTime(4);
                             string email = reader.GetString(5);
                             string address = reader.GetString(6);
@@ -123,8 +123,7 @@ namespace OCFG.Data
                             int id = reader.GetInt32(8);
 
 
-                        employee = new Employee(id, name, lastName, IdCard, address, phone, dateIn, email, status);
-
+                        employee = new Employee(id, name, lastName, idEmployee, address, phoneNumber, dateIn, email, status);
                         }
                         sqlConnection.Close();
                     }

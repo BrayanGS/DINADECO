@@ -100,46 +100,41 @@ namespace OCFG.Data
                 sqlCanton.ExecuteNonQuery();
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="idCardEmployee"></param>
-        /// <returns></returns>
-        public Employee getEmployeeByIdCard(string idCardEmployee)
+        public Employee getEmployeeByIdCard(String idCardEmployee)
         {
             Employee employee = null;
-
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-
                 String query = "SELECT e.name_employee, e.last_name, e.id_card, e.phone_number, e.date_in , e.email, e.address, e.date_out" +
-                               " FROM Employee e" +
-                               " WHERE e.id_card = '" + idCardEmployee + "';";
+                        " FROM Employee e" +
+                        " WHERE e.id_card = '" + idCardEmployee + "';";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
+
                     while (reader.Read())
                     {
-                        /** Employee **/
                         employee = new Employee();
-                        employee.Name = reader.GetString(0);
-                        employee.LastName = reader.GetString(1);
-                        employee.IdCard = reader.GetString(2);
-                        employee.PhoneNumber = reader.GetString(3);
-                        employee.DateIn = reader.GetDateTime(4);
-                        employee.Email = reader.GetString(5);
-                        employee.Address = reader.GetString(6);
-                        employee.DateOut = reader.GetDateTime(7);
+                        employee.Name = (string)reader[0];
+                        employee.LastName = (string)reader[1];
+                        employee.IdCard = (string)reader[2];
+                        employee.PhoneNumber = (string)reader[3];
+                        employee.DateIn = (DateTime)reader[4];
+                        employee.Email = (string)reader[5];
+                        employee.Address = (string)reader[6];
+                        employee.DateOut = (DateTime)reader[7];
                     }
                     sqlConnection.Close();
                 }
-                return employee;
             }
+            return employee;
         }
 
+
+       
         public Canton getCantonByIdEmployee(string idEmployee)
         {
             Canton canton = null;
