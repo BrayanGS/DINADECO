@@ -46,12 +46,13 @@
                 <dd>
                     @Html.DisplayFor(model => model.Address)
                 </dd>
+            </div>
 
+            <div style="width:50%; float:right;">
                 <dt>
                     <h5>Número de teléfono</h5>
                 </dt>
-            </div>
-            <div style="width:50%; float:right;">
+
                 <dd>
                     @Html.DisplayFor(model => model.PhoneNumber)
                 </dd>
@@ -81,7 +82,7 @@
                         @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "DateTime" })
                     </div>
                 </dd>
-                </div>
+            </div>
         </dl>
 
             <div class="form-actions no-color">

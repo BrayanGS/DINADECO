@@ -508,6 +508,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Administrator\Authorization.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -550,6 +551,7 @@
     <Content Include="Views\Employee\EditSettlement.cshtml" />
     <Content Include="Views\Administrator\Details.cshtml" />
     <Content Include="Views\Administrator\Enable.cshtml" />
+    <Content Include="Views\Administrator\Authorization.cshtml" />
     <Content Include="Views\Association\DetailsForReport.cshtml" />
     <Content Include="Views\Administrator\GetAllAssociations.cshtml" />
     <Content Include="Views\Administrator\GetStatusAssociations.cshtml" />
