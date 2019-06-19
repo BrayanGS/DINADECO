@@ -29,8 +29,6 @@ namespace OCFG.Data
 
         public void insertEmployee(Employee employee)
         {
-
-
             using (SqlConnection sqlConnection = getConnection())
             {
                 SqlTransaction transaction = null;
@@ -645,6 +643,74 @@ namespace OCFG.Data
 
                 SqlCommand sqlConcrete = new SqlCommand(queryConcrete, sqlConnection);
                 sqlConcrete.ExecuteNonQuery();
+            }
+        }
+
+        public LoginUser getLoginUser(int idOfficer) {
+
+            LoginUser loginUser = null;
+           
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                String query = "select e.id_employee, e.id_card, e.name_employee, e.last_name from Employee e"
+                                +" where e.id_officer = " + idOfficer + ";";
+
+                SqlCommand sqlSelect2 = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect2.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        loginUser = new LoginUser();
+                        loginUser.IdEmployee = reader.GetInt32(0);
+                        loginUser.IdCardLogin = reader.GetString(1);
+                        loginUser.NameLogin = reader.GetString(2);
+                        loginUser.LastNameLogin = reader.GetString(3);
+                    }
+                    sqlConnection.Close();
+                }
+                return loginUser;
+            }
+        }
+
+        public int getIdLoginUser(string userName, string password)
+        {
+            int idOfficer = 0;
+
+                using (SqlConnection sqlConnection = getConnection())
+                {
+                    sqlConnection.Open();
+                    String query = "select id_officer from Officer where user_name = '" + userName + "' AND password_officer = '" + password + "';";
+
+                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                        idOfficer = reader.GetInt32(0);
+                        }
+                        sqlConnection.Close();
+                    }
+                }
+
+                return idOfficer;
+
+        }
+
+        public void insertBitacora(int idlogin, string action)
+        {
+            LoginUser loginUser = getLoginUser(idlogin);
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                String query = "Insert into Bitacora(id_employee, name, last_name,chance_date,action) " +
+                "values (" + loginUser.IdEmployee + ",'" + loginUser.NameLogin + "','" + loginUser.LastNameLogin + "','" 
+                +DateTime.Now + "','" +action+ "')";
+                SqlCommand sqlSelect2 = new SqlCommand(query, sqlConnection);
+                sqlSelect2.ExecuteNonQuery();
+                sqlConnection.Close();
+                
             }
         }
     }

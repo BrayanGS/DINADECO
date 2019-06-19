@@ -167,10 +167,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Association.cs" />
+    <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Canton.cs" />
     <Compile Include="Models\ConcreteLiquidation.cs" />
     <Compile Include="Models\EconomicReport.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\Officer.cs" />
     <Compile Include="Models\Settlement.cs" />
     <Compile Include="Models\WorkPlan.cs" />
@@ -553,6 +555,7 @@
     <Content Include="Views\Association\DetailsForReport.cshtml" />
     <Content Include="Views\Administrator\GetAllAssociations.cshtml" />
     <Content Include="Views\Administrator\GetStatusAssociations.cshtml" />
+    <Content Include="Views\Administrator\bitacora.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

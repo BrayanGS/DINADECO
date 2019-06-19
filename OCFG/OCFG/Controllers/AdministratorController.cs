@@ -156,5 +156,13 @@ namespace OCFG.Controllers
             return View(associations);
         }
 
+        // GET: Administrator/GetStatusAssociations
+        public ActionResult bitacora()
+        {
+            List<Bitacora> moviments = new List<Bitacora>();
+            moviments = administratorData.getBitacora();
+            return View(moviments);
+        }
+
     }
 }

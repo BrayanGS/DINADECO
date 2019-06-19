@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace OCFG.Models
 {
+    
+
     public class Employee
-    {
+    { 
         private int id;
         private string name;
         private string lastName;
@@ -18,6 +20,7 @@ namespace OCFG.Models
         private Officer officer;
         private LinkedList<Canton> cantons;
         private string[] cantons2;
+
 
 
         public Employee()
@@ -98,5 +101,6 @@ namespace OCFG.Models
         public LinkedList<Canton> Canton { get => cantons; set => cantons = value; }
         public string[] Canton2 { get => cantons2; set => cantons2 = value; }
         public int Status { get => status; set => status = value; }
+
     }
 }
