@@ -99,7 +99,7 @@ namespace OCFG.Data
                         //Obtengo asociacion
                         int id = reader.GetInt32(0);
                         int registryCode = reader.GetInt32(1);
-                        string type = reader.GetString(2);
+                        int type = reader.GetInt32(2);
                         string name = reader.GetString(3);
                         string region = reader.GetString(4);
                         string canton = reader.GetString(5);

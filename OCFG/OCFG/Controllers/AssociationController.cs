@@ -14,10 +14,6 @@ namespace OCFG.Controllers
     {
         AssociationData associationData = new AssociationData();
         static Association association = new Association();
-        static WorkPlan workPlan = new WorkPlan();
-        static Settlement settlement = new Settlement();
-        static ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation();
-        static EconomicReport economicReport = new EconomicReport();
         CantonData cantonData = new CantonData();
 
         // GET: Association
@@ -71,7 +67,7 @@ namespace OCFG.Controllers
 
         // POST: Association/Create
         [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province, string legalDocument, string type )
+        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province, string legalDocument, int type )
         {
             try
             {
@@ -89,81 +85,10 @@ namespace OCFG.Controllers
         // GET: Association/Edit/5
         public ActionResult Edit(int id)
         {
-            association = associationData.getAssociationById(id);
+            association = associationData.getAssociation(id);
             return View(association);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="assoUpdate"></param>
-        /// <returns></returns>
-        public ActionResult EditWorkPlan(Association assoUpdate)
-        {
-            try
-            {
-                associationData.updateWorkPlan(assoUpdate);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="assoUpdate"></param>
-        /// <returns></returns>
-        public ActionResult EditEconomicReport(Association assoUpdate)
-        {
-            try
-            {
-                associationData.updateEconomicReport(assoUpdate);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="assoUpdate"></param>
-        /// <returns></returns>
-        public ActionResult EditSettlement(Association assoUpdate)
-        {
-            try
-            {
-                associationData.updateSettlement(assoUpdate);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="assoUpdate"></param>
-        /// <returns></returns>
-        public ActionResult EditConcrete(Association assoUpdate)
-        {
-            try
-            {
-                associationData.updateConcreteLiquidation(assoUpdate);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // POST: Association/Edit/5
         [HttpPost]

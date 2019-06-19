@@ -8,6 +8,7 @@ namespace OCFG.Models
         private DateTime dateReceived;
         private string year;
         private char status;
+        private object assemblyDate;
 
         public Settlement()
         {
@@ -16,6 +17,13 @@ namespace OCFG.Models
 
         public Settlement(DateTime dateReceived, string year)
         {
+            this.dateReceived = dateReceived;
+            this.year = year;
+        }
+
+        public Settlement(int id, DateTime dateReceived, string year)
+        {
+            this.id = id;
             this.dateReceived = dateReceived;
             this.year = year;
         }

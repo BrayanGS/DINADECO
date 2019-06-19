@@ -1,0 +1,85 @@
+﻿@model OCFG.Models.EconomicReport
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EconomicReport</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <a>Fecha:  </a>
+                        @Html.DisplayFor(model => model.DateReceived, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateReceived, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <a>Año:  </a>
+                        @Html.DisplayFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <a>Balace:  </a>
+                        @Html.DisplayFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <a>Estado:  </a>
+                        @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="form-group">
+                    <h5>Fecha: </h5>
+                    <div class="col-md-4">
+                        <input type="date" name="dateReceived"
+                               id="dateIn" tabindex="2" min="1958-01-01" step="2" class="form-control">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <h5>Año: </h5>
+                    <div class="col-md-4">
+                        <input type="number" name="year"
+                               id="year" tabindex="2" min="1958-01-01" step="2" class="form-control">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <h5>Balance: </h5>
+                    <div class="col-md-4">
+                        <input type="number" name="balance"
+                               id="balance" tabindex="2" min="1958-01-01" step="2" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

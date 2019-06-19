@@ -122,7 +122,7 @@
                             @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Edit", "Association", new { id = item.Id})
+                            @Html.ActionLink("Editar", "Edit", new { id = item.RegistryCode})
                         </td>
                         <td>
                             <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">

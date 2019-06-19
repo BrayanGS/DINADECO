@@ -20,6 +20,13 @@ namespace OCFG.Models
             this.year = year;
         }
 
+        public ConcreteLiquidation(int id, DateTime dateReceived, string year)
+        {
+            this.id = id;
+            this.dateReceived = dateReceived;
+            this.year = year;
+        }
+
         public ConcreteLiquidation(int id, DateTime dateReceived, String year, char status)
         {
             Id = id;

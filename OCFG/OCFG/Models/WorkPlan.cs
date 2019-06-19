@@ -1,4 +1,6 @@
-﻿namespace OCFG.Models
+﻿using System;
+
+namespace OCFG.Models
 {
     public class WorkPlan
     {
@@ -14,6 +16,12 @@
 
         public WorkPlan(string assemblyDate)
         {
+            this.assemblyDate = assemblyDate;
+        }
+
+        public WorkPlan(int id, string assemblyDate)
+        {
+            this.id = id;
             this.assemblyDate = assemblyDate;
         }
 
