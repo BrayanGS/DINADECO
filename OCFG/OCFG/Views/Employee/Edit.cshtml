@@ -1,0 +1,139 @@
+﻿@model OCFG.Models.Association
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h2>Detalles de la Asociación</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <h5>Codigo de Registro</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.RegistryCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RegistryCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Nombre</h5>
+                    <div class="col-md-7">
+                        @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Region</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Cantón</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Canton, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Canton, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Estado</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Actividad</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Active, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <h5>Provincia</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Province, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Idoneidad</h5>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Adequacy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Adequacy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Declaración Jurada</h5>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Affidavit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Affidavit, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Tipo</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Cédula Jurídica</h5>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.LegalDocument, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LegalDocument, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Superavit</h5>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Superavit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Superavit, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="row">
+                    <button class="btn btn-light">@Html.ActionLink("Informe Economico", "EditEconomicReport", new { id = Model.EconomicReport.Id})</button>
+                </div>
+                <br />
+                <div class="row">
+                    <button class="btn btn-light">@Html.ActionLink("Plan de Trabajo", "EditWorkPlan", new { id = Model.WorkPlan.Id })</button>
+                </div>
+                <br />
+                <div class="row">
+                    <button class="btn btn-light">@Html.ActionLink("Liquidación Cemento", "EditConcreteLiquidation", new { id = Model.ConcreteLiquidation.Id})</button>
+                </div>
+                <br />
+                <div class="row">
+                    <button class="btn btn-light">@Html.ActionLink("Liquidación del 2%", "EditSettlement", new { id = Model.Settlement.Id })</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Search")
+</div>

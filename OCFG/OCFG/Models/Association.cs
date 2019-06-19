@@ -32,7 +32,7 @@ namespace OCFG.Models
         }
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
-            string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, 
+            string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, int type, 
             Employee employee, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport,
             ConcreteLiquidation concreteLiquidation)
         {
@@ -67,6 +67,51 @@ namespace OCFG.Models
             this.workPlan = workPlan;
             this.economicReport = economicReport;
             this.settlement = settlement;
+            this.concreteLiquidation = concreteLiquidation;
+        }
+
+        public Association(int id, int registryCode, string name, string region, string canton, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation)
+        {
+            this.id = id;
+            this.registryCode = registryCode;
+            this.name = name;
+            this.region = region;
+            this.canton = canton;
+            this.status = status;
+            this.active = active;
+            this.province = province;
+            this.legalDocument = legalDocument;
+            this.superavit = superavit;
+            this.adequacy = adequacy;
+            this.affidavit = affiavit;
+            this.type = type;
+            this.workPlan = workPlan;
+            this.settlement = settlement;
+            this.economicReport = economicReport;
+            this.concreteLiquidation = concreteLiquidation;
+        }
+
+        public Association(int registryCode, string name, string canton, string region, string status, string active, string province)
+        {
+            this.registryCode = registryCode;
+            this.name = name;
+            this.canton = canton;
+            this.region = region;
+            this.status = status;
+            this.active = active;
+            this.province = province;
+        }
+
+        public Association(int registryCode, string name, string canton, string region, string status, string active, string province, string legalDocument, string superavit, string adequacy, string affidavit, int type, WorkPlan workPlan, Settlement settlement, EconomicReport economicReport, ConcreteLiquidation concreteLiquidation) : this(registryCode, name, canton, region, status, active, province)
+        {
+            this.legalDocument = legalDocument;
+            this.superavit = superavit;
+            this.adequacy = adequacy;
+            this.affidavit = affidavit;
+            this.type = type;
+            this.workPlan = workPlan;
+            this.settlement = settlement;
+            this.economicReport = economicReport;
             this.concreteLiquidation = concreteLiquidation;
         }
 

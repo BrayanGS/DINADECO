@@ -1,4 +1,6 @@
-﻿namespace OCFG.Models
+﻿using System;
+
+namespace OCFG.Models
 {
     public class WorkPlan
     {
@@ -17,9 +19,21 @@
             this.assemblyDate = assemblyDate;
         }
 
+        public WorkPlan(int id, string assemblyDate)
+        {
+            this.id = id;
+            this.assemblyDate = assemblyDate;
+        }
+
         public WorkPlan(int id, string assemblyDate, string status)
         {
             this.id = id;
+            this.assemblyDate = assemblyDate;
+            this.status = status;
+        }
+
+        public WorkPlan(string assemblyDate, string status)
+        {
             this.assemblyDate = assemblyDate;
             this.status = status;
         }

@@ -1,0 +1,120 @@
+﻿@model OCFG.Models.Association
+@using System.Linq
+@{
+    Layout = null;
+
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div aling="center">
+
+    <div class="center-block">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="~/Content/image/logDinadeco.png" style="width:50%" />
+            </div>
+            <div class="col-sm-4">
+                <h2>Informe de la asociación</h2>
+            </div>
+            <div class="col-sm-4">
+                <h5>Fecha de servidor: @ViewBag.Message </h5>
+            </div>
+        </div>
+        <br />
+        <table class="table table-bordered" >
+            <tr>
+                <th class="text-center">Código de registro</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Región</th>
+                <th class="text-center">Cantón</th>
+                <th class="text-center">Estado</th>
+                <th class="text-center">Actividad</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.RegistryCode)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Name)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Region)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Canton)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Status)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Active)</th>
+            </tr>
+            <tr>
+                <th class="text-center">Provincia</th>
+                <th class="text-center">Cédula jurídica</th>
+                <th class="text-center">Superavit</th>
+                <th class="text-center">Idoneidad</th>
+                <th class="text-center">Declaración jurada</th>
+                <th class="text-center">Tipo</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.Province)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.LegalDocument)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Superavit)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Adequacy)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Affidavit)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Type)</th>
+            </tr>
+        </table>
+    </div>
+    <div class="center-block">
+        <h4 class="text-center">Informe económico</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Fecha de recibido</th>
+                <th class="text-center">Año</th>
+                <th class="text-center">Balance</th>
+                <th class="text-center">Estado</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.DateReceived)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Year)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Balance)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Status)</th>
+            </tr>
+        </table>
+    </div>
+    <div class="center-block">
+        <h4 class="text-center">Plan de trabajo en copia del acta confrontada</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Fecha de asamblea</th>
+                <th class="text-center">Estado</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.WorkPlan.AssemblyDate)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.WorkPlan.Status)</th>
+            </tr>
+        </table>
+    </div>
+    <div class="center-block">
+        <h4 class="text-center">Liquidación del 2% ISR</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Fecha de recibido</th>
+                <th class="text-center">Año</th>
+                <th class="text-center">Estado</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.Settlement.DateReceived)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Settlement.Year)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.Settlement.Status)</th>
+            </tr>
+        </table>
+    </div>
+    <div class="center-block">
+        <h4 class="text-center">Liquidación de cemento</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Fecha de recibido</th>
+                <th class="text-center">Año</th>
+                <th class="text-center">Estado</th>
+            </tr>
+            <tr>
+                <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.DateReceived)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.Year)</th>
+                <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.Status)</th>
+            </tr>
+        </table>
+    </div>
+</div>

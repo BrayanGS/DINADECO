@@ -14,6 +14,10 @@ namespace OCFG.Controllers
         AssociationData associationData = new AssociationData();
         Association association = new Association();
         CantonData cantonData = new CantonData();
+        EconomicReport economicReport = new EconomicReport();
+        WorkPlan workPlan = new WorkPlan();
+        Settlement settlement = new Settlement();
+        ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation();
 
         // GET: Employee
         public ActionResult Index()
@@ -70,7 +74,7 @@ namespace OCFG.Controllers
                 Officer officer = new Officer(0, null, null, null);
                 Employee employeeInsert = new Employee(0, name, lastName, idCard, address, phoneNumber, email, dateIn, dateOut, officer, ICanton);
                 employeeData.insertEmployee(employeeInsert);
-                return RedirectToAction("Menu","Administrator");
+                return RedirectToAction("Menu", "Administrator");
             }
             catch
             {
@@ -80,20 +84,21 @@ namespace OCFG.Controllers
             }
         }
 
-        // GET: Employee/Edit/5
+        // GET: Association/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            association = employeeData.getAssociationId(id);
+            association.RegistryCode = id;
+            return View(association);
         }
 
-        // POST: Employee/Edit/5
+        // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Association assoUpdate)
         {
             try
             {
-                // TODO: Add update logic here
-
+                associationData.updateAssociation(assoUpdate);
                 return RedirectToAction("Index");
             }
             catch
@@ -115,6 +120,107 @@ namespace OCFG.Controllers
 
             return View();
 
+        }
+
+        //Edit documents by employee
+        /*Edit By Employee For Association*/
+
+        // GET: Association/EditEconomicReport/5
+        public ActionResult EditEconomicReport(int id)
+        {
+            economicReport = employeeData.getEconomicReportById(id);
+            economicReport.Id = id;
+            return View(economicReport);
+        }
+
+        //GET: Association/EditWorkPlan/5
+        public ActionResult EditWorkPlan(int id)
+        {
+            workPlan = employeeData.getWorkPlanById(id);
+            workPlan.Id = id;
+            return View(workPlan);
+        }
+
+        //GET: Employee/EditConcreteLiquidation/5
+        public ActionResult EditConcreteLiquidation(int id)
+        {
+            concreteLiquidation = employeeData.getConcreteById(id);
+            concreteLiquidation.Id = id;
+            return View(concreteLiquidation);
+        }
+
+        //GET: Employee/EditConcreteLiquidation/5
+        public ActionResult EditSettlement(int id)
+        {
+            settlement = employeeData.getSettlementById(id);
+            settlement.Id = id;
+            return View(settlement);
+        }
+
+        /*HTTPPOST*/
+
+        // POST: Association/Edit/5
+        [HttpPost]
+        public ActionResult EditWorkPlan(int id ,string assemblyDate)
+        {
+            try
+            {
+                WorkPlan workPlan = new WorkPlan(id,assemblyDate);
+                employeeData.updateWorkPlan(workPlan);
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: Association/Edit/5
+        [HttpPost]
+        public ActionResult EditEconomicReport(int id, DateTime dateReceived, string year, float balance)
+        {
+            try
+            {
+                EconomicReport economicReport = new EconomicReport(id, dateReceived, year, balance);
+                employeeData.updateEconomicReport(economicReport);
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: Association/Edit/5
+        [HttpPost]
+        public ActionResult EditConcreteLiquidation(int id, DateTime dateReceived, string year)
+        {
+            try
+            {
+                ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation(id, dateReceived, year);
+                employeeData.updateConcreteLiquidation(concreteLiquidation);
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: Association/Edit/5
+        [HttpPost]
+        public ActionResult EditSettlement(int id, DateTime dateReceived, string year)
+        {
+            try
+            {
+                Settlement settlement = new Settlement(id, dateReceived, year);
+                employeeData.updateSettlement(settlement);
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

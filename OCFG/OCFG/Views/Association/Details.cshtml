@@ -1,238 +1,243 @@
 ﻿@model OCFG.Models.Association
-
+@using System.Linq
 @{
     ViewBag.Title = "Details";
 }
-
-
-<div>
-    <br />
-    <br />
-    <br />
-    <div class="text-center">
-        <h2>Detalles de la asociación </h2>
-    </div>
-    <hr />
-    <div class="dl-horizontal">
-        <div class="row" align="center">
-            <div class="col-md-3 text-center">
-                <td>
-                    <h4>Código de registro</h4>
-                </td>
-                <tr>
-                    @Html.DisplayFor(model => model.RegistryCode)
-                </tr>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Nombre de la asociación</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Región</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Region)
-                </dd>
-            </div>
-
-        </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
         <br />
-        <div class="row" align="center">
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Cantón</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Canton)
-                </dd>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Provincia</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Province)
-                </dd>
-            </div>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-12 text-center">
-                <h3>_________________________________________________________________________________________ </h3>
-            </div>
-
-        </div>
+        <br />
+        <br />
         <div class="text-center">
-            <h3>Informe Economico</h3>
+            <h2>Detalles de la asociación </h2>
         </div>
-        <div class="row" align="center">
-            <div class="col-md-3  text-center">
-                <dt>
-                    <h4>Estado</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EconomicReport.Status)
-                </dd>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Año</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EconomicReport.Year)
-                </dd>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Balance</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EconomicReport.Balance)
-                </dd>
-            </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Fecha de recibido</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EconomicReport.DateReceived)
-                </dd>
-            </div>
-        </div>
+        <hr />
+        <div class="dl-horizontal">
+            <div class="row" align="center">
+                <div class="col-md-3 text-center">
+                    <td>
+                        <h4>Código de registro</h4>
+                    </td>
+                    <tr>
+                        @Html.DisplayFor(model => model.RegistryCode)
+                    </tr>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Nombre de la asociación</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Región</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Region)
+                    </dd>
+                </div>
 
-        <div class="row" align="center">
-            <div class="col-md-12">
-                <h3>_________________________________________________________________________________________ </h3>
             </div>
-        </div>
-        <div class="text-center">
-            <h3>Plan de trabajo en copia del acta confrontada</h3>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Fecha de asamblea</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.WorkPlan.AssemblyDate)
-                </dd>
+            <br />
+            <div class="row" align="center">
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Cantón</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Canton)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Provincia</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Province)
+                    </dd>
+                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Estado</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.WorkPlan.Status)
-                </dd>
-            </div>
-        </div>
+            <div class="row" align="center">
+                <div class="col-md-12 text-center">
+                    <h3>____________________________________________________________________ </h3>
+                </div>
 
-        <div class="row" align="center">
-            <div class="col-md-12">
-                <h3>_________________________________________________________________________________________ </h3>
             </div>
-        </div>
-        <div class="text-center">
-            <h3>Liquidacion del 2% ISR</h3>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Fecha de recibido</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Settlement.DateReceived)
-                </dd>
+            <div class="text-center">
+                <h3>Informe Economico</h3>
             </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Año</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Settlement.Year)
-                </dd>
+            <div class="row" align="center">
+                <div class="col-md-3  text-center">
+                    <dt>
+                        <h4>Estado</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EconomicReport.Status)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Año</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EconomicReport.Year)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Balance</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EconomicReport.Balance)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Fecha de recibido</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EconomicReport.DateReceived)
+                    </dd>
+                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Estado</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Settlement.Status)
-                </dd>
-            </div>
-        </div>
 
-        <div class="row" align="center">
-            <div class="col-md-12">
-                <h3>_________________________________________________________________________________________ </h3>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <h3>____________________________________________________________________ </h3>
+                </div>
             </div>
-        </div>
-        <div class="text-center">
-            <h4>Liquidacion de cemento</h4>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Fecha de recibido</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ConcreteLiquidation.DateReceived)
-                </dd>
+            <div class="text-center">
+                <h3>Plan de trabajo en copia del acta confrontada</h3>
             </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Año</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ConcreteLiquidation.Year)
-                </dd>
+            <div class="row" align="center">
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Fecha de asamblea</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.WorkPlan.AssemblyDate)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Estado</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.WorkPlan.Status)
+                    </dd>
+                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <dt>
-                    <h4>Estado</h4>
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ConcreteLiquidation.Status)
-                </dd>
-            </div>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-12">
-                <h3>_________________________________________________________________________________________ </h3>
-            </div>
-        </div>
-        <div class="row" align="center">
-            <div class="col-md-3  text-center">
-                <dt>
-                    <h4>ESTADO GENERAL</h4>
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <h3>____________________________________________________________________ </h3>
+                </div>
             </div>
-            <div class="col-md-3  text-center">
-                <dt>
-                    <h4>Estado</h4>
-                </dt>
+            <div class="text-center">
+                <h3>Liquidacion del 2% ISR</h3>
+            </div>
+            <div class="row" align="center">
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Fecha de recibido</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Settlement.DateReceived)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Año</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Settlement.Year)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Estado</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Settlement.Status)
+                    </dd>
+                </div>
+            </div>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Active)
-                </dd>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <h3>____________________________________________________________________ </h3>
+                </div>
             </div>
+            <div class="text-center">
+                <h4>Liquidacion de cemento</h4>
+            </div>
+            <div class="row" align="center">
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Fecha de recibido</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ConcreteLiquidation.DateReceived)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Año</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ConcreteLiquidation.Year)
+                    </dd>
+                </div>
+                <div class="col-md-3 text-center">
+                    <dt>
+                        <h4>Estado</h4>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ConcreteLiquidation.Status)
+                    </dd>
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <h3>____________________________________________________________________ </h3>
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="col-md-3  text-center">
+                    <dt>
+                        <h4>ESTADO GENERAL</h4>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+                </div>
+                <div class="col-md-3  text-center">
+                    <dt>
+                        <h4>Estado</h4>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Active)
+                    </dd>
+                </div>
+            </div>
+
         </div>
-
     </div>
-</div>
-<br />
-<div class="row">
-    <div class="col-md-6" align="left">
-        <button class="btn btn-light">
-            <h5>@Html.ActionLink("Volver a la búsqueda", "Search")</h5>
-        </button>
+    <br />
+    <div class="row">
+        <div class="col-md-6" align="left">
+            <button class="btn btn-light">
+                <h5>@Html.ActionLink("Volver a la búsqueda", "Search")</h5>
+            </button>
+            <button class="btn btn-light">
+                <h5>@Html.ActionLink("Generar PDF", "PrintDeatilsAssociation", new { id = Model.RegistryCode })</h5>
+            </button>
+        </div>
     </div>
-</div>
+}
