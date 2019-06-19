@@ -12,6 +12,7 @@ namespace OCFG.Controllers
     {
         LoginData loginData = new LoginData();
         Officer officer = new Officer();
+        EmployeeData employeeData = new EmployeeData();
 
         // GET: Login
         public ActionResult Index()
@@ -46,8 +47,9 @@ namespace OCFG.Controllers
                 }
                 else if (rol.Equals("Empleado"))
                 {
+                    int loginUser = employeeData.getIdLoginUser(userName, password);
                     this.ViewBag.Message = mensaje;
-                    return RedirectToAction("Search", "Employee");
+                    return RedirectToAction("Search", "Employee", new {loginUser});
                 }
                 else {
                     mensaje = "*Usuario no encontrado, verifique los datos";

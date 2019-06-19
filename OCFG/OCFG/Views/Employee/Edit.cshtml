@@ -115,19 +115,19 @@
 
             <div class="col-md-2">
                 <div class="row">
-                    <button class="btn btn-light">@Html.ActionLink("Informe Economico", "EditEconomicReport", new { id = Model.EconomicReport.Id})</button>
+                    <button class="btn btn-light">@Html.ActionLink("Informe Economico", "EditEconomicReport", new { id = Model.EconomicReport.Id, idLogin = ViewBag.Id})</button>
                 </div>
                 <br />
                 <div class="row">
-                    <button class="btn btn-light">@Html.ActionLink("Plan de Trabajo", "EditWorkPlan", new { id = Model.WorkPlan.Id })</button>
+                    <button class="btn btn-light">@Html.ActionLink("Plan de Trabajo", "EditWorkPlan", new { id = Model.WorkPlan.Id, idLogin = ViewBag.Id })</button>
                 </div>
                 <br />
                 <div class="row">
-                    <button class="btn btn-light">@Html.ActionLink("Liquidación Cemento", "EditConcreteLiquidation", new { id = Model.ConcreteLiquidation.Id})</button>
+                    <button class="btn btn-light">@Html.ActionLink("Liquidación Cemento", "EditConcreteLiquidation", new { id = Model.ConcreteLiquidation.Id, idLogin = ViewBag.Id })</button>
                 </div>
                 <br />
                 <div class="row">
-                    <button class="btn btn-light">@Html.ActionLink("Liquidación del 2%", "EditSettlement", new { id = Model.Settlement.Id })</button>
+                    <button class="btn btn-light">@Html.ActionLink("Liquidación del 2%", "EditSettlement", new { id = Model.Settlement.Id, idLogin = ViewBag.Id })</button>
                 </div>
             </div>
         </div>

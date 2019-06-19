@@ -262,5 +262,32 @@ namespace OCFG.Data
         {
             return new SqlConnection(connectionString);
         }
+
+        public List<Bitacora> getBitacora() {
+            List<Bitacora> listBitacora = new List<Bitacora>();
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                String query = "select name, last_name, chance_date, action from Bitacora";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Bitacora bitacora = null;
+                    while (reader.Read())
+                    {
+                        bitacora = new Bitacora();
+                        bitacora.Name = reader.GetString(0);
+                        bitacora.LasName = reader.GetString(1);
+                        bitacora.Date = reader.GetDateTime(2);
+                        bitacora.Action = reader.GetString(3);
+
+                        listBitacora.Add(bitacora);
+                    }
+                    sqlConnection.Close();
+                }
+            }
+            return listBitacora;
+        }
     }
 }

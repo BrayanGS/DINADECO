@@ -16,6 +16,7 @@ namespace OCFG.Controllers
         AssociationData associationData = new AssociationData();
         static Association association = new Association();
         CantonData cantonData = new CantonData();
+        EmployeeData employeeData = new EmployeeData();
 
         // GET: Association
         public ActionResult Index()
@@ -54,8 +55,6 @@ namespace OCFG.Controllers
 
         // GET: Association/Create
         public ActionResult Create()
-
-
         {
             List<Canton> cantons = cantonData.getAll();
             ViewData["cantons"] = cantons;

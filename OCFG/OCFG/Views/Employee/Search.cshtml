@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<OCFG.Models.Association>
 @using System.Linq
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -12,11 +11,12 @@
             <div class="col-md-9" align="left"><h2>Búsqueda de Asociaciones</h2></div>
             <div class="col-md-3" align="right">
                 <button class="btn btn-light">
-                    @Html.ActionLink("Insertar Nueva Asociación", "Create", "Association")
+                    @Html.ActionLink("Insertar Nueva Asociación", "Create", "Association", new { ViewBag.Id })
                 </button>
             </div>
+            <div class="col-md-9" align="center"><h2>Bienvenido @ViewBag.User</h2></div>
         </div>
-        
+
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
             <div class="row">
@@ -102,35 +102,35 @@
                     foreach (var item in Model)
                     {
 
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RegistryCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Canton)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Region)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Active)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Province)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.RegistryCode})
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RegistryCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Canton)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Region)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Province)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.RegistryCode, idLogin = ViewBag.Id })
+                            </td>
+                        </tr>
                     }
                 }
             </table>

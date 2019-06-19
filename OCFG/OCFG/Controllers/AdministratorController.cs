@@ -69,6 +69,26 @@ namespace OCFG.Controllers
             }
         }
 
+        // GET: Administrator/Authorization
+        public ActionResult Authorization()
+        {
+            List<Employee> employees = new List<Employee>();
+            return View(employees);
+        }
+
+        // POST: Administrator/Authorization
+        [HttpPost]
+        public ActionResult Authorization(string search)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                employees = administratorData.searchEmployeeByFilter(search);
+            }
+            return View(employees);
+        }
+
         // GET: Administrator/Search
         public ActionResult Search()
         {
@@ -88,7 +108,6 @@ namespace OCFG.Controllers
             }
             return View(employees);
         }
-
 
         // GET: Administrator/Delete/5
         public ActionResult Delete(string id)
@@ -154,6 +173,14 @@ namespace OCFG.Controllers
             List<Association> associations = new List<Association>();
             associations = associationData.getStatusAssociations();
             return View(associations);
+        }
+
+        // GET: Administrator/GetStatusAssociations
+        public ActionResult bitacora()
+        {
+            List<Bitacora> moviments = new List<Bitacora>();
+            moviments = administratorData.getBitacora();
+            return View(moviments);
         }
 
     }
