@@ -100,9 +100,12 @@
                         @if (item.Status == 0)
                         {
                             <td>
-                                @Html.ActionLink("Modificar", "Edit", new { id = item.IdCard }) |
+                               <label class="switch">
+                                   <input type="checkbox">
+                                   <span class="slider round"></span>
+                               </label>|
                                 @Html.ActionLink("Ver", "Details", new { id = item.IdCard }) |
-                                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCard })
+
                             </td>
                         }
                         else
