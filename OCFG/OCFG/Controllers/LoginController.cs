@@ -28,7 +28,6 @@ namespace OCFG.Controllers
         // GET: Login/Create
         public ActionResult Create()
         {
-            ViewData["message"] = " ";
             return View();
         }
 
@@ -36,19 +35,23 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Create(string userName, string password)
         {
+            string mensaje = " ";
             try
             {
                 string rol = loginData.getRolEmployee(userName, password);
                 if (rol.Equals("Administrador"))
                 {
+                    this.ViewBag.Message = mensaje;
                     return RedirectToAction("Menu", "Administrator");
                 }
                 else if (rol.Equals("Empleado"))
                 {
+                    this.ViewBag.Message = mensaje;
                     return RedirectToAction("Search", "Employee");
                 }
                 else {
-                    ViewData["message"] = "No se encuentre registrado";
+                    mensaje = "*Usuario no encontrado, verifique los datos";
+                    this.ViewBag.Message = mensaje;
                     return View();
                 }
             }

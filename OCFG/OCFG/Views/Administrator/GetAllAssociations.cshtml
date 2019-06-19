@@ -1,0 +1,201 @@
+﻿@model IEnumerable<OCFG.Models.Association>
+@using System.Linq
+@{
+    Layout = null;
+
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="~/Content/image/logDinadeco.png" style="width:20%" />
+    </div>
+    <div class="col-sm-4 text-center">
+        <h2>Reporte general de asociaciones</h2>
+    </div>
+    <div class="col-sm-4">
+        <h5>Fecha de servidor: @ViewBag.Message </h5>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="text-center">
+            <h5> Código de registro </h5>
+        </th>
+        <th class="text-center">
+            <h5> Nombre </h5>
+        </th>
+        <th class="text-center">
+            <h5> Región </h5>
+        </th>
+        <th class="text-center">
+            <h5> Cantón </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+        <th class="text-center">
+            <h5> Actividad </h5>
+        </th>
+        <th class="text-center">
+            <h5> Pronvincia </h5>
+        </th>
+        <th class="text-center">
+            <h5> Cédula Jurídica </h5>
+        </th>
+        <th class="text-center">
+            <h5> Superavit </h5>
+        </th>
+        <th class="text-center">
+            <h5> Ideonidad </h5>
+        </th>
+        <th class="text-center">
+            <h5> Declaración Jurada </h5>
+        </th>
+        <th class="text-center">
+            <h5> Tipo </h5>
+        </th>
+        <th class="text-center">
+            <h5> Reporte Económico </h5>
+        </th>
+        <th class="text-center">
+            <h5> Fecha Recibido </h5>
+        </th>
+        <th class="text-center">
+            <h5> Año </h5>
+        </th>
+        <th class="text-center">
+            <h5> Balance </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+        <th class="text-center">
+            <h5> Impuesto </h5>
+        </th>
+        <th class="text-center">
+            <h5> Fecha de Recibido </h5>
+        </th>
+        <th class="text-center">
+            <h5> Año </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+        <th class="text-center">
+            <h5> Plan de Trabajo </h5>
+        </th>
+        <th class="text-center">
+            <h5> Fecha de Asamblea </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+        <th class="text-center">
+            <h5> Liquidación de Concreto </h5>
+        </th>
+        <th class="text-center">
+            <h5> Fecha de Recibido </h5>
+        </th>
+        <th class="text-center">
+            <h5> Año </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.RegistryCode)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Canton)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Province)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.LegalDocument)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Superavit)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Adequacy)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Affidavit)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td class="text-center">
+                @Html.DisplayText(" ")
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.EconomicReport.DateReceived)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.EconomicReport.Year)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.EconomicReport.Balance)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.EconomicReport.Status)
+            </td>
+            <td class="text-center">
+                @Html.DisplayText(" ")
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Settlement.DateReceived)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Settlement.Year)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Settlement.Status)
+            </td>
+            <td class="text-center">
+                @Html.DisplayText(" ")
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.WorkPlan.AssemblyDate)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.WorkPlan.Status)
+            </td>
+            <td class="text-center">
+                @Html.DisplayText(" ")
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ConcreteLiquidation.DateReceived)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ConcreteLiquidation.Year)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ConcreteLiquidation.Status)
+            </td>
+        </tr>
+    }
+
+</table>
