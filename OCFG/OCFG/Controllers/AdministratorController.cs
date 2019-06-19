@@ -14,6 +14,7 @@ namespace OCFG.Controllers
         EmployeeData employeeData = new EmployeeData();
         static Employee employee = new Employee();
         static Canton canton = new Canton();
+        CantonData cantonData = new CantonData();
 
         public ActionResult Menu()
         {
@@ -38,6 +39,27 @@ namespace OCFG.Controllers
             {
                 administratorData.updateEmployee(employee, canton);
                 return RedirectToAction("Search","Administrator");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        //GET: Administrator/Enable/111111111
+        public ActionResult Enable(string id)
+        {
+            employee = administratorData.getEmployeeByIdCard(id);
+            return View(employee);
+        }
+
+        // POST: Asministrator/Enable/111111111
+        [HttpPost]
+        public ActionResult Enable(DateTime dateIn, string phoneNumber, string IdCard)
+        {
+            try
+            {
+                administratorData.updateEmployee(dateIn,phoneNumber,IdCard);
+                return RedirectToAction("Search", "Administrator");
             }
             catch
             {
@@ -75,11 +97,11 @@ namespace OCFG.Controllers
 
         // POST: Administrator/Delete/5
         [HttpPost]
-        public ActionResult Delete(string id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collectionm, DateTime dateOut)
         {
             try
             {
-                administratorData.deleteEmployee(id);
+                administratorData.deleteEmployee(id, dateOut);
 
                 return RedirectToAction("Search");
             }
@@ -87,6 +109,16 @@ namespace OCFG.Controllers
             {
                 return RedirectToAction("Search");
             }
+        }
+
+
+        // GET: Association/Details/5
+        public ActionResult Details(string id)
+        {
+            List<Canton> cantons = cantonData.getByEmployee(id);
+            ViewData["cantons"] = cantons;
+            employee = employeeData.getEmployeeById(id);
+            return View(employee);
         }
 
     }

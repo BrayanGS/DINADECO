@@ -75,6 +75,61 @@ namespace OCFG.Data
             return list;
 
         }
+
+        public int getIdEmployee(string id)
+        {
+            int idEmployee = 0; 
+
+            using (SqlConnection sqlCon = getConnection())
+            {
+                sqlCon.Open();
+                String query = "Select id_employee from Employee Where id_card = '" + id + "';";
+                SqlCommand sqlSelect = new SqlCommand(query, sqlCon);
+
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        idEmployee = reader.GetInt32(0);
+                    }
+
+                }
+
+            }
+            return idEmployee;
+        }
+
+        public List<Canton> getByEmployee(string id)
+        {
+            List<Canton> list = new List<Canton>();
+            int idEmployee = getIdEmployee(id);
+
+            using (SqlConnection sqlCon = getConnection())
+            {
+                sqlCon.Open();
+                String query = "Select name_canton from Canton where id_employee= " + idEmployee + ";";
+                SqlCommand sqlSelect = new SqlCommand(query, sqlCon);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Canton canton = null;
+                    while (reader.Read())
+                    {
+                        canton = new Canton();
+                        canton.Name = reader.GetString(0);
+
+                        list.Add(canton);
+
+                    }
+                    sqlCon.Close();
+                }
+
+
+                return list;
+
+            }
+        }
+
     }
 }
 

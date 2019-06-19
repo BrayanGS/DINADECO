@@ -59,25 +59,24 @@ namespace OCFG.Controllers
             List<Canton> cantons = cantonData.getAll();
             ViewData["cantons"] = cantons;
 
-            PDFReportAssotiationForEmployee pDFReportAssotiationForEmployee = new PDFReportAssotiationForEmployee();
-            pDFReportAssotiationForEmployee.generateReport();
-
             return View();
         }
 
         // POST: Association/Create
         [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string canton, string status,string active, string province, string legalDocument, int type )
+        public ActionResult Create(int registryCode, string name, string region, string ICanton, string status,string active, string province, string legalDocument, int type )
         {
             try
             {
               
-                Association associationInsert = new Association(0, registryCode, name, region, canton, status, active, province, legalDocument,null,null,null, type, null, null, null, null,null);
+                Association associationInsert = new Association(0, registryCode, name, region, ICanton, status, active, province, legalDocument,null,null,null, type, null, null, null, null,null);
                 associationData.insertarAssociation(associationInsert);
                 return RedirectToAction("Index");
             }
             catch
             {
+                List<Canton> cantons = cantonData.getAll();
+                ViewData["cantons"] = cantons;
                 return View();
             }
         }

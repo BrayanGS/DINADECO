@@ -14,11 +14,11 @@ namespace OCFG.Models
         private string email;
         private DateTime dateIn;
         private DateTime dateOut;
-        private char status;
+        private int status;
         private Officer officer;
         private LinkedList<Canton> cantons;
         private string[] cantons2;
-        private string nameEmployee;
+
 
         public Employee()
         {
@@ -26,20 +26,33 @@ namespace OCFG.Models
 
         public Employee(DateTime dateOut, string phoneNumber)
         {
-            this.dateOut = dateOut;
             this.phoneNumber = phoneNumber;
+            this.dateOut = dateOut;
         }
 
-        public Employee(string nameEmployee, string lastName, string idCard, string phoneNumber, DateTime dateIn, string email)
+        public Employee(string name, string lastName, string idCard, string phoneNumber, DateTime dateIn, string email)
         {
-            this.NameEmployee = nameEmployee;
+            this.Name = name;
             this.lastName = lastName;
             this.idCard = idCard;
             this.phoneNumber = phoneNumber;
             this.dateIn = dateIn;
             this.email = email;
         }
-    
+
+        public Employee(int id, string name, string lastName, string idCard, string address, string phoneNumber, DateTime dateIn, string email, int status)
+        {
+            this.id = id;
+            this.name = name;
+            this.lastName = lastName;
+            this.idCard = IdCard;
+            this.address = address;
+            this.phoneNumber = PhoneNumber;
+            this.dateIn = dateIn;
+            this.email = email;
+            this.status = Status;
+        }
+
         public Employee(int id, string name, string lastName, string idCard, string address, 
             string phoneNumber, string email, DateTime dateIn, DateTime dateOut,  Officer officer, LinkedList<Canton> cantons)
         {
@@ -72,23 +85,6 @@ namespace OCFG.Models
             this.cantons2 = cantons2;
         }
 
-        public Employee(int id, string name, string lastName, string idCard, string address,
-          string phoneNumber, string email, DateTime dateIn, DateTime dateOut, char status, Officer officer, string[] cantons2)
-        {
-            this.id = id;
-            this.name = name;
-            this.lastName = lastName;
-            this.idCard = idCard;
-            this.address = address;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-            this.dateIn = dateIn;
-            this.dateOut = dateOut;
-            this.status = status;
-            this.officer = officer;
-            this.cantons2 = cantons2;
-        }
-
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -101,7 +97,6 @@ namespace OCFG.Models
         public Officer Officer { get => officer; set => officer = value; }
         public LinkedList<Canton> Canton { get => cantons; set => cantons = value; }
         public string[] Canton2 { get => cantons2; set => cantons2 = value; }
-        public char Status { get => status; set => status = value; }
-        public string NameEmployee { get => nameEmployee; set => nameEmployee = value; }
+        public int Status { get => status; set => status = value; }
     }
 }

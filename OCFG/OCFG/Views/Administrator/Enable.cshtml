@@ -1,10 +1,10 @@
 ﻿@model OCFG.Models.Employee
-    
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Empleado</h4>
         <hr />
@@ -66,10 +66,10 @@
 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <h5 class="col-md-4">Fecha de salida: </h5>
+                        <h5 class="col-md-4">Fecha de entrada: </h5>
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.DateOut, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "DateTime" })
+                            @Html.EditorFor(model => model.DateIn, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateIn, "", new { @class = "DateTime" })
                         </div>
                     </div>
                 </div>
@@ -81,11 +81,10 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Search")
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Cancelar", "Search")
-</div>
+        }

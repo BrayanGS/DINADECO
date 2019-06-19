@@ -9,7 +9,6 @@ namespace OCFG.Models
     {
         private int id;
         private int registryCode;
-        private int type;
         private string name;
         private string canton;
         private string region;
@@ -18,39 +17,19 @@ namespace OCFG.Models
         private string active;
         private string adequacy;
         private string affidavit;
-        private EconomicReport economicReport;
-        private Settlement settlement;
-        private WorkPlan workPlan;
-        private ConcreteLiquidation concreteLiquidation;
+        private int type;
         private string legalDocument;
         private string superavit;
+        private WorkPlan workPlan;
+        private Settlement settlement;
+        private EconomicReport economicReport;
+        private ConcreteLiquidation concreteLiquidation;
+
 
         public Association()
         {
 
         }
-
-        public Association(int id, int registryCode, int type, string name, string canton, string region, string province, string status,
-            string active, EconomicReport economicReport, Settlement settlement, WorkPlan workPlan, ConcreteLiquidation concreteLiquidation,
-            string legalDocument, string superavit)
-        {
-            this.id = id;
-            this.registryCode = registryCode;
-            this.type = type;
-            this.name = name;
-            this.canton = canton;
-            this.region = region;
-            this.province = province;
-            this.status = status;
-            this.active = active;
-            this.workPlan = workPlan;
-            this.settlement = settlement;
-            this.economicReport = economicReport;
-            this.concreteLiquidation = concreteLiquidation;
-            this.legalDocument = legalDocument;
-            this.superavit = superavit;
-        }
-
 
         public Association(int id, int registryCode, string name, string region, string canton, string status,
             string active, string province, string legalDocumet, string superavit, string adequacy, string affiavit, int type, 
@@ -65,7 +44,7 @@ namespace OCFG.Models
             this.status = status;
             this.active = active;
             this.province = province;
-            this.legalDocument = legalDocumet;
+            this.legalDocument = legalDocument;
             this.superavit = superavit;
             this.adequacy = adequacy;
             this.affidavit = affiavit;

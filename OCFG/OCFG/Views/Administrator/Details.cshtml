@@ -1,0 +1,100 @@
+﻿@model OCFG.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
+}
+
+<div>
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h2>Detalles del Empleado </h2>
+    </div>
+    <hr />
+    <div class="dl-horizontal">
+        <div class="row" align="center">
+            <div class="col-md-3 text-center">
+                <td>
+                    <h4>Nombre</h4>
+                </td>
+                <tr>
+                    @Html.DisplayFor(model => model.Name)
+                </tr>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Apellidos</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Número de cédula</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IdCard)
+                </dd>
+            </div>
+            <h4>
+                Cantones a cargo:<br>
+                @foreach (var canton in cantons)
+                {
+                    <option value="canton.Value">
+                        @canton.Name
+                    </option>
+                }
+            </h4>
+        </div>
+        <br />
+        <div class="row" align="center">
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Número de teléfono</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Dirección</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Correo electrónico</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </div>
+            <div class="col-md-3 text-center">
+                <dt>
+                    <h4>Fecha de entrada</h4>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateIn)
+                </dd>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6" align="left">
+            <button class="btn btn-light">
+                <h5>@Html.ActionLink("Volver a la búsqueda", "Search")</h5>
+            </button>
+        </div>
+    </div>
+</div>

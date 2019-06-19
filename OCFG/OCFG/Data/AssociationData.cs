@@ -180,9 +180,9 @@ namespace OCFG.Data
             {
                  SqlTransaction transaction = null;
 
-                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, province) " +
+                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, province, legal_document, type) " +
                 "values ("+association.RegistryCode + ",'" + association.Name + "','" + association.Region + "','" + association.Canton + "',"
-                + varStatus + ",'"+varActive + "','" + association.Province + "')";
+                + varStatus + ",'"+varActive + "','" + association.Province+ "','" +association.LegalDocument + "'," + association.Type+")";
                
 
                

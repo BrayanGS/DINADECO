@@ -6,82 +6,88 @@
 
 <h2>Delete</h2>
 
-<h3>¿Seguro que desea eliminar el empleado?</h3>
+<h3>¿Seguro que desea eliminar al empleado:</h3>
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-           <h5>Nombre: </h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            <h5>Apellidos</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            <h5>Cédula</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdCard)
-        </dd>
-
-        <dt>
-            <h5>Dirección</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            <h5>Número de teléfono</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            <h5>Correo</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            <h5>Fecha de entrada</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateIn)
-        </dd>
-
-        <dt>
-            <h5>Fecha de salida</h5>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOut)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-primary" /> |
-            @Html.ActionLink("Cancelar", "Search")
-        </div>
-    }
-</div>
+        <hr />
+        <dl class="dl-horizontal">
+            <div style="width:50%; float:left;">
+                <dt>
+                    <h5>Nombre: </h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    <h5>Apellidos</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt>
+                    <h5>Cédula</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdCard)
+                </dd>
+
+                <dt>
+                    <h5>Dirección</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    <h5>Número de teléfono</h5>
+                </dt>
+            </div>
+            <div style="width:50%; float:right;">
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    <h5>Correo</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    <h5>Fecha de entrada</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateIn)
+                </dd>
+
+                <dt>
+                    <h5>Fecha de salida: </h5>
+                </dt>
+                <dd>
+                    <div class="mr-sm-3">
+                        @Html.EditorFor(model => model.DateOut, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "DateTime" })
+                    </div>
+                </dd>
+                </div>
+        </dl>
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+                @Html.ActionLink("Cancelar", "Search")
+            </div>
+        }
+    </div>
+
