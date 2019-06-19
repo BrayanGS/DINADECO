@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using OCFG.Data;
 using OCFG.Models;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,6 +126,23 @@ namespace OCFG.Controllers
             {
                 return View();
             }
+        }
+
+        //Methods for reports
+        // GET: Association/DetailsForReport/5
+        public ActionResult DetailsForReport(int id)
+        {
+
+            DateTime date = DateTime.Now;
+            this.ViewBag.Message = date;
+            association = associationData.getAssociationById(id);
+            return View(association);
+        }
+
+        public ActionResult PrintDeatilsAssociation(int id)
+        {
+
+            return new ActionAsPdf("DetailsForReport", new { id }) { FileName = "Informe Asociación " + id + ".pdf", PageSize = Rotativa.Options.Size.A4 };
         }
     }
 }

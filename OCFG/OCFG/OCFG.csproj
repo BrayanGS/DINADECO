@@ -550,6 +550,9 @@
     <Content Include="Views\Employee\EditSettlement.cshtml" />
     <Content Include="Views\Administrator\Details.cshtml" />
     <Content Include="Views\Administrator\Enable.cshtml" />
+    <Content Include="Views\Association\DetailsForReport.cshtml" />
+    <Content Include="Views\Administrator\GetAllAssociations.cshtml" />
+    <Content Include="Views\Administrator\GetStatusAssociations.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

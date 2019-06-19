@@ -1,5 +1,6 @@
 ﻿using OCFG.Data;
 using OCFG.Models;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace OCFG.Controllers
         static Employee employee = new Employee();
         static Canton canton = new Canton();
         CantonData cantonData = new CantonData();
+        AssociationData associationData = new AssociationData();
 
         public ActionResult Menu()
         {
@@ -119,6 +121,39 @@ namespace OCFG.Controllers
             ViewData["cantons"] = cantons;
             employee = employeeData.getEmployeeById(id);
             return View(employee);
+        }
+
+        //methods for reports 
+        public ActionResult PrintAllAssociations()
+        {
+            return new ActionAsPdf("GetAllAssociations") { FileName = "Informe General.pdf", PageOrientation = Rotativa.Options.Orientation.Landscape, PageSize = Rotativa.Options.Size.A4};
+        }
+
+        public ActionResult PrintStatusAssociations()
+        {
+            return new ActionAsPdf("GetStatusAssociations") { FileName = "Informe Anual.pdf"};
+        }
+
+        // GET: Administrator/GetAllAssociations
+        public ActionResult GetAllAssociations()
+        {
+            DateTime date = DateTime.Now;
+            this.ViewBag.Message = date;
+
+            List<Association> associations = new List<Association>();
+            associations = associationData.getAllAssociations();
+            return View(associations);
+        }
+
+        // GET: Administrator/GetStatusAssociations
+        public ActionResult GetStatusAssociations()
+        {
+            DateTime date = DateTime.Now;
+            this.ViewBag.Message = date;
+
+            List<Association> associations = new List<Association>();
+            associations = associationData.getStatusAssociations();
+            return View(associations);
         }
 
     }

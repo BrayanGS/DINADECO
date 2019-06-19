@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OCFG.Models.Association>
+
+@using System.Linq
+@{
+    Layout = null;
+
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="~/Content/image/logDinadeco.png" style="width:20%" />
+    </div>
+    <div class="col-sm-4 text-center">
+        <h2>Reporte anual de asociaciones</h2>
+    </div>
+    <div class="col-sm-4">
+        <h5>Fecha de servidor: @ViewBag.Message </h5>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="text-center">
+            <h5> Código de registro </h5>
+        </th>
+        <th class="text-center">
+            <h5> Nombre </h5>
+        </th>
+        <th class="text-center">
+            <h5> Cédula Jurídica </h5>
+        </th>
+        <th class="text-center">
+            <h5> Región </h5>
+        </th>
+        <th class="text-center">
+            <h5> Estado </h5>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.RegistryCode)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.LegalDocument)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
