@@ -51,9 +51,9 @@ namespace OCFG.Data
                 int idOfficer = getIdOfficer(user);
                 string formatted = employee.DateIn.ToString("dd/M/yyyy");
 
-                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, address, id_officer, status) " +
+                query1 = "Insert into Employee(name_employee, last_name, id_card, phone_number,date_in, email, address, id_officer, status, permit) " +
                 "values (" + "'" + employee.Name + "','" + employee.LastName + "','" + employee.IdCard + "','" + employee.PhoneNumber + "','"
-                + formatted + "','" + employee.Email + "','"+ employee.Address + "'," + idOfficer +","+ 1+ ")";
+                + formatted + "','" + employee.Email + "','"+ employee.Address + "'," + idOfficer +","+ 1+ 1+")";
                 SqlCommand sqlSelect1 = new SqlCommand(query1, sqlConnection);
                 sqlSelect1.ExecuteNonQuery(); 
                 int idEmployee = getIdEmployee(employee.IdCard);

@@ -18,6 +18,8 @@ namespace OCFG.Models
         private Officer officer;
         private LinkedList<Canton> cantons;
         private string[] cantons2;
+        private int permit; 
+
 
 
         public Employee()
@@ -70,7 +72,7 @@ namespace OCFG.Models
         }
 
         public Employee(int id, string name, string lastName, string idCard, string address,
-          string phoneNumber, string email, DateTime dateIn, DateTime dateOut, Officer officer, string[] cantons2)
+          string phoneNumber, string email, DateTime dateIn, DateTime dateOut, Officer officer, string[] cantons2, int permit)
         {
             this.id = id;
             this.name = name;
@@ -83,6 +85,7 @@ namespace OCFG.Models
             this.dateOut = dateOut;
             this.officer = officer;
             this.cantons2 = cantons2;
+            this.permit = permit;
         }
 
         public int Id { get => id; set => id = value; }
@@ -98,5 +101,6 @@ namespace OCFG.Models
         public LinkedList<Canton> Canton { get => cantons; set => cantons = value; }
         public string[] Canton2 { get => cantons2; set => cantons2 = value; }
         public int Status { get => status; set => status = value; }
+        public int Permit { get => permit; set => permit = value; }
     }
 }
