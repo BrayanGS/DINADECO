@@ -1,5 +1,5 @@
 ﻿@model OCFG.Models.Association
-<h1>Insertar nueva asociación</h1>
+<h2>Insertar nueva asociación</h2>
 @{
     var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
 }
@@ -97,7 +97,7 @@
                     <div class=" form-group ">
                         <div class="row ">
                             <div class="col-sm-6 col-sm-offset-3 ">
-                                <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
+                                <button class="form-horizontal btn btn-light" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?')">Registrar</button>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,3 @@
         </div>
 
     }
-
-    <div>
-        @Html.ActionLink("Página principal", "Index", "Home")
-    </div>

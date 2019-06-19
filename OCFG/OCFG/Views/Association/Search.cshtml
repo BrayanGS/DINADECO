@@ -11,24 +11,36 @@
         </header>
         <hr />
         <form action="Association/Search" method="post" role="form" style="display: block;">
-            <h4>Filtros:</h4>
-            <select name="filter">
-                <option value="name">Nombre</option>
-                <option value="cod">Código de Registro</option>
-                <option value="canton">Cantón</option>
-                <option value="region">Región</option>
-                <option value="province">Provincia</option>
-            </select>
-            <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
-                   id="search" tabindex="2" class="form-control" placeholder="">
-            <br>
-            <div class=" form-group ">
-                <div class="row ">
-                    <div class="col-sm-6 col-sm-offset-3 ">
-                        <button class="form-horizontal btn btn-default" type="submit">Buscar</button>
+
+            <div class="row">
+                <div class="col-md-1">
+                    <h5>Filtros:</h5>
+                </div>
+
+                <div class="col-md-2" align="left">
+                    <select name="filter">
+                        <option value="name">Nombre</option>
+                        <option value="cod">Código de Registro</option>
+                        <option value="canton">Cantón</option>
+                        <option value="region">Región</option>
+                        <option value="province">Provincia</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <input type="text" required name="search" title="En este espacio solo se permite ingresar letras"
+                           id="search" tabindex="2" class="form-control" placeholder="">
+                </div>
+
+                <div class="col-md-2">
+                    <div class=" form-group ">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <button class="form-horizontal btn btn-light" type="submit">Buscar</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </form>
         <div>
             <table class="table">
