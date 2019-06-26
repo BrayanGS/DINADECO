@@ -67,7 +67,7 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
 
-                string queryEmployee = "UPDATE Employee SET date_in = '" +formatted + "', " +
+                string queryEmployee = "UPDATE Employee SET date_in = '" + formatted + "', " +
                                        " phone_number = '" + phoneNumber + "', status=" + 0 + " WHERE id_card = '" + id + "';";
 
                 SqlCommand sqlEmployee = new SqlCommand(queryEmployee, sqlConnection);
@@ -87,7 +87,7 @@ namespace OCFG.Data
                 sqlConnection.Open();
 
                 string queryEmployee = "UPDATE Employee SET date_out = '" + employee.DateOut + "', " +
-                                       " phone_number = '" + employee.PhoneNumber+ "' WHERE id_card = '"+canton.Employee.IdCard+"';";
+                                       " phone_number = '" + employee.PhoneNumber + "' WHERE id_card = '" + canton.Employee.IdCard + "';";
 
                 int idEmployee = getIdEmployeeByIdCard(canton.Employee.IdCard);
 
@@ -134,7 +134,7 @@ namespace OCFG.Data
         }
 
 
-       
+
         public Canton getCantonByIdEmployee(string idEmployee)
         {
             Canton canton = null;
@@ -145,7 +145,7 @@ namespace OCFG.Data
 
                 String query = "SELECT c.name_canton" +
                                " FROM Canton c" +
-                               " WHERE c.id_employee = '" + idEmployee+ "';";
+                               " WHERE c.id_employee = '" + idEmployee + "';";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
@@ -171,32 +171,32 @@ namespace OCFG.Data
         public List<Employee> searchEmployeeByFilter(String search)
         {
             List<Employee> employees = new List<Employee>();
-                using (SqlConnection sqlConnection = getConnection())
-                {
-                    sqlConnection.Open();
-                    String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
-                                   " WHERE name_employee like '" + search.Substring(0, 1).ToUpper()+ search.Substring(1) + "%"+ "' " +
-                                   " OR last_name like'" + search.Substring(0, 1).ToUpper()+ search.Substring(1)+ "%" + "' " +
-                                   " OR id_card like '" + search + "%" + "'";
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
+                               " WHERE name_employee like '" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
+                               " OR last_name like'" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
+                               " OR id_card like '" + search + "%" + "'";
 
-                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    Employee employee = null;
+                    while (reader.Read())
                     {
-                        Employee employee = null;
-                        while (reader.Read())
-                        {
-                            employee = new Employee();
-                            employee.Name = (string)reader[0];
-                            employee.LastName = (string)reader[1];
-                            employee.IdCard = (string)reader[2];
-                            employee.PhoneNumber = (string)reader[3];
-                            employee.Email = (string)reader[4];
-                            employee.Status = (int)reader[5];
-                            employees.Add(employee);
-                        }
-                        sqlConnection.Close();
+                        employee = new Employee();
+                        employee.Name = (string)reader[0];
+                        employee.LastName = (string)reader[1];
+                        employee.IdCard = (string)reader[2];
+                        employee.PhoneNumber = (string)reader[3];
+                        employee.Email = (string)reader[4];
+                        employee.Status = (int)reader[5];
+                        employees.Add(employee);
                     }
+                    sqlConnection.Close();
                 }
+            }
             return employees;
         }
 
@@ -233,10 +233,10 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                
-                String query1 = "delete from Officer where id_officer = (select id_officer from Employee where id_card = '"+ idCard + "');";
+
+                String query1 = "delete from Officer where id_officer = (select id_officer from Employee where id_card = '" + idCard + "');";
                 String query2 = "update canton set id_employee = NULL where id_employee = " + idEmployee + ";";
-                String query3 = "update Employee set status = "+ 1 + ", date_out ='" + formatted + "' where id_card = '"+ idCard +"'; ";
+                String query3 = "update Employee set status = " + 1 + ", date_out ='" + formatted + "' where id_card = '" + idCard + "'; ";
 
                 SqlCommand sqlOfficer = new SqlCommand(query1, sqlConnection);
                 sqlOfficer.ExecuteNonQuery();
@@ -263,12 +263,12 @@ namespace OCFG.Data
             return new SqlConnection(connectionString);
         }
 
-        public List<Bitacora> getBitacora() {
+        public List<Bitacora> getBitacora(DateTime fechaBuscar) {
             List<Bitacora> listBitacora = new List<Bitacora>();
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "select name, last_name, chance_date, action from Bitacora";
+                String query = "select name, last_name, chance_date, action from Bitacora where chance_date = '"+fechaBuscar+"'";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
@@ -289,5 +289,6 @@ namespace OCFG.Data
             }
             return listBitacora;
         }
+
     }
 }

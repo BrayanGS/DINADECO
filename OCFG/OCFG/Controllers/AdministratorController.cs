@@ -175,11 +175,20 @@ namespace OCFG.Controllers
             return View(associations);
         }
 
-        // GET: Administrator/GetStatusAssociations
+        // GET: Administrator/bitacora
         public ActionResult bitacora()
         {
             List<Bitacora> moviments = new List<Bitacora>();
-            moviments = administratorData.getBitacora();
+            DateTime dateTime = DateTime.Now;
+            moviments = administratorData.getBitacora(dateTime);
+            return View(moviments);
+        }
+        // POST: Administrator/bitacora/111
+        [HttpPost]
+        public ActionResult bitacora(DateTime fechaBuscar)
+        {
+            List<Bitacora> moviments = new List<Bitacora>();
+            moviments = administratorData.getBitacora(fechaBuscar);
             return View(moviments);
         }
 

@@ -29,6 +29,7 @@ namespace OCFG.Controllers
         public ActionResult Search(int loginUser)
         {
             LoginUser User = employeeData.getLoginUser(loginUser);
+            this.ViewBag.Id = loginUser;
             this.ViewBag.User = User.NameLogin;
             List<Association> associations = new List<Association>();
 
@@ -89,6 +90,35 @@ namespace OCFG.Controllers
             }
         }
 
+        // GET: Employee/CreateAssociation
+        public ActionResult CreateAssociation(int idLogin)
+        {
+            ViewBag.Id = idLogin;
+            List<Canton> cantons = cantonData.getAll();
+            ViewData["cantons"] = cantons;
+
+            return View();
+        }
+
+        // POST: Employee/CreateAssociation
+        [HttpPost]
+        public ActionResult CreateAssociation(int registryCode, string name, string region, string ICanton, string status, string active, string province, string legalDocument, int type, int idLogin)
+        {
+            try
+            {
+                this.ViewBag.Id = idLogin;
+                Association associationInsert = new Association(0, registryCode, name, region, ICanton, status, active, province, legalDocument, null, null, null, type, null, null, null, null, null);
+                associationData.insertarAssociation(associationInsert, idLogin);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                this.ViewBag.Id = idLogin;
+                List<Canton> cantons = cantonData.getAll();
+                ViewData["cantons"] = cantons;
+                return View();
+            }
+        }
         // GET: Association/Edit/5
         public ActionResult Edit(int id, int idLogin)
         {
