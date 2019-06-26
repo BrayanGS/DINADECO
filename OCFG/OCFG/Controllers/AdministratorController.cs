@@ -168,7 +168,7 @@ namespace OCFG.Controllers
         //methods for reports 
         public ActionResult PrintAllAssociations()
         {
-            return new ActionAsPdf("GetAllAssociations") { FileName = "Informe General.pdf", PageOrientation = Rotativa.Options.Orientation.Landscape, PageSize = Rotativa.Options.Size.A4};
+            return new ActionAsPdf("GetAllAssociations") { FileName = "Informe General.pdf", PageOrientation = Rotativa.Options.Orientation.Landscape, PageSize = Rotativa.Options.Size.A3};
         }
 
         public ActionResult PrintStatusAssociations()

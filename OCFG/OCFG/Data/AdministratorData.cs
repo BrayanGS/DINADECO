@@ -209,33 +209,9 @@ namespace OCFG.Data
                         employee.Status = (int)reader[5];
                         employees.Add(employee);
 
-                        sqlConnection.Open();
-                        String query = " SELECT name_employee, last_name, id_card, phone_number, email, status, permit " +
-                                       " FROM Employee " +
-                                       " WHERE name_employee like '" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
-                                       " OR last_name like'" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
-                                       " OR id_card like '" + search + "%" + "'";
-
-                        SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                        using (SqlDataReader reader = sqlSelect.ExecuteReader())
-                        {
-                            Employee employee = null;
-                            while (reader.Read())
-                            {
-                                employee = new Employee();
-                                employee.Name = (string)reader[0];
-                                employee.LastName = (string)reader[1];
-                                employee.IdCard = (string)reader[2];
-                                employee.PhoneNumber = (string)reader[3];
-                                employee.Email = (string)reader[4];
-                                employee.Status = (int)reader[5];
-                                string permitEmployee = (string)reader[6];
-                                employee.Permit = Int32.Parse(permitEmployee);
-                                employees.Add(employee);
-                            }
-                        }
-                        sqlConnection.Close();
+                       
                     }
+                    sqlConnection.Close();
                 }
                 return employees;
             }

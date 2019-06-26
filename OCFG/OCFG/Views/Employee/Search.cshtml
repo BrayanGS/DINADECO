@@ -134,7 +134,7 @@
                                 @Html.DisplayFor(modelItem => item.Province)
                             </td>
                             <td>
-                                @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
+                                @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode, idLogin = ViewBag.Id })
                             </td>
                             <td>
                                 @Html.ActionLink("Editar", "Edit", new { id = item.RegistryCode, idLogin = ViewBag.Id })

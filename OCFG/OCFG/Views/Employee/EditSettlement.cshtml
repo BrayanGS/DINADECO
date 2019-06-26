@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-2">
                 <button class="btn btn-light">
-                    <h5>@Html.ActionLink("Cancelar", "Search")</h5>
+                    <h5>@Html.ActionLink("Cancelar", "Search", new { loginUser = ViewBag.Id })</h5>
                 </button>
             </div>
         </div>

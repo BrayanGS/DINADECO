@@ -10,7 +10,7 @@
     <br />
     <br />
     <div class="text-center">
-        <h2>Detalles de la asociación </h2>
+        <h2>Detalles de la asociación</h2>
     </div>
     <hr style="border-color:cornflowerblue" />
     <div class="dl-horizontal">
@@ -232,13 +232,7 @@
 <div class="row">
     <div class="col-md-6" align="left">
         <button class="btn btn-light">
-            <h5>@Html.ActionLink("Volver a la búsqueda", "Search")</h5>
-        </button>
-    </div>
-
-    <div class="col-md-6" align="right">
-        <button class="btn btn-light">
-            <h5>@Html.ActionLink("Modificar", "Edit", "Association")</h5>
+            <h5>@Html.ActionLink("Volver a la búsqueda", "Search", new { loginUser = ViewBag.Id})</h5>
         </button>
     </div>
 </div>
