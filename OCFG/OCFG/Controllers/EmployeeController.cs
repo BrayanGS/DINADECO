@@ -1,4 +1,4 @@
-﻿using OCFG.Data;
+﻿ using OCFG.Data;
 using OCFG.Models;
 using System;
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ namespace OCFG.Controllers
         public ActionResult Search(int loginUser)
         {
             LoginUser User = employeeData.getLoginUser(loginUser);
+            this.ViewBag.Id = loginUser;
             this.ViewBag.User = User.NameLogin;
             this.ViewBag.Permit = User.Permit;
             List<Association> associations = new List<Association>();
@@ -56,8 +57,9 @@ namespace OCFG.Controllers
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int idLogin)
         {
+            this.ViewBag.Id = idLogin;
             association = associationData.getAssociationById(id);
             return View(association);
         }
@@ -66,6 +68,7 @@ namespace OCFG.Controllers
         // GET: Employee/Create
         public ActionResult Create()
         {
+            this.ViewBag.Mensaje = "";
             List<Canton> cantons = cantonData.getCantonWithoutAssociation();
             ViewData["cantons"] = cantons;
             return View();
@@ -78,6 +81,7 @@ namespace OCFG.Controllers
         {
             try
             {
+                this.ViewBag.Mensaje = "";
                 int permit = 0;
                 DateTime dateOut = new DateTime(0001, 1, 1);
                 Officer officer = new Officer(0, null, null, null);
@@ -89,10 +93,40 @@ namespace OCFG.Controllers
             {
                 List<Canton> cantons = cantonData.getCantonWithoutAssociation();
                 ViewData["cantons"] = cantons;
+                this.ViewBag.Mensaje = "EL registro ya existe";
                 return View();
             }
         }
 
+        // GET: Employee/CreateAssociation
+        public ActionResult CreateAssociation(int idLogin)
+        {
+            ViewBag.Id = idLogin;
+            List<Canton> cantons = cantonData.getAll();
+            ViewData["cantons"] = cantons;
+
+            return View();
+        }
+
+        // POST: Employee/CreateAssociation
+        [HttpPost]
+        public ActionResult CreateAssociation(int registryCode, string name, string region, string ICanton, string status, string active, string province, string legalDocument, int type, int idLogin)
+        {
+            try
+            {
+                this.ViewBag.Id = idLogin;
+                Association associationInsert = new Association(0, registryCode, name, region, ICanton, status, active, province, legalDocument, null, null, null, type, null, null, null, null, null);
+                associationData.insertarAssociation(associationInsert, idLogin);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                this.ViewBag.Id = idLogin;
+                List<Canton> cantons = cantonData.getAll();
+                ViewData["cantons"] = cantons;
+                return View();
+            }
+        }
         // GET: Association/Edit/5
         public ActionResult Edit(int id, int idLogin)
         {

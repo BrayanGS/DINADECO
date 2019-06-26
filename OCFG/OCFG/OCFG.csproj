@@ -310,6 +310,8 @@
     <Content Include="Content\example\js\vendor\jquery-2.2.4.min.js" />
     <Content Include="Content\example\js\waypoints.min.js" />
     <Content Include="Content\example\scss\animate.min.css" />
+    <Content Include="Content\image\178152.png" />
+    <Content Include="Content\image\201642.png" />
     <Content Include="Content\image\asociaciones_0_0.png" />
     <Content Include="Content\image\icoLog.png" />
     <Content Include="Content\image\icoFA.png" />
@@ -318,6 +320,7 @@
     <Content Include="Content\image\icoTw.png" />
     <Content Include="Content\image\icoYt.png" />
     <Content Include="Content\image\logDinadeco.png" />
+    <Content Include="Content\image\reportes-icon.png" />
     <Content Include="Content\image\search here.jpeg" />
     <Content Include="Content\image\unlock-icon.png" />
     <Content Include="Content\image\user-login.png" />
@@ -558,6 +561,7 @@
     <Content Include="Views\Administrator\GetAllAssociations.cshtml" />
     <Content Include="Views\Administrator\GetStatusAssociations.cshtml" />
     <Content Include="Views\Administrator\bitacora.cshtml" />
+    <Content Include="Views\Employee\CreateAssociation.cshtml" />
     <Content Include="Views\Administrator\Permit.cshtml" />
   </ItemGroup>
   <ItemGroup />

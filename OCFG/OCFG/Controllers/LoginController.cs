@@ -49,7 +49,7 @@ namespace OCFG.Controllers
                 {
                     int loginUser = employeeData.getIdLoginUser(userName, password);
                     this.ViewBag.Message = mensaje;
-                    return RedirectToAction("Search", "Employee", new {loginUser});
+                    return RedirectToAction("Search", "Employee", new { loginUser = loginUser});
                 }
                 else {
                     mensaje = "*Usuario no encontrado, verifique los datos";

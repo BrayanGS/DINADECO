@@ -1,0 +1,113 @@
+﻿@model OCFG.Models.Association
+<h2>Insertar nueva asociación</h2>
+@{
+    var cantons = (List<OCFG.Models.Canton>)ViewData["cantons"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <form name=formulario action="Association/Create" method="post" role="form" style="display: block;">
+            <div style="width:50%; float:left;">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <h5>Código de registo: </h5>
+                        <input type="number" required name="registryCode" title="En este espacio solo se permite ingresar números"
+                               id="registryCode" tabindex="2" min="1" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <h5>Nombre: </h5>
+                        <input type="text" required pattern="[A-Za-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" title="En este espacio solo se permite ingresar letras"
+                               id="name" tabindex="2" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <h5>Cédula Jurídica: </h5>
+                        <input type="text" required name="legalDocument" pattern="[1-9]{1}[-]\d{3}[-]\d{6}" placeholder="x-xxx-xxxxxx" title="En este espacio solo se permite ingresar números y '-', debe utilizar
+                               el siguiente formato x-xxx-xxxxxx"
+                               id="legalDocument" tabindex="2" min="1" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <h5>Selecione una región: </h5>
+                        <select name="region">
+                            <option value="Central Oriental">Central Oriental</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <p>
+                            Cantones:<br>
+                            @foreach (var canton in cantons)
+                            {
+
+                                <input type="radio" name="ICanton" value="@canton.Name" />
+                                @canton.Name
+                                <br />
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="width:50%; float:right;">
+                <div class="col-md-7">
+                    <h5>Seleccione una provincia</h5>
+                    <select name="province">
+                        <option value="Cartago">Cartago</option>
+                    </select>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-7">
+                    <h5>Seleccione un estado</h5>
+                    <select name="status">
+                        <option value="toTheDate">Al día</option>
+                        <option value="pending">Pendiente</option>
+                    </select>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-7">
+                    <h5>Seleccione la participación</h5>
+                    <select name="active">
+                        <option value="active">Activa</option>
+                        <option value="inactive">Inactiva</option>
+                    </select>
+                </div>
+                <br>
+                <div class="col-md-7">
+                    <h5>Seleccione el tipo</h5>
+                    <select name="type">
+                        <option value="1">ASOCIACIÓN DE DESARROLLO ESPECÍFICAPRO</option>
+                        <option value="2">ASOCIACIÓN DE DESARROLLO INTEGRAL</option>
+                        <option value="3">UNION ZONAL</option>
+                        <option value="4">FEDERACION DE UNIONES</option>
+                        <option value="6">ASOCIACION DE DESARROLLO INTEGRAL DE RESERVA INDIGENA</option>
+                        <option value="10">DISUELTA</option>
+                    </select>
+                </div>
+                <br>
+                <div class=" form-group ">
+                    <div class="row ">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <button class="form-horizontal btn btn-default" type="submit" onclick="alert('¿Está seguro que desea realizar esta acción?'), new { idLogin = ViewBag.idLogin }">Registrar</button>
+                        </div>
+
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            @Html.ActionLink("Cancelar", "Search", new { loginUser = this.ViewBag.Id })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+}

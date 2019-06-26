@@ -189,7 +189,7 @@ namespace OCFG.Controllers
         //methods for reports 
         public ActionResult PrintAllAssociations()
         {
-            return new ActionAsPdf("GetAllAssociations") { FileName = "Informe General.pdf", PageOrientation = Rotativa.Options.Orientation.Landscape, PageSize = Rotativa.Options.Size.A4};
+            return new ActionAsPdf("GetAllAssociations") { FileName = "Informe General.pdf", PageOrientation = Rotativa.Options.Orientation.Landscape, PageSize = Rotativa.Options.Size.A3};
         }
 
         public ActionResult PrintStatusAssociations()
@@ -219,11 +219,20 @@ namespace OCFG.Controllers
             return View(associations);
         }
 
-        // GET: Administrator/GetStatusAssociations
+        // GET: Administrator/bitacora
         public ActionResult bitacora()
         {
             List<Bitacora> moviments = new List<Bitacora>();
-            moviments = administratorData.getBitacora();
+            DateTime dateTime = DateTime.Now;
+            moviments = administratorData.getBitacora(dateTime);
+            return View(moviments);
+        }
+        // POST: Administrator/bitacora/111
+        [HttpPost]
+        public ActionResult bitacora(DateTime fechaBuscar)
+        {
+            List<Bitacora> moviments = new List<Bitacora>();
+            moviments = administratorData.getBitacora(fechaBuscar);
             return View(moviments);
         }
 

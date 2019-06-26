@@ -8,13 +8,22 @@
     <div class="form-horizontal">
         <br />
         <div class="row">
-            <div class="col-md-9" align="left"><h2>Búsqueda de Asociaciones</h2></div>
-            <div class="col-md-3" align="right">
+
+            <div class="col-md-12" align="center">
+                <h2>Bienvenido @ViewBag.User</h2>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6" align="left">
+                <h3>Búsqueda de Asociaciones</h3>
+            </div>
+            <div class="col-md-6" align="right">
                 <button class="btn btn-light">
-                    @Html.ActionLink("Insertar nueva asociación","Create", "Association", new { idLogin = ViewBag.Id })
+                    @Html.ActionLink("Insertar nueva asociación", "CreateAssociation", new { idLogin = ViewBag.Id })
                 </button>
             </div>
-            <div class="col-md-9" align="center"><h2>Bienvenido @ViewBag.User</h2></div>
+
         </div>
 
         <hr />
@@ -125,7 +134,7 @@
                             @Html.DisplayFor(modelItem => item.Province)
                         </td>
                         <td>
-                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode })
+                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode, idLogin = ViewBag.Id  })
                         </td>
                         @if (ViewBag.Permit == 1)
                         {
