@@ -11,7 +11,7 @@
             <div class="col-md-9" align="left"><h2>Búsqueda de Asociaciones</h2></div>
             <div class="col-md-3" align="right">
                 <button class="btn btn-light">
-                    @Html.ActionLink("Insertar Nueva Asociación", "Create", "Association", new { ViewBag.Id })
+                    @Html.ActionLink("Insertar nueva asociación","Create", "Association", new { idLogin = ViewBag.Id })
                 </button>
             </div>
             <div class="col-md-9" align="center"><h2>Bienvenido @ViewBag.User</h2></div>

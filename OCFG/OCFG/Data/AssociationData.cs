@@ -15,6 +15,7 @@ namespace OCFG.Data
         EconomicReport economicReport;
         Settlement settlement;
         ConcreteLiquidation concreteLiquidation;
+        EmployeeData employeeData = new EmployeeData();
 
         public AssociationData()
         {
@@ -153,7 +154,7 @@ namespace OCFG.Data
 
             return exist;
         }
-        public void insertarAssociation(Association association)
+        public void insertarAssociation(Association association, int idLogin)
         {
             int varStatus;
             string varActive;
@@ -190,8 +191,10 @@ namespace OCFG.Data
                     sqlConnection.Open();
                     SqlCommand sqlSelect = new SqlCommand(query1, sqlConnection);
                     sqlSelect.ExecuteNonQuery();
+                    employeeData.insertBitacora(idLogin, "Inserto la asociación " + association.RegistryCode);
                     sqlConnection.Close();
                     transaction.Commit();
+                    
                 }
                 catch (SqlException ex)
                 {
