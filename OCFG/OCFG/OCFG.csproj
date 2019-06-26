@@ -562,6 +562,7 @@
     <Content Include="Views\Administrator\GetStatusAssociations.cshtml" />
     <Content Include="Views\Administrator\bitacora.cshtml" />
     <Content Include="Views\Employee\CreateAssociation.cshtml" />
+    <Content Include="Views\Administrator\Permit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

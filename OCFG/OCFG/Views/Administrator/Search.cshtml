@@ -1,7 +1,6 @@
 ﻿@model IEnumerable < OCFG.Models.Employee>
 @using System.Linq
 
-
 <h2>Buscar funcionario</h2>
 @using (Html.BeginForm())
 {
@@ -66,8 +65,11 @@
                 <th>
                     Correo
                 </th>
-                <th>
 
+                <th>
+                </th>
+
+                <th>
                 </th>
             </tr>
         </thead>
@@ -96,6 +98,21 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
+
+                        @Html.DisplayFor(modelItem => item.Permit)
+                        @if (item.Permit == 1)
+                        {
+                            <td>
+                                @Html.ActionLink("Con Permisos", "Permit", new { id = item.IdCard })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Sin Permisos", "Permit", new { id = item.IdCard })
+                            </td>
+                        }
+
                         @Html.DisplayFor(modelItem => item.Status)
                         @if (item.Status == 0)
                         {
@@ -109,9 +126,10 @@
                         {
                             <td>
                                 @Html.ActionLink("Habilitar", "Enable", new { id = item.IdCard }) |
-                                @Html.ActionLink("Ver", "Details", new { id = item.IdCard }) 
+                                @Html.ActionLink("Ver", "Details", new { id = item.IdCard })
                             </td>
                         }
+
                     </tr>
                 </tbody>
             }

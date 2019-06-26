@@ -102,11 +102,12 @@ namespace OCFG.Data
                 {
                     sqlConnection.Open();
 
-                    String query = "SELECT name_employee, last_name, id_card, phone_number, date_in, email, address, status,id_employee" +
+                    String query = "SELECT name_employee, last_name, id_card, phone_number, date_in, email, address, status,id_employee, permit" +
                                    " FROM Employee" +
                                    " WHERE id_card = '" + idEmployee + "';";
 
                     SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                    int varPermit; 
                     using (SqlDataReader reader = sqlSelect.ExecuteReader())
                     {
                         while (reader.Read())
@@ -121,15 +122,24 @@ namespace OCFG.Data
                             string address = reader.GetString(6);
                             int status = reader.GetInt32(7);
                             int id = reader.GetInt32(8);
+                            string permit = reader.GetString(9);
+                            if (permit.Equals("1"))
+                            {
+                                varPermit = 1;
+                            } else
+                            {
+                                varPermit = 0;
+                            }
 
 
-                        employee = new Employee(id, name, lastName, idEmployee, address, phoneNumber, dateIn, email, status);
+                        employee = new Employee(id, name, lastName, idEmployee, address, phoneNumber, dateIn, email, status, varPermit);
                         }
                         sqlConnection.Close();
                     }
                     return employee;
                 }
         }
+
 
         public void generarCorreo(string email, string username, string password, string nameClient)
         {
@@ -489,7 +499,7 @@ namespace OCFG.Data
                         economicReport = new EconomicReport();
                         economicReport.DateReceived = reader.GetDateTime(0);
                         economicReport.Year = reader.GetString(1);
-                        string statusEconomic = reader.GetString(3);
+                        string statusEconomic = reader.GetString(2);
                         char[] cadEconomic = statusEconomic.ToCharArray();
                         economicReport.Status = cadEconomic[0];
 
