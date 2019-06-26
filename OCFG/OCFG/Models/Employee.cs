@@ -20,10 +20,8 @@ namespace OCFG.Models
         private Officer officer;
         private LinkedList<Canton> cantons;
         private string[] cantons2;
-        private int permit; 
-
-
-
+        private int permit;
+        private string idEmployee;
 
         public Employee()
         {
@@ -33,6 +31,15 @@ namespace OCFG.Models
         {
             this.phoneNumber = phoneNumber;
             this.dateOut = dateOut;
+        }
+
+        public Employee(int id, string name, string lastName, string idEmployee, int permit)
+        {
+            this.id = id;
+            this.name = name;
+            this.lastName = lastName;
+            this.idEmployee = idEmployee;
+            this.permit = permit;
         }
 
         public Employee(string name, string lastName, string idCard, string phoneNumber, DateTime dateIn, string email)
@@ -56,6 +63,20 @@ namespace OCFG.Models
             this.dateIn = dateIn;
             this.email = email;
             this.status = Status;
+        }
+
+        public Employee(int id, string name, string lastName, string idCard, string address, string phoneNumber, DateTime dateIn, string email, int status, int permit)
+        {
+            this.id = id;
+            this.name = name;
+            this.lastName = lastName;
+            this.idCard = IdCard;
+            this.address = address;
+            this.phoneNumber = PhoneNumber;
+            this.dateIn = dateIn;
+            this.email = email;
+            this.status = Status;
+            this.permit = permit;
         }
 
         public Employee(int id, string name, string lastName, string idCard, string address, 

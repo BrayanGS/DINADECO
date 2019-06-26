@@ -75,6 +75,19 @@ namespace OCFG.Data
             }
         }
 
+        public void changePermit(String idCard)
+        {
+            int idEmployee = getIdEmployeeByIdCard(idCard);
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                string queryPermit = "UPDATE Employee SET permit = " + 0 + " WHERE id_card = " + idCard;
+
+                SqlCommand sqlPermit = new SqlCommand(queryPermit, sqlConnection);
+                sqlPermit.ExecuteNonQuery();
+            }
+        }
 
         /// <summary>
         /// 
@@ -106,9 +119,10 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "SELECT e.name_employee, e.last_name, e.id_card, e.phone_number, e.date_in , e.email, e.address, e.date_out" +
-                        " FROM Employee e" +
-                        " WHERE e.id_card = '" + idCardEmployee + "';";
+                String query = " SELECT e.name_employee, e.last_name, e.id_card, ISNULL(e.phone_number, 'No disponible'), ISNULL(e.date_in, 'No disponible'), "+
+                               " ISNULL( e.email, 'No disponible'), ISNULL(e.address, 'No disponible'), ISNULL(e.date_out, '1/11/1111') " +
+                               " FROM Employee e " +
+                               " WHERE e.id_card = '" + idCardEmployee + "';";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
 
@@ -174,7 +188,8 @@ namespace OCFG.Data
                 using (SqlConnection sqlConnection = getConnection())
                 {
                     sqlConnection.Open();
-                    String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
+                    String query = " SELECT name_employee, last_name, id_card, phone_number, email, status, permit " +
+                                   " FROM Employee " +
                                    " WHERE name_employee like '" + search.Substring(0, 1).ToUpper()+ search.Substring(1) + "%"+ "' " +
                                    " OR last_name like'" + search.Substring(0, 1).ToUpper()+ search.Substring(1)+ "%" + "' " +
                                    " OR id_card like '" + search + "%" + "'";
@@ -192,6 +207,8 @@ namespace OCFG.Data
                             employee.PhoneNumber = (string)reader[3];
                             employee.Email = (string)reader[4];
                             employee.Status = (int)reader[5];
+                            string permitEmployee = (string)reader[6];
+                            employee.Permit = Int32.Parse(permitEmployee);
                             employees.Add(employee);
                         }
                         sqlConnection.Close();
@@ -234,12 +251,9 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
                 
-                String query1 = "delete from Officer where id_officer = (select id_officer from Employee where id_card = '"+ idCard + "');";
                 String query2 = "update canton set id_employee = NULL where id_employee = " + idEmployee + ";";
                 String query3 = "update Employee set status = "+ 1 + ", date_out ='" + formatted + "' where id_card = '"+ idCard +"'; ";
 
-                SqlCommand sqlOfficer = new SqlCommand(query1, sqlConnection);
-                sqlOfficer.ExecuteNonQuery();
                 SqlCommand sqlCanton = new SqlCommand(query2, sqlConnection);
                 sqlCanton.ExecuteNonQuery();
                 SqlCommand sqlEmployee = new SqlCommand(query3, sqlConnection);

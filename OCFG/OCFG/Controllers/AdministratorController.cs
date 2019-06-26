@@ -69,6 +69,29 @@ namespace OCFG.Controllers
             }
         }
 
+        //GET: Administrator/Permit/111111111
+        public ActionResult Permit(string idCard)
+        {
+            employee = administratorData.getEmployeeByIdCard(idCard);
+            return View(employee);
+        }
+
+        //POST: Administrator/Permit/111111111
+        [HttpPost]
+        public ActionResult Permit(string idCard, int id)
+        {
+            try
+            {
+                administratorData.changePermit(idCard);
+                return RedirectToAction("Search","Administrator");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
         // GET: Administrator/Authorization
         public ActionResult Authorization()
         {
