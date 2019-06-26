@@ -30,6 +30,7 @@ namespace OCFG.Controllers
         {
             LoginUser User = employeeData.getLoginUser(loginUser);
             this.ViewBag.User = User.NameLogin;
+            this.ViewBag.Permit = User.Permit;
             List<Association> associations = new List<Association>();
 
             return View(associations);
@@ -39,9 +40,12 @@ namespace OCFG.Controllers
         [HttpPost]
         public ActionResult Search(string search, string filter, int loginUser)
         {
+            LoginData loginData = new LoginData();
             List<Association> associations = new List<Association>();
             LoginUser User = employeeData.getLoginUser(loginUser);
+
             this.ViewBag.User = User.NameLogin;
+            this.ViewBag.Permit = loginData.getPermitEmployee(loginUser);
             this.ViewBag.Id = loginUser;
 
             if (!String.IsNullOrEmpty(search))

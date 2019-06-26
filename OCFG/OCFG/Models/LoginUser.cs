@@ -8,9 +8,10 @@ namespace OCFG.Models
     public class LoginUser
     {
         private int idEmployee;
-        private  string idCardLogin;
-        private  string nameLogin;
-        private  string lastNameLogin;
+        private string idCardLogin;
+        private string nameLogin;
+        private string lastNameLogin;
+        private int permit;
 
         public LoginUser()
         {
@@ -20,5 +21,6 @@ namespace OCFG.Models
         public  string NameLogin { get => nameLogin; set => nameLogin = value; }
         public  string LastNameLogin { get => lastNameLogin; set => lastNameLogin = value; }
         public int IdEmployee { get => idEmployee; set => idEmployee = value; }
+        public int Permit { get => permit; set => permit = value; }
     }
 }

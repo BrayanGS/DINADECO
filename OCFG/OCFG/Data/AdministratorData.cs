@@ -82,7 +82,7 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
 
-                string queryPermit = "UPDATE Employee SET permit = " + 0 + " WHERE id_card = " + idCard;
+                string queryPermit = "UPDATE Employee SET permit = " + 1 + " WHERE id_card = " + idCard;
 
                 SqlCommand sqlPermit = new SqlCommand(queryPermit, sqlConnection);
                 sqlPermit.ExecuteNonQuery();
@@ -244,9 +244,26 @@ namespace OCFG.Data
 
         }
 
+        public void unPermit(string idCard)
+        {
+            int idEmployee = getIdEmployeeByIdCard(idCard);
+
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                String query = "UPDATE Employee set permit = " + 0 + " " +
+                               " WHERE id_card = '" + idCard + "'";
+
+                SqlCommand sqlEmployee = new SqlCommand(query, sqlConnection);
+                sqlEmployee.ExecuteNonQuery();
+            }
+        }
+
         public void deleteEmployee(string idCard, DateTime dateOut) {
             int idEmployee = getIdEmployeeByIdCard(idCard);
             string formatted = dateOut.ToString("dd/M/yyyy");
+
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();

@@ -70,19 +70,19 @@ namespace OCFG.Controllers
         }
 
         //GET: Administrator/Permit/111111111
-        public ActionResult Permit(string idCard)
+        public ActionResult Permit(string id)
         {
-            employee = administratorData.getEmployeeByIdCard(idCard);
+            employee = administratorData.getEmployeeByIdCard(id);
             return View(employee);
         }
 
         //POST: Administrator/Permit/111111111
         [HttpPost]
-        public ActionResult Permit(string idCard, int id)
+        public ActionResult Permit(string id, string name)
         {
             try
             {
-                administratorData.changePermit(idCard);
+                administratorData.changePermit(id);
                 return RedirectToAction("Search","Administrator");
             }
             catch
@@ -146,6 +146,27 @@ namespace OCFG.Controllers
             try
             {
                 administratorData.deleteEmployee(id, dateOut);
+
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return RedirectToAction("Search");
+            }
+        }
+
+        public ActionResult UnPermit(string id)
+        {
+            employee = administratorData.getEmployeeByIdCard(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult UnPermit(string id, string name)
+        {
+            try
+            {
+                administratorData.unPermit(id);
 
                 return RedirectToAction("Search");
             }
