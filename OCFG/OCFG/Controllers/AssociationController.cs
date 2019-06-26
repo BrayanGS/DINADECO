@@ -54,8 +54,9 @@ namespace OCFG.Controllers
         }
 
         // GET: Association/Create
-        public ActionResult Create()
+        public ActionResult Create(int idLogin)
         {
+            ViewBag.Id = idLogin;
             List<Canton> cantons = cantonData.getAll();
             ViewData["cantons"] = cantons;
 
@@ -64,13 +65,13 @@ namespace OCFG.Controllers
 
         // POST: Association/Create
         [HttpPost]
-        public ActionResult Create(int registryCode, string name, string region, string ICanton, string status,string active, string province, string legalDocument, int type )
+        public ActionResult Create(int registryCode, string name, string region, string ICanton, string status,string active, string province, string legalDocument, int type, int idLogin)
         {
             try
             {
               
                 Association associationInsert = new Association(0, registryCode, name, region, ICanton, status, active, province, legalDocument,null,null,null, type, null, null, null, null,null);
-                associationData.insertarAssociation(associationInsert);
+                associationData.insertarAssociation(associationInsert, idLogin);
                 return RedirectToAction("Index");
             }
             catch
