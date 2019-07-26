@@ -160,7 +160,14 @@
                 @Html.DisplayFor(modelItem => item.EconomicReport.Balance)
             </td>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.EconomicReport.Status)
+                @if (item.EconomicReport.Status.Equals('N'))
+                {
+                    <p>Pendiente</p>
+                }
+                else
+                {
+                    <p>Al día</p>
+                }
             </td>
             <td class="text-center">
                 @Html.DisplayText(" ")
@@ -172,7 +179,14 @@
                 @Html.DisplayFor(modelItem => item.Settlement.Year)
             </td>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Settlement.Status)
+                @if (item.Settlement.Status.Equals('N'))
+                {
+                    <p>Pendiente</p>
+                }
+                else
+                {
+                    <p>Al día</p>
+                }
             </td>
             <td class="text-center">
                 @Html.DisplayText(" ")
@@ -193,7 +207,14 @@
                 @Html.DisplayFor(modelItem => item.ConcreteLiquidation.Year)
             </td>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.ConcreteLiquidation.Status)
+                @if (item.ConcreteLiquidation.Status.Equals('N'))
+                {
+                    <p>Pendiente</p>
+                }
+                else
+                {
+                    <p>Al día</p>
+                }
             </td>
         </tr>
     }

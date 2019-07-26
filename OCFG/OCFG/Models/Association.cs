@@ -44,7 +44,7 @@ namespace OCFG.Models
             this.status = status;
             this.active = active;
             this.province = province;
-            this.legalDocument = legalDocument;
+            this.legalDocument = legalDocumet;
             this.superavit = superavit;
             this.adequacy = adequacy;
             this.affidavit = affiavit;

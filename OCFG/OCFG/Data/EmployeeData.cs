@@ -336,11 +336,11 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
 
-                String query = "SELECT a.registry_code, ISNULL(a.type,0), ISNULL(a.name_association, 'No disponible'), ISNULL(a.region, 'No disponible')," 
-                                + "ISNULL(a.canton, 'No disponible'), ISNULL(a.province, 'No disponible'), ISNULL(a.status, '0'), ISNULL(a.active, 'No'),"
-                                + "ISNULL(a.adequacy, 'No'), ISNULL(a.affidavit, 'No'), ISNULL(a.legal_document, 'No disponible'), ISNULL(a.superavit, 'No'),"
-                                + "ISNULL(a.id_economic, 0), ISNULL(a.id_settlement, 0), ISNULL(a.id_work, 0), ISNULL(a.id_concrete, 0)"
-                                + " from Association a where a.registry_code = " + idAssociation + ";";
+                String query = "SELECT a.registry_code, ISNULL(a.type,0), ISNULL(a.name_association, 'No disponible'), ISNULL(a.region, 'No disponible'),"
+                                + " ISNULL(a.canton, 'No disponible'), ISNULL(a.province, 'No disponible'), ISNULL(a.status, '0'), ISNULL(a.active, 'No'),"
+                                + " ISNULL(a.adequacy, 'No'), ISNULL(a.affidavit, 'No'), ISNULL(a.legal_document, 'No disponible'), ISNULL(a.superavit, 'No'),"
+                                + " ISNULL(a.id_economic, 0), ISNULL(a.id_settlement, 0), ISNULL(a.id_work, 0), ISNULL(a.id_concrete, 0)"
+                                + " from Association a Where a.registry_code = " + idAssociation + ";";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 string varStatus;
@@ -371,6 +371,47 @@ namespace OCFG.Data
                         int idWork = reader.GetInt32(14);
                         int idConcrete = reader.GetInt32(15);
 
+
+                        /*WorkPlan*/
+                        if (idWork.Equals(0))
+                        {
+                            workPlan = new WorkPlan(0, "1/1/1", "Pendiente");
+                        }
+                        else
+                        {
+                            workPlan = getWorkPlanById(idWork);
+                        }
+
+                        /*EconomicReport*/
+                        if (idEconomic.Equals(0))
+                        {
+                            economicReport = new EconomicReport(0, new DateTime(1, 1, 1), "0000", 0f, 'N');
+                        }
+                        else
+                        {
+                            economicReport = getEconomicReportById(idEconomic);
+                        }
+
+                        /*Settlement*/
+                        if (idSettlement.Equals(0))
+                        {
+                            settlement = new Settlement(0, new DateTime(1, 1, 1), "0000", 'N');
+                        }
+                        else
+                        {
+                            settlement = getSettlementById(idSettlement);
+                        }
+
+                        /*ConcreteLiquitation*/
+                        if (idConcrete.Equals(0))
+                        {
+                            concreteLiquidation = new ConcreteLiquidation(0, new DateTime(1, 1, 1), "0000", 'N');
+                        }
+                        else
+                        {
+                            concreteLiquidation = getConcreteById(idConcrete);
+                        }
+
                         /*Status*/
                         if (status.Equals("1"))
                         {
@@ -380,7 +421,7 @@ namespace OCFG.Data
                         {
                             varStatus = "Pendiente";
                         }
-                         /*Active*/
+                        /*Active*/
                         if (active.Equals("YES"))
                         {
                             varActive = "Activa";
@@ -426,46 +467,6 @@ namespace OCFG.Data
                         affidavit = varAffidavit;
                         superavit = varSuperavit;
 
-                        /*WorkPlan*/
-                        if (idWork.Equals(0))
-                        {
-                            workPlan = new WorkPlan(0, "1/1/1", "NO");
-                        }
-                        else
-                        {
-                            workPlan = getWorkPlanById(idWork);
-                        }
-
-                        /*EconomicReport*/
-                        if (idEconomic.Equals(0))
-                        {
-                            economicReport = new EconomicReport(0, new DateTime(1, 1, 1), "0000", 0f, 'N');
-                        }
-                        else
-                        {
-                            economicReport = getEconomicReportById(idEconomic);
-                        }
-
-                        /*Settlement*/
-                        if (idSettlement.Equals(0))
-                        {
-                            settlement = new Settlement(0, new DateTime(1, 1, 1), "0000", 'N');
-                        }
-                        else
-                        {
-                            settlement = getSettlementById(idSettlement);
-                        }
-
-                        /*ConcreteLiquitation*/
-                        if (idConcrete.Equals(0))
-                        {
-                            concreteLiquidation = new ConcreteLiquidation(0, new DateTime(1, 1, 1), "0000", 'N');
-                        }
-                        else
-                        {
-                            concreteLiquidation = getConcreteById(idConcrete);
-                        }
-
                         association = new Association(registryCode, name, region, canton, status,
                         active, province, legalDocument, superavit, adequacy, affidavit,
                         type, workPlan, settlement, economicReport, concreteLiquidation);
@@ -481,151 +482,130 @@ namespace OCFG.Data
         public WorkPlan getWorkPlanById(int idWork)
         {
             WorkPlan workPlan = null;
-            if (idWork == 0)
+
+            using (SqlConnection sqlConnection = getConnection())
             {
-                workPlan = new WorkPlan(0,"1/11/1111");
-            }
-            else
-            {
-                using (SqlConnection sqlConnection = getConnection())
+                sqlConnection.Open();
+
+                String query = "select w.assembly_date, w.status from WorkPlan w where w.id_work = " + idWork + ";";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                string varStatus;
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
-                    sqlConnection.Open();
-
-                    String query = "select w.assembly_date, w.status from WorkPlan w where w.id_work = " + idWork + ";";
-
-                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        /*WorkPlan*/
+                        String assemblyDate = reader.GetString(0);
+                        String status = reader.GetString(1);
+
+                        /*Status*/
+                        if (status.Equals("1"))
                         {
-                            /*WorkPlan*/
-                            workPlan = new WorkPlan();
-                            workPlan.AssemblyDate = reader.GetString(0);
-                            workPlan.Status = reader.GetString(1);
-
+                            varStatus = "Al Día";
                         }
-                        sqlConnection.Close();
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+
+                        status = varStatus;
+                        workPlan = new WorkPlan(assemblyDate, status);
+
                     }
+                    sqlConnection.Close();
                 }
-
-
-               
+                return workPlan;
             }
-            return workPlan;
-
         }
 
         public EconomicReport getEconomicReportById(int idReport)
-
         {
-            
             EconomicReport economicReport = null;
 
-            if (idReport == 0)
+            using (SqlConnection sqlConnection = getConnection())
             {
-                economicReport = new EconomicReport(0,new DateTime(),"0000",0000);
-            }
+                sqlConnection.Open();
 
-            else {
-                using (SqlConnection sqlConnection = getConnection())
+                String query = "select e.date_received, e.year, e.balance, e.status  from EconomicReport e where e.id_economic = " + idReport + ";";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
-                    sqlConnection.Open();
-
-                    String query = "select e.date_received, e.year, e.balance, e.status  from EconomicReport e where e.id_economic = " + idReport + ";";
-
-                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            economicReport = new EconomicReport();
-                            economicReport.DateReceived = reader.GetDateTime(0);
-                            economicReport.Year = reader.GetString(1);
-                            string statusEconomic = reader.GetString(3);
-                            char[] cadEconomic = statusEconomic.ToCharArray();
-                            economicReport.Status = cadEconomic[0];
+                        economicReport = new EconomicReport();
+                        economicReport.DateReceived = reader.GetDateTime(0);
+                        economicReport.Year = reader.GetString(1);
+                        string statusEconomic = reader.GetString(3);
+                        char[] cadEconomic = statusEconomic.ToCharArray();
+                        economicReport.Status = cadEconomic[0];
 
-                        }
-                        sqlConnection.Close();
                     }
+                    sqlConnection.Close();
                 }
-            }
-            
                 return economicReport;
-            
+            }
         }
 
         public Settlement getSettlementById(int idSettlement)
         {
             Settlement settlement = null;
-            if (idSettlement == 0) {
-                settlement = new Settlement(0, new DateTime(), "0000", 'N');
-            } else {
-                using (SqlConnection sqlConnection = getConnection())
+
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                String query = "select s.date_received, s.year, s.status  from Settlement s where s.id_settlement = " + idSettlement + ";";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
-                    sqlConnection.Open();
-
-                    String query = "select s.date_received, s.year, s.status  from Settlement s where s.id_settlement = " + idSettlement + ";";
-
-                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
 
-                            settlement = new Settlement();
-                            settlement.DateReceived = reader.GetDateTime(0);
-                            settlement.Year = reader.GetString(1);
-                            string statusSettlement = reader.GetString(2);
-                            char[] cadSettlement = statusSettlement.ToCharArray();
-                            settlement.Status = cadSettlement[0];
+                        settlement = new Settlement();
+                        settlement.DateReceived = reader.GetDateTime(0);
+                        settlement.Year = reader.GetString(1);
+                        string statusSettlement = reader.GetString(2);
+                        char[] cadSettlement = statusSettlement.ToCharArray();
+                        settlement.Status = cadSettlement[0];
 
-                        }
-                        sqlConnection.Close();
                     }
+                    sqlConnection.Close();
                 }
-
+                return settlement;
             }
-         return settlement;
-            
         }
 
         public ConcreteLiquidation getConcreteById(int idConcrete)
         {
             ConcreteLiquidation concreteLiquidation = null;
 
-            if (idConcrete == 0)
+            using (SqlConnection sqlConnection = getConnection())
             {
-                concreteLiquidation = new ConcreteLiquidation(0, new DateTime(), "0000", 'N');
-            }
-            else
-            {
-                using (SqlConnection sqlConnection = getConnection())
+                sqlConnection.Open();
+
+                String query = "select c.date_received, c.year, c.status from ConcreteLiquidation c where c.id_concrete = " + idConcrete + ";";
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
-                    sqlConnection.Open();
-
-                    String query = "select c.date_received, c.year, c.status from ConcreteLiquidation c where c.id_concrete = " + idConcrete + ";";
-
-                    SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
-                    using (SqlDataReader reader = sqlSelect.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
 
-                            concreteLiquidation = new ConcreteLiquidation();
-                            concreteLiquidation.DateReceived = reader.GetDateTime(0);
-                            concreteLiquidation.Year = reader.GetString(1);
-                            string statusConcrete = reader.GetString(2);
-                            char[] cadConcrete = statusConcrete.ToCharArray();
-                            concreteLiquidation.Status = cadConcrete[0];
+                        concreteLiquidation = new ConcreteLiquidation();
+                        concreteLiquidation.DateReceived = reader.GetDateTime(0);
+                        concreteLiquidation.Year = reader.GetString(1);
+                        string statusConcrete = reader.GetString(2);
+                        char[] cadConcrete = statusConcrete.ToCharArray();
+                        concreteLiquidation.Status = cadConcrete[0];
 
-                        }
-                        sqlConnection.Close();
                     }
+                    sqlConnection.Close();
                 }
-            }
                 return concreteLiquidation;
-            
+            }
         }
 
         /*UPDATE DOCUMENTS BY EMPLOYEE*/

@@ -110,23 +110,23 @@ namespace OCFG.Controllers
 
         // POST: Employee/CreateAssociation
         [HttpPost]
-        public ActionResult CreateAssociation(int registryCode, string name, string region, string ICanton, string status, string active, string province, string legalDocument, int type, int idLogin)
+        public ActionResult CreateAssociation(int registryCode, string name, string region, string ICanton, string active, string province, string legalDocument, string superavit, string adequacy, string affiavit, int type, int idLogin)
         {
             try
             {
-                this.ViewBag.Id = idLogin;
-                Association associationInsert = new Association(0, registryCode, name, region, ICanton, status, active, province, legalDocument, null, null, null, type, null, null, null, null, null);
+                string nameAssociation = getNameAssociation(type, name);
+                Association associationInsert = new Association(0, registryCode, nameAssociation, region, ICanton, "", active, province, legalDocument, superavit, adequacy, affiavit, type, null, null, null, null, null);
                 associationData.insertarAssociation(associationInsert, idLogin);
                 return RedirectToAction("Index");
             }
             catch
             {
-                this.ViewBag.Id = idLogin;
                 List<Canton> cantons = cantonData.getAll();
                 ViewData["cantons"] = cantons;
                 return View();
             }
         }
+
         // GET: Association/Edit/5
         public ActionResult Edit(int id, int idLogin)
         {
@@ -277,6 +277,36 @@ namespace OCFG.Controllers
             {
                 return View();
             }
+        }
+
+        //other methods
+        public string getNameAssociation(int type, string name)
+        {
+            string nameAssociation = " ";
+            switch (type)
+            {
+                case 1:
+                    nameAssociation = "ASOCIACIÓN DE DESARROLLO ESPECÍFICAPRO " + name.ToUpper();
+                    break;
+                case 2:
+                    nameAssociation = "ASOCIACIÓN DE DESARROLLO INTEGRAL " + name.ToUpper();
+                    break;
+                case 3:
+                    nameAssociation = "UNION ZONAL " + name.ToUpper();
+                    break;
+                case 4:
+                    nameAssociation = "FEDERACION DE UNIONES " + name.ToUpper();
+                    break;
+                case 5:
+                    nameAssociation = "ASOCIACION DE DESARROLLO INTEGRAL DE RESERVA INDIGENA " + name.ToUpper();
+                    break;
+                case 10:
+                    nameAssociation = "DISUELTA " + name.ToUpper();
+                    break;
+                default:
+                    break;
+            }
+            return nameAssociation;
         }
     }
 }
