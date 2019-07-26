@@ -188,7 +188,7 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
+                String query = "SELECT name_employee, last_name, id_card, phone_number, email, status ,permit FROM Employee" +
                                " WHERE name_employee like '" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
                                " OR last_name like'" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
                                " OR id_card like '" + search + "%" + "'";
@@ -207,6 +207,8 @@ namespace OCFG.Data
                         employee.PhoneNumber = (string)reader[3];
                         employee.Email = (string)reader[4];
                         employee.Status = (int)reader[5];
+                        string permit = (string)reader[6];
+                        employee.Permit = Int32.Parse(permit);
                         employees.Add(employee);
 
                        

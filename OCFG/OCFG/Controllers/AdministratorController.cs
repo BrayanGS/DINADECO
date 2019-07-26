@@ -92,6 +92,29 @@ namespace OCFG.Controllers
         }
 
 
+        public ActionResult UnPermit(string id)
+        {
+            employee = administratorData.getEmployeeByIdCard(id);
+            return View(employee);
+        }
+
+        //POST: Administrator/UnPermit/111111111
+        [HttpPost]
+        public ActionResult UnPermit(string id, string name)
+        {
+            try
+            {
+                administratorData.unPermit(id);
+
+                return RedirectToAction("Search");
+            }
+            catch
+            {
+                return RedirectToAction("Search");
+            }
+        }
+
+
         // GET: Administrator/Authorization
         public ActionResult Authorization()
         {
@@ -154,28 +177,6 @@ namespace OCFG.Controllers
                 return RedirectToAction("Search");
             }
         }
-
-        public ActionResult UnPermit(string id)
-        {
-            employee = administratorData.getEmployeeByIdCard(id);
-            return View(employee);
-        }
-
-        [HttpPost]
-        public ActionResult UnPermit(string id, string name)
-        {
-            try
-            {
-                administratorData.unPermit(id);
-
-                return RedirectToAction("Search");
-            }
-            catch
-            {
-                return RedirectToAction("Search");
-            }
-        }
-
 
         // GET: Association/Details/5
         public ActionResult Details(string id)

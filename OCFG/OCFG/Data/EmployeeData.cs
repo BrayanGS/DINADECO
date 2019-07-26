@@ -720,7 +720,7 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "select e.id_employee, e.id_card, e.name_employee, e.last_name from Employee e"
+                String query = "select e.id_employee, e.id_card, e.name_employee, e.last_name, e.permit from Employee e"
                                 +" where e.id_officer = " + idOfficer + ";";
 
                 SqlCommand sqlSelect2 = new SqlCommand(query, sqlConnection);
@@ -733,6 +733,8 @@ namespace OCFG.Data
                         loginUser.IdCardLogin = reader.GetString(1);
                         loginUser.NameLogin = reader.GetString(2);
                         loginUser.LastNameLogin = reader.GetString(3);
+                        string permit = reader.GetString(4);
+                        loginUser.Permit = Int32.Parse(permit);
                     }
                     sqlConnection.Close();
                 }
