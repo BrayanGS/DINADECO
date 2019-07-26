@@ -138,12 +138,11 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult Edit(Association assoUpdate, int idLogin)
+        public ActionResult Edit(int idLogin, int Id, string adequacy ,string affiavit, string superavit)
         {
             try
             {
-                this.ViewBag.Id = idLogin;
-                associationData.updateAssociation(assoUpdate);
+                associationData.updateAssociation(Id, adequacy, affiavit, superavit);
                 return RedirectToAction("Index");
             }
             catch
@@ -171,38 +170,38 @@ namespace OCFG.Controllers
         /*Edit By Employee For Association*/
 
         // GET: Association/EditEconomicReport/5
-        public ActionResult EditEconomicReport(int id, int idLogin)
+        public ActionResult EditEconomicReport(int Id, int idLogin)
         {
             this.ViewBag.Id = idLogin;
-            economicReport = employeeData.getEconomicReportById(id);
-            economicReport.Id = id;
+            economicReport = employeeData.getEconomicReportById(Id);
+            economicReport.Id = Id;
             return View(economicReport);
         }
 
         //GET: Association/EditWorkPlan/5
-        public ActionResult EditWorkPlan(int id, int idLogin)
+        public ActionResult EditWorkPlan(int Id, int idLogin)
         {
             this.ViewBag.Id = idLogin;
-            workPlan = employeeData.getWorkPlanById(id);
-            workPlan.Id = id;
+            workPlan = employeeData.getWorkPlanById(Id);
+            workPlan.Id = Id;
             return View(workPlan);
         }
 
         //GET: Employee/EditConcreteLiquidation/5
-        public ActionResult EditConcreteLiquidation(int id, int idLogin)
+        public ActionResult EditConcreteLiquidation(int Id, int idLogin)
         {
             this.ViewBag.Id = idLogin;
-            concreteLiquidation = employeeData.getConcreteById(id);
-            concreteLiquidation.Id = id;
+            concreteLiquidation = employeeData.getConcreteById(Id);
+            concreteLiquidation.Id = Id;
             return View(concreteLiquidation);
         }
 
         //GET: Employee/EditConcreteLiquidation/5
-        public ActionResult EditSettlement(int id, int idLogin)
+        public ActionResult EditSettlement(int Id, int idLogin)
         {
             this.ViewBag.Id = idLogin;
-            settlement = employeeData.getSettlementById(id);
-            settlement.Id = id;
+            settlement = employeeData.getSettlementById(Id);
+            settlement.Id = Id;
             return View(settlement);
         }
 
@@ -210,12 +209,12 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult EditWorkPlan(int id ,string assemblyDate, int idLogin)
+        public ActionResult EditWorkPlan(int Id ,string assemblyDate, int idLogin)
         {
             try
             {
                 this.ViewBag.Id = idLogin;
-                WorkPlan workPlan = new WorkPlan(id,assemblyDate);
+                WorkPlan workPlan = new WorkPlan(Id,assemblyDate);
                 employeeData.updateWorkPlan(workPlan);
                 employeeData.insertBitacora(idLogin, "Modifico una asociacion");
                 return RedirectToAction("Search", "Employee", new {loginUser = idLogin} );
@@ -228,12 +227,12 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult EditEconomicReport(int id, DateTime dateReceived, string year, float balance, int idLogin)
+        public ActionResult EditEconomicReport(int Id, DateTime dateReceived, string year, float balance, int idLogin)
         {
             try
             {
                 this.ViewBag.Id = idLogin;
-                EconomicReport economicReport = new EconomicReport(id, dateReceived, year, balance);
+                EconomicReport economicReport = new EconomicReport(Id, dateReceived, year, balance);
                 employeeData.updateEconomicReport(economicReport);
                 employeeData.insertBitacora(idLogin, "Modifico una asociacion");
                 return RedirectToAction("Search", "Employee", new { loginUser = idLogin });
@@ -246,12 +245,12 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult EditConcreteLiquidation(int id, DateTime dateReceived, string year, int idLogin)
+        public ActionResult EditConcreteLiquidation(int Id, DateTime dateReceived, string year, int idLogin)
         {
             try
             {
                 this.ViewBag.Id = idLogin;
-                ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation(id, dateReceived, year);
+                ConcreteLiquidation concreteLiquidation = new ConcreteLiquidation(Id, dateReceived, year);
                 employeeData.updateConcreteLiquidation(concreteLiquidation);
                 employeeData.insertBitacora(idLogin, "Modifico una asociacion");
                 return RedirectToAction("Search", "Employee", new { loginUser = idLogin });
@@ -264,12 +263,12 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult EditSettlement(int id, DateTime dateReceived, string year, int idLogin)
+        public ActionResult EditSettlement(int Id, DateTime dateReceived, string year, int idLogin)
         {
             try
             {
                 this.ViewBag.Id = idLogin;
-                Settlement settlement = new Settlement(id, dateReceived, year);
+                Settlement settlement = new Settlement(Id, dateReceived, year);
                 employeeData.updateSettlement(settlement);
                 employeeData.insertBitacora(idLogin, "Modifico la asociacion");
                 return RedirectToAction("Search", "Employee", new { loginUser = idLogin });

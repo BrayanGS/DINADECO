@@ -71,39 +71,21 @@ namespace OCFG.Data
         /// 
         /// </summary>
         /// <param name="association"></param>
-        public void updateAssociation(Association association)
+        public void updateAssociation(int Id, string adequacy, string affiavit, string superavit)
         {
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
 
-                string queryWork = "UPDATE WorkPlan SET assembly_date = '" + association.WorkPlan.AssemblyDate + "'" +
-                                   "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
+                string queryAsoociation = "UPDATE Association SET affidavit = '" + adequacy+ "', " +
+                                          "adequacy = '" + affiavit + "', " +
+                                          "superavit = '" + superavit + "' " +
+                                          "WHERE Association.id_association = " + Id;
 
-                string queryEconomic = "UPDATE EconomicReport SET date_received = '" + association.EconomicReport.DateReceived + "', " +
-                                       " year = '" + association.EconomicReport.Year + "', " +
-                                       "balance = '" + association.EconomicReport.Balance + "'" +
-                                       "WHERE EconomicReport.id_economic = "+association.EconomicReport.Id;
 
-                string querySettlement = "UPDATE Settlement SET date_received = '" + association.Settlement.DateReceived + "', " +
-                                        "year = '" + association.Settlement.Year + "'" +
-                                        "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
+                SqlCommand sqlAssociation = new SqlCommand(queryAsoociation, sqlConnection);
+                sqlAssociation.ExecuteNonQuery();
 
-                string queryConcrete = "UPDATE ConcreteLiquidation SET date_received = '" + association.ConcreteLiquidation.DateReceived + "', " +
-                                       "year = '" + association.ConcreteLiquidation.Year + "'" +
-                                       "WHERE EconomicReport.id_economic = " + association.EconomicReport.Id;
-
-                SqlCommand sqlWork = new SqlCommand(queryWork, sqlConnection);
-                sqlWork.ExecuteNonQuery();
-
-                SqlCommand sqlEconomic = new SqlCommand(queryEconomic, sqlConnection);
-                sqlEconomic.ExecuteNonQuery();
-
-                SqlCommand sqlSettlement = new SqlCommand(querySettlement, sqlConnection);
-                sqlSettlement.ExecuteNonQuery();
-
-                SqlCommand sqlConcrete = new SqlCommand(queryConcrete, sqlConnection);
-                sqlConcrete.ExecuteNonQuery();
 
             }
         }

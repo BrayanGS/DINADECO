@@ -175,6 +175,7 @@
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\Officer.cs" />
     <Compile Include="Models\Settlement.cs" />
+    <Compile Include="Models\ViewAssociation.cs" />
     <Compile Include="Models\WorkPlan.cs" />
     <Compile Include="OCFG_DataBaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

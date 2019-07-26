@@ -73,30 +73,6 @@
                 </div>
 
                 <div class="form-group">
-                    <h5>Idoneidad</h5>
-                    <div class="col-md-5">
-                        @Html.EditorFor(model => model.Adequacy, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Adequacy, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h5>Declaración Jurada</h5>
-                    <div class="col-md-5">
-                        @Html.EditorFor(model => model.Affidavit, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Affidavit, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h5>Tipo</h5>
-                    <div class="col-md-5">
-                        @Html.DisplayFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <h5>Cédula Jurídica</h5>
                     <div class="col-md-5">
                         @Html.DisplayFor(model => model.LegalDocument, new { htmlAttributes = new { @class = "form-control" } })
@@ -105,10 +81,32 @@
                 </div>
 
                 <div class="form-group">
+                    <h5>Idoneidad</h5>
+                    <div class="col-md-9">
+                        <select name="adequacy">
+                            <option value="Yes">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Declaración Jurada</h5>
+                    <div class="col-md-9">
+                        <select name="affiavit">
+                            <option value="Yes">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <h5>Superavit</h5>
-                    <div class="col-md-5">
-                        @Html.EditorFor(model => model.Superavit, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Superavit, "", new { @class = "text-danger" })
+                    <div class="col-md-9">
+                        <select name="superavit">
+                            <option value="Yes">Sí</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
             </div>

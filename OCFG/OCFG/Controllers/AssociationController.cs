@@ -92,11 +92,11 @@ namespace OCFG.Controllers
 
         // POST: Association/Edit/5
         [HttpPost]
-        public ActionResult Edit(Association assoUpdate)
+        public ActionResult Edit(int Id, string adequacy, string affiavit, string superavit)
         {
             try
             {
-                associationData.updateAssociation(assoUpdate);
+                associationData.updateAssociation(Id, adequacy, affiavit, superavit);
                 return RedirectToAction("Index");
             }
             catch

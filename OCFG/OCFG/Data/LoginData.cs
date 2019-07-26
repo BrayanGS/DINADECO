@@ -45,7 +45,7 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
                 String query = " SELECT e.permit FROM Employee e, Officer o " +
-                               " WHERE e.id_employee = " + idEmployee ;
+                               " WHERE e.id_officer = " + idEmployee ;
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
                 using(SqlDataReader reader = sqlSelect.ExecuteReader())
