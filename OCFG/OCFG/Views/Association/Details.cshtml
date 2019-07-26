@@ -11,7 +11,7 @@
         <br />
         <br />
         <div class="text-center">
-            <h2>Detalles de la asociación </h2>
+            <h2>Detalles de la asociación</h2>
         </div>
         <hr style="border-color:cornflowerblue" />
         <div class="dl-horizontal">
@@ -73,10 +73,10 @@
             <div class="row" align="center">
                 <div class="col-md-3  text-center">
                     <dt>
-                        <h4>Estado</h4>
+                        <h4>Fecha de recibido</h4>
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EconomicReport.Status)
+                        @Html.DisplayFor(model => model.EconomicReport.DateReceived)
                     </dd>
                 </div>
                 <div class="col-md-3 text-center">
@@ -97,11 +97,20 @@
                 </div>
                 <div class="col-md-3 text-center">
                     <dt>
-                        <h4>Fecha de recibido</h4>
+                        <h4>Estado</h4>
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.EconomicReport.DateReceived)
+                        @if (Model.EconomicReport.Status.Equals('N'))
+                        {
+                            <p>Pendiente</p>
+                        }
+                        else
+                        {
+                            <p>Al día</p>
+                        }
+
                     </dd>
+
                 </div>
             </div>
 
@@ -162,7 +171,14 @@
                         <h4>Estado</h4>
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Settlement.Status)
+                        @if (Model.Settlement.Status.Equals('N'))
+                        {
+                            <p>Pendiente</p>
+                        }
+                        else
+                        {
+                            <p>Al día</p>
+                        }
                     </dd>
                 </div>
             </div>
@@ -197,7 +213,14 @@
                         <h4>Estado</h4>
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.ConcreteLiquidation.Status)
+                        @if (Model.ConcreteLiquidation.Status.Equals('N'))
+                        {
+                            <p>Pendiente</p>
+                        }
+                        else
+                        {
+                            <p>Al día</p>
+                        }
                     </dd>
                 </div>
             </div>

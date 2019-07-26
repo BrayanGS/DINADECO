@@ -70,7 +70,16 @@
                 <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.DateReceived)</th>
                 <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Year)</th>
                 <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Balance)</th>
-                <th class="text-center">@Html.DisplayFor(model => model.EconomicReport.Status)</th>
+                <th class="text-center">
+                    @if (Model.EconomicReport.Status.Equals('N'))
+                    {
+                        <p>Pendiente</p>
+                    }
+                    else
+                    {
+                        <p>Al día</p>
+                    }
+                </th>
             </tr>
         </table>
     </div>
@@ -98,7 +107,16 @@
             <tr>
                 <th class="text-center">@Html.DisplayFor(model => model.Settlement.DateReceived)</th>
                 <th class="text-center">@Html.DisplayFor(model => model.Settlement.Year)</th>
-                <th class="text-center">@Html.DisplayFor(model => model.Settlement.Status)</th>
+                <th class="text-center">
+                    @if (Model.Settlement.Status.Equals('N'))
+                    {
+                        <p>Pendiente</p>
+                    }
+                    else
+                    {
+                        <p>Al día</p>
+                    }
+                </th>
             </tr>
         </table>
     </div>
@@ -113,7 +131,16 @@
             <tr>
                 <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.DateReceived)</th>
                 <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.Year)</th>
-                <th class="text-center">@Html.DisplayFor(model => model.ConcreteLiquidation.Status)</th>
+                <th class="text-center">
+                    @if (Model.ConcreteLiquidation.Status.Equals('N'))
+                    {
+                        <p>Pendiente</p>
+                    }
+                    else
+                    {
+                        <p>Al día</p>
+                    }
+                            </th>
             </tr>
         </table>
     </div>

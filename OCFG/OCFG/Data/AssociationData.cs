@@ -156,33 +156,25 @@ namespace OCFG.Data
         }
         public void insertarAssociation(Association association, int idLogin)
         {
-            int varStatus;
+            int varStatus = 0;
             string varActive;
             string query1;
 
-            if (association.Status.Equals("toTheDate"))
-            {
-                varStatus = 1;
-            }
-            else
-            {
-                varStatus = 0;
-            }
             if (association.Active.Equals("active"))
             {
-                varActive = "Yes";
+                varActive = "YES";
             }
             else
             {
-                varActive = "No";
+                varActive = "NO";
             }
             using (SqlConnection sqlConnection = getConnection())
             {
                  SqlTransaction transaction = null;
-
-                query1 = "Insert into Association(registry_code, name_association, region, canton,status, active, province, legal_document, type) " +
-                "values ("+association.RegistryCode + ",'" + association.Name + "','" + association.Region + "','" + association.Canton + "',"
-                + varStatus + ",'"+varActive + "','" + association.Province+ "','" +association.LegalDocument + "'," + association.Type+")";
+                
+                query1 = "Insert into Association(registry_code, type, name_association, region, canton, province,status, active,adequacy,affidavit, legal_document, superavit) " +
+                "values ("+association.RegistryCode + "," + association.Type + ",'" + association.Name + "','" + association.Region + "','" + association.Canton
+                + "','" + association.Province + "'," + varStatus + ",'"+varActive + "','" + association.Adequacy + "','" + association.Affidavit + "','" +association.LegalDocument + "','" + association.Superavit+"')";
                
 
                
@@ -231,6 +223,11 @@ namespace OCFG.Data
                                 + " from Association a ; ";
 
                 SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                string varStatus;
+                string varActive;
+                string varAdequacy;
+                string varAffidavit;
+                string varSuperavit;
                 using (SqlDataReader reader = sqlSelect.ExecuteReader())
                 {
                     while (reader.Read())
@@ -256,7 +253,7 @@ namespace OCFG.Data
                         /*WorkPlan*/
                         if (idWork.Equals(0))
                         {
-                            workPlan = new WorkPlan(0, "1/1/1", "NO");
+                            workPlan = new WorkPlan(0, "1/1/1", "No");
                         }
                         else
                         {
@@ -292,6 +289,60 @@ namespace OCFG.Data
                         {
                             concreteLiquidation = getConcreteById(idConcrete);
                         }
+                        /*Status*/
+                        if (status.Equals("1"))
+                        {
+                            varStatus = "Al Día";
+                        }
+                        else
+                        {
+                            varStatus = "Pendiente";
+                        }
+                        /*Active*/
+                        if (active.Equals("YES"))
+                        {
+                            varActive = "Activa";
+                        }
+                        else
+                        {
+                            varActive = "Inactiva";
+                        }
+
+                        /*Adequacy*/
+                        if (adequacy.Equals("YES"))
+                        {
+                            varAdequacy = "Si";
+                        }
+                        else
+                        {
+                            varAdequacy = "No";
+                        }
+
+                        /*Affidavit*/
+                        if (affidavit.Equals("YES"))
+                        {
+                            varAffidavit = "Si";
+                        }
+                        else
+                        {
+                            varAffidavit = "No";
+                        }
+
+                        /*Superavit*/
+                        if (superavit.Equals("YES"))
+                        {
+                            varSuperavit = "Si";
+                        }
+                        else
+                        {
+                            varSuperavit = "No";
+                        }
+
+                        status = varStatus;
+                        active = varActive;
+                        adequacy = varAdequacy;
+                        affidavit = varAffidavit;
+                        superavit = varSuperavit;
 
                         association = new Association(registryCode, name, region, canton, status,
                         active, province, legalDocument, superavit, adequacy, affidavit,
@@ -334,8 +385,17 @@ namespace OCFG.Data
                         association.RegistryCode = registryCode;
                         association.Name = name;
                         association.Region = region;
-                        association.Status = status;
                         association.LegalDocument = legalDocument;
+
+                        /*Status*/
+                        if (status.Equals("1"))
+                        {
+                            association.Status = "Al Día";
+                        }
+                        else
+                        {
+                            association.Status = "Pendiente";
+                        }
 
                         associations.Add(association);
 
@@ -392,17 +452,44 @@ namespace OCFG.Data
 
 
                         /*WorkPlan*/
-                        workPlan = getWorkPlanById(idWork);
+                        if (idWork.Equals(0))
+                        {
+                            workPlan = new WorkPlan(0, "1/1/1", "Pendiente");
+                        }
+                        else
+                        {
+                            workPlan = getWorkPlanById(idWork);
+                        }
 
                         /*EconomicReport*/
-                        economicReport = getEconomicReportById(idEconomic);
+                        if (idEconomic.Equals(0))
+                        {
+                            economicReport = new EconomicReport(0, new DateTime(1, 1, 1), "0000", 0f, 'N');
+                        }
+                        else
+                        {
+                            economicReport = getEconomicReportById(idEconomic);
+                        }
 
                         /*Settlement*/
-                        settlement = getSettlementById(idSettlement);
-
+                        if (idSettlement.Equals(0))
+                        {
+                            settlement = new Settlement(0, new DateTime(1, 1, 1), "0000", 'N');
+                        }
+                        else
+                        {
+                            settlement = getSettlementById(idSettlement);
+                        }
 
                         /*ConcreteLiquitation*/
-                        concreteLiquidation = getConcreteById(idConcrete);
+                        if (idConcrete.Equals(0))
+                        {
+                            concreteLiquidation = new ConcreteLiquidation(0, new DateTime(1, 1, 1), "0000", 'N');
+                        }
+                        else
+                        {
+                            concreteLiquidation = getConcreteById(idConcrete);
+                        }
 
                         /*Status*/
                         if (status.Equals("1"))
