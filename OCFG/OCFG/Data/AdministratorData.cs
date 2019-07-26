@@ -82,7 +82,7 @@ namespace OCFG.Data
             {
                 sqlConnection.Open();
 
-                string queryPermit = "UPDATE Employee SET permit = " + 0 + " WHERE id_card = " + idCard;
+                string queryPermit = "UPDATE Employee SET permit = " + 1 + " WHERE id_card = " + idCard;
 
                 SqlCommand sqlPermit = new SqlCommand(queryPermit, sqlConnection);
                 sqlPermit.ExecuteNonQuery();
@@ -188,7 +188,7 @@ namespace OCFG.Data
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();
-                String query = "SELECT name_employee, last_name, id_card, phone_number, email, status FROM Employee" +
+                String query = "SELECT name_employee, last_name, id_card, phone_number, email, status ,permit FROM Employee" +
                                " WHERE name_employee like '" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
                                " OR last_name like'" + search.Substring(0, 1).ToUpper() + search.Substring(1) + "%" + "' " +
                                " OR id_card like '" + search + "%" + "'";
@@ -207,6 +207,8 @@ namespace OCFG.Data
                         employee.PhoneNumber = (string)reader[3];
                         employee.Email = (string)reader[4];
                         employee.Status = (int)reader[5];
+                        string permit = (string)reader[6];
+                        employee.Permit = Int32.Parse(permit);
                         employees.Add(employee);
 
                        
@@ -244,9 +246,26 @@ namespace OCFG.Data
 
         }
 
+        public void unPermit(string idCard)
+        {
+            int idEmployee = getIdEmployeeByIdCard(idCard);
+
+            using (SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+
+                String query = "UPDATE Employee set permit = " + 0 + " " +
+                               " WHERE id_card = '" + idCard + "'";
+
+                SqlCommand sqlEmployee = new SqlCommand(query, sqlConnection);
+                sqlEmployee.ExecuteNonQuery();
+            }
+        }
+
         public void deleteEmployee(string idCard, DateTime dateOut) {
             int idEmployee = getIdEmployeeByIdCard(idCard);
             string formatted = dateOut.ToString("dd/M/yyyy");
+
             using (SqlConnection sqlConnection = getConnection())
             {
                 sqlConnection.Open();

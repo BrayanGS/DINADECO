@@ -35,7 +35,31 @@ namespace OCFG.Data
             }
 
             return rol;
-
         }
+
+        public int getPermitEmployee(int idEmployee)
+        {
+            int permit = 0;
+
+            using(SqlConnection sqlConnection = getConnection())
+            {
+                sqlConnection.Open();
+                String query = " SELECT e.permit FROM Employee e, Officer o " +
+                               " WHERE e.id_employee = " + idEmployee ;
+
+                SqlCommand sqlSelect = new SqlCommand(query, sqlConnection);
+                using(SqlDataReader reader = sqlSelect.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        String permitEmployee = reader.GetString(0);
+                        permit = Int32.Parse(permitEmployee);
+                    }
+                    sqlConnection.Close();
+                }
+            }
+            return permit;
+        }
+
     }
 }

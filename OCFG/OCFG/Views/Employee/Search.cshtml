@@ -111,35 +111,42 @@
                     foreach (var item in Model)
                     {
 
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RegistryCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Canton)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Region)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Active)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Province)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode, idLogin = ViewBag.Id })
-                            </td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistryCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Canton)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Region)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Province)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Ver Detalles", "Details", new { id = item.RegistryCode, idLogin = ViewBag.Id  })
+                        </td>
+                        @if (ViewBag.Permit == 1)
+                        {
                             <td>
                                 @Html.ActionLink("Editar", "Edit", new { id = item.RegistryCode, idLogin = ViewBag.Id })
                             </td>
-                        </tr>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    </tr>
                     }
                 }
             </table>
